@@ -1,4 +1,4 @@
-const CustomerModel = require('../../api/models/Customer')
+const CustomerModel = require('../../models/CustomerModel')
 module.exports = {
     name: 'JWT Authdentication',
     version: '1.0.0',

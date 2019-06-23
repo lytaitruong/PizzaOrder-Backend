@@ -1,14 +1,14 @@
 const Hapi     = require('@hapi/hapi');
 const Database = require('./database');
-const Routes   = require('./api/routes');
+const Routes   = require('./api');
 module.exports.setupEnvironment = async(configServer, configDatabase) =>{
     // Get Database
     await Database.connect(configDatabase);
     // Config the server
     const server = Hapi.server({
         debug: {request: ['error']}, 
-        host: process.env.HOST || configServer.host,
-        port: process.env.PORT || configServer.port
+        host: configServer.host,
+        port: configServer.port
     });
     // Modifies the root route
     if(configServer.routePrefix){

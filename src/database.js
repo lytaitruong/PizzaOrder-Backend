@@ -1,6 +1,6 @@
 const Mongoose = require('mongoose');
 module.exports.connect =  async (config) =>{
-    const database = await Mongoose.connect(process.env.MONGO_URL || config.urlMongo,
+    const database = await Mongoose.connect(config.urlMongo,
         {useCreateIndex: true, useNewUrlParser: true, useFindAndModify: false});
 
     database.connection.on("error", () => {
