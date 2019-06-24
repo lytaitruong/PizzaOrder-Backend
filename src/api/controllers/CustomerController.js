@@ -1,5 +1,3 @@
-'use strict'
-const Boom        = require('@hapi/boom');
 const CustomerService = require('../../service/CustomerService');
 module.exports = {
     getAllCustomers: async(request, h) =>{
@@ -39,7 +37,6 @@ module.exports = {
     },
     updateCustomer: async (request, h) =>{
         try{
-            const id = request.auth.credentials._id
             const customer = await CustomerService.updateCustomer(id,request.payload)
             return h.response(customer).code(200)
         }catch(error){

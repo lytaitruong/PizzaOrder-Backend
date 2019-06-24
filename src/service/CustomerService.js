@@ -28,20 +28,19 @@ module.exports = {
     signInCustomer: async ({username,password}) =>{
         const customer = await CustomerModel.signIn({username,password})
         if(!customer){
-            throw Boom.internal()
+            throw Boom.badData()
         }
         return customer;
     },
     updateCustomer: async (id, data) =>{
         const customer = await CustomerModel.findByIdAndUpdate(id,data);
         if(!customer){
-            throw Boom.notFound(`CUSTOMER NOT FOUND`)
+            throw Boom.notFound(`CUSTOMER NOT FOUND!`);
         }
         return customer;
     },
     deleteCustomer: async (id) =>{
-        console.log(id);
-        const customer = await CustomerModel.findByIdAndDelete(id)
+        const customer = await CustomerModel.findByIdAndDelete(id);
         if(!customer){
             throw Boom.notFound(`CUSTOMER NOT FOUND!`)
         }

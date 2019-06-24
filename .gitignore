@@ -8,8 +8,9 @@ reports
 test-reports
 
 # Dependency directory
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-gitgit 
 node_modules/
+package-lock.json
 # secret
 .env
 .npm

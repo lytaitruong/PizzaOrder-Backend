@@ -1,4 +1,3 @@
-'use strict';
 const CustomerController = require('../controllers/CustomerController');
 const CustomerValidation = require('../validations/CustomerValidation');
 module.exports.register = async(server) =>{
@@ -70,37 +69,6 @@ module.exports.register = async(server) =>{
         },
     },{
         method: 'GET',
-        path: '/',
-        options: {
-            auth:{
-                strategy: 'session',
-            },
-            handler: (request, h) => {
-                return internals.renderHtml.home(request.auth.credentials.email);
-            },
-        }
-    },{
-        method: 'GET',
-        path: '/login',
-        options: {
-            auth: {
-                strategy: 'session',
-                mode: 'try'
-            },
-            handler: async (request, h) => {
-                if (request.auth.isAuthenticated) {
-                    return h.redirect('/');
-                }
-                return internals.renderHtml.login();
-            },
-            plugins: {
-                'hapi-auth-cookie': {
-                    redirectTo: false
-                }
-            },
-        }
-    },{
-        method: 'GET',
         path: '/logout',
         options: {
             auth:{
@@ -113,29 +81,3 @@ module.exports.register = async(server) =>{
         }
     }]);
 }
-const internals = {};
-internals.renderHtml = {
-    login: (message) => {
-
-        return `
-    <html><head><title>Login page</title></head><body>
-    ${message ? '<h3>' + message + '</h3><br/>' : ''}
-    <form method="post" action="/login">
-      Customername: <input type="text" name="email"><br>
-      Password: <input type="password" name="password"><br/>
-    <input type="submit" value="Login"></form>
-    </body></html>
-      `;
-    },
-    home: (name) => {
-
-        return `
-    <html><head><title>Login page</title></head><body>
-    <h3>Welcome ${name}! You are logged in!</h3>
-    <form method="get" action="/logout">
-      <input type="submit" value="Logout">
-    </form>
-    </body></html>
-      `;
-    }
-};
