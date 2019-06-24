@@ -10,26 +10,14 @@ module.exports.register = async (server) =>{
             tags: ['api','toppings'],
             description: 'Get all topping',
             handler    : ToppingController.getAllToppings,
-            validate   : ToppingValidation.getAllToppings,
-        }
-    },{
-        method  : 'GET',
-        path    : '/toppings/{id}',
-        options : {
-            auth: false,
-            tags: ['api','toppings'],
-            description: 'Get topping with id',
-            handler    : ToppingController.getTopping,
-            validate   : ToppingValidation.getTopping,
         }
     },{
         method  : 'POST',
         path    : '/toppings',
         options : {
-            auth: false,
-            //auth: {
-            // scope: 'admin'    
-            //},
+            auth: {
+                scope: ['admin']    
+            },
             tags: ['api','toppings'],
             description: 'Create a new topping',
             handler    : ToppingController.createTopping,
@@ -39,10 +27,9 @@ module.exports.register = async (server) =>{
         method  : 'PUT',
         path    : '/toppings/{id}',
         options : {
-            auth: false,
-            //auth: {
-            // scope: 'admin'    
-            //},
+            auth: {
+                scope: ['admin']    
+            },
             tags: ['api','toppings'],
             description: 'Update topping with id',
             handler    : ToppingController.updateTopping,
@@ -52,10 +39,9 @@ module.exports.register = async (server) =>{
         method  : 'DELETE',
         path    : '/toppings/{id}',
         options : {
-            auth: false,
-            //auth: {
-            // scope: 'admin'    
-            //},
+            auth: {
+                scope: ['admin']    
+            },
             tags: ['api','toppings'],
             description: 'Delete Topping with id',
             handler    : ToppingController.deleteTopping,

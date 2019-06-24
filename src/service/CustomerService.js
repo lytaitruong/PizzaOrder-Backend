@@ -7,35 +7,35 @@ module.exports = {
                                             .limit(limit*(page-1))
                                             .sort({'username': -1})
         if(!customer){
-            throw Boom.notFound(`DATA IS EMPTY`)
+            throw Boom.notFound(`CUSTOMER NOT FOUND!`)
         }
         return customer;
     },
     getInformation: async (id) =>{
         const customer = await CustomerModel.findById(id)
         if(!customer){
-           throw Boom.notFound(`USER NOT FOUND`)
+            throw Boom.notFound(`CUSTOMER NOT FOUND!`)
         }
         return customer;
     },
     signUpCustomer: async ({username, email, password, scope}) =>{
         const customer = await CustomerModel.signUp({username,email,password,scope});
         if(!customer){
-            throw Boom.internal()
+            throw Boom.badRequest()
         }
         return customer;
     },
     signInCustomer: async ({username,password}) =>{
         const customer = await CustomerModel.signIn({username,password})
         if(!customer){
-            throw Boom.badData()
+            throw Boom.badRequest()
         }
         return customer;
     },
     updateCustomer: async (id, data) =>{
         const customer = await CustomerModel.findByIdAndUpdate(id,data);
         if(!customer){
-            throw Boom.notFound(`CUSTOMER NOT FOUND!`);
+            throw Boom.notFound(`CUSTOMER NOT FOUND!`)
         }
         return customer;
     },

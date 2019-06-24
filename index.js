@@ -13,20 +13,18 @@
  *!DELETE  : /products/{}       {admin}   // Delete product with id & depend on categoryId
 
  *TODO: DONE
- **GET     : /toppings                    // Get all & details of Topping of Apps     
- **GET     : /toppings/{id}               // Get toppings   {maybe we don't need need}
- *@POST    : /toppings            {admin} // Create a new Toppings
+ **GET     : /toppings                    // Getall Toppings
+ *@POST    : /toppings            {admin} // Create Toppings
  *?UPDATE  : /toppings/{id}       {admin} // Update Topping with id
  *!DELETE  : /toppings/{id}       {admin} // Delete Topping with id
  *
  * TODO: DONE
- **GET     : /users             {admin}        
- **GET     : /users/info        {authenticate}
- **GET     : /users/historyOrder{authenticate}     
- *@POST    : /users                      
- *@POST    :/login          
- *?UPDATE  : /users{id}         {authenticate}
- *!DELETE  : /users{id}         {admin}
+ **GET     : /users             {admin}    
+ **GET     : /users/info        {authen}   
+ *@POST    : /users                        
+ *@POST    :/login                         
+ *?UPDATE  : /users/info        {authen}   
+ *!DELETE  : /users{id}         {admin}    
  * 
  *  
  

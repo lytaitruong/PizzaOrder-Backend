@@ -1,17 +1,10 @@
 const ToppingService = require('../../service/ToppingService');
+const Boom = require('@hapi/boom')
 module.exports = {
     getAllToppings: async (request, h) =>{
         try{
             const listToppings = await ToppingService.getAllToppings();
-            return h.response(listToppings).code(200);
-        }catch(error){
-            throw error
-        }
-    },
-    getTopping: async (request, h) =>{
-        try{
-            const topping = await ToppingService.getTopping(request.params.id);
-            return h.response(topping).code(200)
+            return h.response(listToppings).code(200)
         }catch(error){
             throw error
         }
@@ -29,13 +22,13 @@ module.exports = {
             const topping = await ToppingService.updateTopping(request.params.id, request.payload)
             return h.response(topping).code(200)
         }catch(error){
-            throw error
+            throw error;
         }
     },
     deleteTopping: async (request, h) =>{
         try{
             const topping = await ToppingService.deleteTopping(request.params.id)
-            return h.response(topping).code(201);
+            return h.response(topping).code(200);
         }catch(error){
             throw error
         }

@@ -58,9 +58,18 @@ CustomerSchema.pre('save', async function save(next){
     return next;
 })
 CustomerSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
+    if(this.getUpdate().email){
+        const result = await ToppingModel.findOne({email: this.getUpdate().email});
+        if(result){
+            if(result._id != this.getQuery()._id){
+                throw Boom.conflict(`This email have been registered`)
+            }
+        }
+    }
     if(this.getUpdate().password){
         this.getUpdate().password = await Bcrypt.hash(this.getUpdate().password,10);
     }
     return next;
 })
-module.exports = Mongoose.model('customers', CustomerSchema);
+const CustomerModel = Mongoose.model('customers', CustomerSchema);
+module.exports = CustomerModel

@@ -3,49 +3,31 @@ const Boom = require('@hapi/boom');
 module.exports = {
     getAllToppings: async() =>{
         const listToppings = await ToppingModel.find()
-                                               .sort({'name': 1});
+                                               .sort({'name': -1});
         if(!listToppings){
-            throw Boom.notFound(`Data Topping is empty`)
-        };
+            throw Boom.notFound(`TOPPINGS NOT FOUND`)
+        }
         return listToppings
     },
-    getTopping: async(id) =>{
-        console.log(id);
-        const topping = await ToppingModel.findById(id);
-        console.log(topping);
+    createTopping: async({name, imageUrl, unitPrice}) =>{
+        const topping = await ToppingModel.create({name,imageUrl,unitPrice})
         if(!topping){
-            throw Boom.notFound(`Topping NOT FOUND`)
+            throw Boom.badRequest()
         }
         return topping;
     },
-    createTopping: async({name, imageUrl, unitPrice}) =>{
-        //Middleware
-        //Check name is conflict 
-        //
-        const topping = await ToppingModel.create({name,imageUrl,unitPrice})
-        if(!topping){
-            throw Boom.notFound(`Topping NOT FOUND`)
-        }
-        return `CREATE SUCCESS`
-    },
     updateTopping: async(id, {name, imageUrl, unitPrice}) =>{
-        //Middleware conflict name
-        const topping =  await ToppingModel.findOneAndUpdate(
-            {_id : id},
-            {$set: {name, imageUrl, unitPrice}},
-            {new : true}
-        )
+        const topping = await ToppingModel.findByIdAndUpdate(id, {name, imageUrl, unitPrice})
         if(!topping){
-            throw Boom.notFound(`Topping NOT FOUND`)
+            throw Boom.notFound(`TOPPINGS NOT FOUND`)
         }
-        return `UPDATE SUCCESS`
+        return topping;
     },
     deleteTopping: async(id) =>{
         const topping = await ToppingModel.findByIdAndDelete(id);
         if(!topping){
-            throw Boom.notFound(`Topping NOT FOUND`)
+            throw Boom.notFound(`TOPPINGS NOT FOUND`)
         }
-        return `DELETE SUCCESS`
-
+        return topping
     }
 }

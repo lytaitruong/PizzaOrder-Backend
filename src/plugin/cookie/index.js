@@ -21,7 +21,6 @@ module.exports = {
     }
 }
 const validate = async (request, session) => {
-    console.log(`Cookie ${session._id}`)
     const user = await CustomerModel.findById(session._id);
     return (user) ? {valid: false, credentials: null}
                   : {valid: true , credentials: user}

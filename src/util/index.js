@@ -1,5 +1,5 @@
-const Joi = require('@hapi/joi');
-
+const Joi  = require('@hapi/joi');
+const Boom = require('@hapi/boom');
 module.exports = {
     OK: {
       CODE: 200,
@@ -57,3 +57,6 @@ module.exports.ResponseJSON = (statusCode, message, content) =>{
     content,
   }
 }
+
+
+  
