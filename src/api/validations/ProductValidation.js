@@ -14,14 +14,13 @@ module.exports = {
             productName: Joi.string().required(),
             categoryId : Joi.string().required(),
             size: Joi.object().keys({
-                S: Joi.number().integer().required(),
                 M: Joi.number().integer().required(),
                 L: Joi.number().integer().required(),
-            }).required(),
+            }),
             crust: Joi.object().keys({
-                Thin : Joi.number().integer().required(),
-                Thick: Joi.number().integer().required(),
-            }).required(),
+                Thin  : Joi.number().integer().required(),
+                Medium: Joi.number().integer().required(),
+            }),
             topping: Joi.array().default([]),
             star   : Joi.number().integer().min(0).max(5).default(0)
         })
@@ -35,13 +34,12 @@ module.exports = {
             productName: Joi.string(),
             categoryId : Joi.string().required(),
             size: Joi.object().keys({
-                S: Joi.number().integer(),
                 M: Joi.number().integer(),
                 L: Joi.number().integer(),
             }),
             crust: Joi.object().keys({
-                Thin : Joi.number().integer(),
-                Thick: Joi.number().integer(),
+                Thin  : Joi.number().integer(),
+                Medium: Joi.number().integer(),
             }),
             topping: Joi.array(),
             star   : Joi.number().integer().min(0).max(5)

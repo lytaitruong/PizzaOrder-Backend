@@ -1,45 +1,46 @@
-const Joi = require('@hapi/joi');
+const Joi            = require('@hapi/joi');
 const {jwtValidator} = require('../../util');
 module.exports = {
     getAllCustomers: {
         query: Joi.object().keys({
-            top   : Joi.number().integer().positive().default(100),
-            page  : Joi.number().integer().positive().default(1),
-            sort  : Joi.string().default('CustomerName'),
-            status: Joi.number().integer().default(1)
+            limit   : Joi.number().integer().min(1).max(100).default(0),
+            page    : Joi.number().integer().default(1),
         }),
         headers: jwtValidator
     },
-    getInfoCustomer: {
+    getInformation: {
         headers: jwtValidator
-    },
-    signUpCustomer: {
-        payload: Joi.object().keys({
-            username: Joi.string().min(6).max(32).trim().required(),
-            password: Joi.string().min(8).max(32).trim().required(),
-            email   : Joi.string().email().min(8).trim().required()
-        })
     },
     signInCustomer: {
         payload: Joi.object().keys({
-            username: Joi.string().min(6).max(32).trim().required(),
-            password: Joi.string().min(8).max(32).trim().required(),
+            username: Joi.string().trim().min(8).required(),
+            password: Joi.string().trim().min(8).required()
+        }),
+    },
+    signUpCustomer: {
+        payload: Joi.object().keys({
+            username: Joi.string().trim().min(8).required(),
+            password: Joi.string().trim().min(8).required(),
+            email   : Joi.string().email().trim().required(),
+            scope   : Joi.string().default('user'),
         })
+    },
+    signOutCustomer:{
+        headers: jwtValidator
     },
     updateCustomer: {
         payload: Joi.object().keys({
-            password: Joi.string().min(8).max(32).trim(),
-            //imgUrl  : Joi.string().regex(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g),
-            /**
-             * Viettel 09, 03   Mobi 09, 07     Vina 09, 08     Vietnam 09,05
-             * [0-0]{8} is a tails telecom company
-             */
-            phoneNum: Joi.number().integer(),
-            address : Joi.string(),
+            email   : Joi.string().email().min(8).trim(),
+            username: Joi.string().min(3).trim(),
+            password: Joi.string().min(8).trim(),
+            scope   : Joi.string().trim()
         }),
         headers: jwtValidator
     },
     deleteCustomer: {
+        params: Joi.object().keys({
+            id: Joi.string().required().description(`customer ObjectId`)
+        }),
         headers: jwtValidator
     }
-}
+};

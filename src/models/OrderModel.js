@@ -10,10 +10,8 @@ const OrderDetailSchema = new Mongoose.Schema({
 const OrderSchema = new Mongoose.Schema({
     customerId: {type: String, required: true},//
     address   : {type: String, required: true},//
-    coupon    : {type: Number},                //
     amount    : {type: Number, required: true},
     dateOrder : {type: Date  , required: true, default: Date()},
-    status    : {type: Boolean,required: true},
     listOrdersDetails: {type: [OrderDetailSchema], required: true},
 });
 

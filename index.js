@@ -1,41 +1,41 @@
 /**
  *TODO: DONE
- **GET     : /categories                       
- **GET     : /categories/{id}
- *@POST    : /categories        {admin}
- *?UPDATE  : /categories/{id}   {admin}
- *!DELETE  : /categories/{id}   {admin}
+ **GET     : /categories                  // Get all categories
+ **GET     : /categories/{id}             // Get all products of that categories
+ *@POST    : /categories        {admin}   // Create a new Categories
+ *?UPDATE  : /categories/{id}   {admin}   // Update Categories with Id
+ *!DELETE  : /categories/{id}   {admin}   // Delete Categories with Id
+ *TODO: DONE
+// **GET     : /products                    // Get all Products of Apps
+ **GET     : /products/{id}               // Get the products with id & depend on categoryId
+ *@POST    : /products          {admin}   // Create new Product & depend on categoryId      
+ *?UPDATE  : /products/{}       {admin}   // Update product with id & depend on categoryId
+ *!DELETE  : /products/{}       {admin}   // Delete product with id & depend on categoryId
 
  *TODO: DONE
- **GET     : /products                         
- **GET     : /products/{id}
- *@POST    : /products          {admin}
- *?UPDATE  : /products/{}       {admin}
- *!DELETE  : /products/{}       {admin}
-
- *TODO: DONE
- **GET     : /toppings                         
- **GET     : /toppings/{id}
- *@POST    : /toppings            {admin}
- *?UPDATE  : /toppings/{id}       {admin}
- *!DELETE  : /toppings/{id}       {admin}
- 
+ **GET     : /toppings                    // Get all & details of Topping of Apps     
+ **GET     : /toppings/{id}               // Get toppings   {maybe we don't need need}
+ *@POST    : /toppings            {admin} // Create a new Toppings
+ *?UPDATE  : /toppings/{id}       {admin} // Update Topping with id
+ *!DELETE  : /toppings/{id}       {admin} // Delete Topping with id
  *
+ * TODO: DONE
  **GET     : /users             {admin}        
- **GET     : /users/myProfile   {authenticate}
+ **GET     : /users/info        {authenticate}
  **GET     : /users/historyOrder{authenticate}     
  *@POST    : /users                      
  *@POST    :/login          
- *@POST    :/resetPassword      {authenticate}
  *?UPDATE  : /users{id}         {authenticate}
  *!DELETE  : /users{id}         {admin}
  * 
- **GET     : /orders
- **GET     : /orders/{id}            
- *@POST    : /orders            
- *?UPDATE  : /orders/{id}                
- *!DELETE  : /orders/{id}
  *  
+ 
+ **GET     : /orders              {admin} // Get all Orders sort by OrderDate
+ **GET     : /cart                {user}  // Get orderDetails 
+ **GET     : /orders/{id}         {user}  //     
+ **GET     : /orders/history      {user}
+ *@POST    : /orders              {admin}       
+ *!DELETE  : /orders/{id}    {admin|user}
  **GET
  * 
  * 
@@ -43,181 +43,14 @@
  * 
  **GET     : /bestsellers          
  *
- * 
+
+
+/**
+ * TODO: QUESTION OF THE HAPI.JS
+ * ? When i delete the customer account
+ * ! How i remove the session (cookie) of that customer
+ * * Position: src/service/CustomerService.js           deleteCustomer()
  */
-
-
-
-const a = [
-    {
-        quantity: 5,
-        unitPrice: 20,
-    },
-    {
-        quantity: 5,
-        unitPrice: 20,
-    },
-    {
-        quantity: 5,
-        unitPrice: 20,
-    },
-    {
-        quantity: 5,
-        unitPrice: 20,
-    },
-    {
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },{
-        quantity: 5,
-        unitPrice: 20,
-    },
-]
-const init = async () =>{
-    const b =  a.reduce((total,price) =>{
-        return  total + (price.quantity * price.unitPrice)
-    },0)
-    console.log(b);
-}
-init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -258,3 +91,30 @@ heroku account
     lytaitruong060197@gmail.com
     Anhboydeptraithe5
   */
+
+
+
+
+  const a = [
+      {
+          quantity: 3,
+          unitPrice: 4
+      },
+      {
+        quantity: 7,
+        unitPrice: 2
+    },
+    {
+        quantity: 6,
+        unitPrice: 9,
+    },
+    {
+        quantity: 14,
+        unitPrice: 10
+    }
+  ];
+  const b = a.reduce((total, orderDetails) =>{
+        console.log()
+        return total + orderDetails.quantity * orderDetails.unitPrice
+  },0)
+  console.log(b);

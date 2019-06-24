@@ -4,7 +4,7 @@ const ProductValidation = require('../validations/ProductValidation')
  **GET     : /products                         //Done                         
  **GET     : /products/{id}                    //Done
  *@POST    : /products          {admin}        //Done
- *?UPDATE  : /products/{}       {admin}        //
+ *?UPDATE  : /products/{}       {admin}        //Done
  *!DELETE  : /products/{}       {admin}        //Done
  
  */

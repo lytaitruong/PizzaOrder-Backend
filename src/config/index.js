@@ -4,9 +4,9 @@ module.exports = {
         port: process.env.PORT || 4000,
         routePrefix: process.env.ROUTE || "",
         plugins: ["auth", 'cookie', 'logger', 'swagger'],
-        secretCookieKey: process.env.COOKIE_KEY || "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-        secretJwtKey   : process.env.SECRET_KEY || "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
-
+        cookieKey: process.env.COOKIE_KEY || "X2CnTtvXwc7EOgEgVlVUqtokol4HQbfBOFp8sCj0",
+        jwtKey   : process.env.SECRET_KEY || "qtokol4HQbfBOFp8sCj0X2CnTtvXwc7EOgEgVlVU",
+        jwtExpiration: '1h'
     },
     database:{
         urlMongoAtlas: `mongodb+srv://lytaitruong:Anhboydeptrai5@leeatschool-qo1pj.mongodb.net/test?retryWrites=true&w=majority`,

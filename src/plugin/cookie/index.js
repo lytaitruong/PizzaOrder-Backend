@@ -8,19 +8,21 @@ module.exports = {
             server.auth.strategy('session', 'cookie', {
                 cookie: {
                     name: 'managecustomer',
-                    password: options.secretCookieKey,
+                    password: options.cookieKey,
                     isSecure: false
                 },
                 redirectTo: '/login',
-                validateFunc: async (request, session) => {
-                    const user = await CustomerModel.findById(session._id);
-                    return (user) ? {valid: false, credentials: null}
-                                  : {valid: true , credentials: user}
-                }
+                validateFunc: validate,
             });
         }catch(error){
             console.log(`Error register cookie plugin: ${error}`);
             throw error;
         }
     }
+}
+const validate = async (request, session) => {
+    console.log(`Cookie ${session._id}`)
+    const user = await CustomerModel.findById(session._id);
+    return (user) ? {valid: false, credentials: null}
+                  : {valid: true , credentials: user}
 }

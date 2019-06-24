@@ -1,4 +1,4 @@
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 const {jwtValidator} = require('../../util');
 module.exports = {
     getAllOrders: {
@@ -25,3 +25,10 @@ module.exports = {
         //headers: jwtValidator
     }
 }
+
+
+listOrdersDetails:[
+    {
+        
+    }
+]

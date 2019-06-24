@@ -31,7 +31,7 @@ module.exports = {
         if(!category){
             throw Boom.internal()
         }
-        return category
+        return `CREATE CATEGORY SUCCESS`
     },
     updateCategory: async(id, {categoryName, imageUrl}) =>{
         // if(await CategoriesModel.findOne({categoryName: this.getUpdate().$set.categoryName})){
@@ -45,7 +45,7 @@ module.exports = {
         if(!category){
             throw Boom.notFound(`CATEGORY NOT FOUND`)
         }
-        return category;
+        return `UPDATE CATEGORY SUCCESS`;
     },
     deleteCategory: async(id) =>{
         const category = await CategoriesModel.findOneAndDelete({_id: id})
@@ -53,6 +53,6 @@ module.exports = {
         if(!category){
             throw Boom.notFound(`CATEGORY NOT FOUND`)
         }
-        return category
+        return `DELETE CATEGORY SUCCESS`
     }
 }

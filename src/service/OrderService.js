@@ -17,20 +17,19 @@ module.exports = {
         }
         return order
     },
-    createOrder: async(customerId, {address, coupon,listOrdersDetails}) =>{
+    createOrder: async(customerId, {address,listOrdersDetails}) =>{
         
         const amount = await listOrdersDetails.reduce((total,orderDetails) =>{
             return total + (orderDetails.unitPrice * orderDetails.quantity);
+            orderDetails.toppings.forEach()
         },0)
         //Middleware pre : Check coupon
         // 
         const order = await OrderModel.create({
             customerId,
             address,
-            coupon,
             amount,
             dateOrder: new Date(),
-            status   : false,
             listOrdersDetails
         })
         if(!order){
@@ -40,7 +39,14 @@ module.exports = {
         // Add this on 
         return `CREATE SUCCESS`
     },
-    deleteOrder: async(id) =>{
-
-    }
 }
+
+
+// ProductDetails
+// Bestseller
+
+[{
+    listTopping: []
+},{
+
+}]
