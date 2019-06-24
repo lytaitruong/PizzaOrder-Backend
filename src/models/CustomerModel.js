@@ -67,7 +67,7 @@ CustomerSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
     console.log(this.getUpdate());
     console.log("here" + this.getUpdate().email)
     console.log("there" + this.getUpdate(email));
-    throw Boom.notFound()
+    throw Boom.notFound();
 })
 module.exports = Mongoose.model('customers', CustomerSchema);
 
