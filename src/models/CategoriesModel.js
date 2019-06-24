@@ -1,8 +1,7 @@
 const Mongoose      = require('mongoose');
 const Boom          = require('@hapi/boom');
-
 const ProductSchema = new Mongoose.Schema({
-    productName: {type: String, required: true, unique: true},
+    productName: {type: String, required: true},
     categoryId : {type: String, required: true},
     size: {
         M: {type: Number, required: true},
@@ -14,36 +13,32 @@ const ProductSchema = new Mongoose.Schema({
     },
     type   : [{type: String, required: true}],                
     topping: [{type: Mongoose.Schema.Types.ObjectId, ref: 'ToppingModel'}],
-    count  : {type : Number, required: true},
     star   : {type : Number}
 })
-ProductSchema.pre('updateOne', async function updateOne(next){
-    console.log(`PRODUCT UPDATE ONE`)
-})
-ProductSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
-    console.log(`PRODUCT FIND ONE AND UPDPATE`)
-});
-
-ProductSchema.pre('save', async function save(next){
-    console.log('PRODUCT SAVE')
-})
-
 
 const CategoriesSchema = new Mongoose.Schema({
     categoryName: {type: String, required: true, unique: true},
     imageUrl    : {type: String, required: true},
     listProducts: {type: [ProductSchema]}
 })
-
-CategoriesSchema.pre('updateOne', async function updateOne(next){
-    console.log(`CATEORIES UPDATE ONE`)
+CategoriesSchema.pre('save', async function save(next){
+    console.log(`SAVE`)
+    if(await CategoriesModel.findOne({categoryName: this.categoryName})){
+        throw Boom.conflict(`this topping's name have been registered`)
+    }
+    return next;
 })
 CategoriesSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
-    console.log(`CATEGORIES FIND ONE AND UPDATE`)
-});
-
-CategoriesSchema.pre('save', async function save(next){
-    console.log('CATEGORIES SAVE')
+    console.log(`FIND ONE AND UPDATE`);
+    if(this.getUpdate().categoryName){
+        const result = await CategoriesModel.findOne({categoryName: this.getUpdate().categoryName});
+        if(result){
+            if(result._id != this.getQuery()._id){
+                throw Boom.conflict(`This topping's name have been registered`)
+            }
+        }
+    }
+    return next
 })
 const CategoriesModel = Mongoose.model('categories', CategoriesSchema); 
 module.exports = CategoriesModel

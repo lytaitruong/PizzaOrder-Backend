@@ -57,6 +57,4 @@ module.exports.ResponseJSON = (statusCode, message, content) =>{
     content,
   }
 }
-
-
   

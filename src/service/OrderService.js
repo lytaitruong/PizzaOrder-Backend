@@ -40,13 +40,3 @@ module.exports = {
         return `CREATE SUCCESS`
     },
 }
-
-
-// ProductDetails
-// Bestseller
-
-[{
-    listTopping: []
-},{
-
-}]

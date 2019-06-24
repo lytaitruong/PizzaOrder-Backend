@@ -10,9 +10,10 @@ module.exports = {
         payload: Joi.object().keys({
             categoryName: Joi.string().required(),
             imageUrl    : Joi.string().required(),
-            listProducts: Joi.array().default([])
+            listProducts: Joi.array().default([]),
+            star        : Joi.number().integer().default(5)
         }),
-        //headers: jwtValidator
+        headers: jwtValidator
     },
     updateCategory: {
         params: Joi.object().keys({
@@ -22,12 +23,12 @@ module.exports = {
             categoryName: Joi.string(),
             imageUrl    : Joi.string(),
         }),
-        //headers: jwtValidator
+        headers: jwtValidator
     },
     deleteCategory: {
         params: Joi.object().keys({
             id: Joi.string().required().description('Categories ObjectId') 
         }),
-        //headers: jwtValidator
+        headers: jwtValidator
     }
 };

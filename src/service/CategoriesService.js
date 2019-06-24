@@ -3,9 +3,7 @@ const CategoriesModel = require('../models/CategoriesModel')
 module.exports = {
     getCategories: async () =>{
         const listCategories = await CategoriesModel.find()
-                                                    .select('categoryName imageUrl')
-                                                    .limit(10)
-                                                    .sort({'categoryName': 1})
+                                                    .sort({'categoryName': -1})
         if(!listCategories){
             throw Boom.notFound("CATEGORY NOT FOUND");
         }
@@ -19,40 +17,25 @@ module.exports = {
         }
         return category
     },
-    createCategory: async({categoryName, imageUrl, listProduct}) =>{
-        // if(await CategoriesModel.findOne({categoryName: this.categoryName})){
-        //     throw Boom.conflict('This categoryName have been exist')
-        // }
-        const category = await new CategoriesModel({
-            categoryName,
-            imageUrl,
-            listProduct
-        }).save()
+    createCategory: async({categoryName, imageUrl, listProducts}) =>{
+        const category = await CategoriesModel.create({categoryName,imageUrl,listProducts})
         if(!category){
-            throw Boom.internal()
+            throw Boom.badRequest()
         }
-        return `CREATE CATEGORY SUCCESS`
+        return category
     },
     updateCategory: async(id, {categoryName, imageUrl}) =>{
-        // if(await CategoriesModel.findOne({categoryName: this.getUpdate().$set.categoryName})){
-        //     throw Boom.conflict('This categoryName have been exist')
-        // }
-        const category =  await CategoriesModel.findOneAndUpdate(
-            {_id : id},
-            {$set: {categoryName, imageUrl}},
-            {new: true}
-        ).select('categoryName imageUrl')
+        const category =  await CategoriesModel.findByIdAndUpdate(id,{categoryName, imageUrl})
         if(!category){
             throw Boom.notFound(`CATEGORY NOT FOUND`)
         }
-        return `UPDATE CATEGORY SUCCESS`;
+        return category
     },
     deleteCategory: async(id) =>{
-        const category = await CategoriesModel.findOneAndDelete({_id: id})
-                                              .select('categoryName imageUrl')
+        const category = await CategoriesModel.findOneAndDelete(id)
         if(!category){
             throw Boom.notFound(`CATEGORY NOT FOUND`)
         }
-        return `DELETE CATEGORY SUCCESS`
+        return category
     }
 }

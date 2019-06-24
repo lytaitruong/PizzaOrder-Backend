@@ -45,11 +45,7 @@ CustomerSchema.statics.signUp = async function signUp({username, email, password
     if(await this.findOne({username, email})){
         throw Boom.conflict(`username or email have been registered`)
     }
-    return await this.create({
-        username, email, 
-        password, scope, 
-        phoneNumber: null
-    });
+    return await this.create({username, email, password, scope, phoneNumber: null});
 }
 //Middleware Pre
 CustomerSchema.pre('save', async function save(next){
