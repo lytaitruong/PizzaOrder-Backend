@@ -38,7 +38,7 @@ CustomerSchema.statics.signIn = async function signIn({username, password}){
     const customer = await this.findOne({username});
     const invalid = (!customer || !await customer.validatePassword(password))
     if(invalid){
-        throw Boom.conflict(`username or password is not correct`)
+        return  Boom.conflict(`username or password is not correct`)
     }
     return customer
 }
@@ -56,10 +56,10 @@ CustomerSchema.pre('save', async function save(next){
 })
 CustomerSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
     if(this.getUpdate().email){
-        const result = await ToppingModel.findOne({email: this.getUpdate().email});
+        const result = await CustomerModel.findOne({email: this.getUpdate().email});
         if(result){
             if(result._id != this.getQuery()._id){
-                throw Boom.conflict(`This email have been registered`)
+                throw Boom.badRequest(`This email have been registered`)
             }
         }
     }

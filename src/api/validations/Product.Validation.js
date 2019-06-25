@@ -39,6 +39,7 @@ module.exports = {
                 Thin  : Joi.number().integer(),
                 Medium: Joi.number().integer(),
             }),
+            type   : Joi.string(),
             topping: Joi.array(),
             star   : Joi.number().integer().min(0).max(5)
         }),

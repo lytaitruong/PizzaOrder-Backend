@@ -1,7 +1,7 @@
 const Mongoose      = require('mongoose');
 const Boom          = require('@hapi/boom');
 const ProductSchema = new Mongoose.Schema({
-    productName: {type: String, required: true},
+    productName: {type: String, required: true, unique: true},
     categoryId : {type: String, required: true},
     size: {
         M: {type: Number, required: true},
@@ -22,14 +22,12 @@ const CategoriesSchema = new Mongoose.Schema({
     listProducts: {type: [ProductSchema]}
 })
 CategoriesSchema.pre('save', async function save(next){
-    console.log(`SAVE`)
     if(await CategoriesModel.findOne({categoryName: this.categoryName})){
         throw Boom.conflict(`this topping's name have been registered`)
     }
     return next;
 })
 CategoriesSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
-    console.log(this.getUpdate().categoryName)
     if(this.getUpdate().categoryName){
         const result = await CategoriesModel.findOne({categoryName: this.getUpdate().categoryName});
         if(result){
@@ -44,10 +42,6 @@ CategoriesSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
 
 CategoriesSchema.pre('update', async function update(next){
     console.log(`HERE`);
-    // if(!await CategoriesModel.findById({_id: this.getQuery()._id})){
-    //     throw Boom.conflict(`this Categories Id is not exist`)
-    // }
-
 })
 const CategoriesModel = Mongoose.model('categories', CategoriesSchema); 
 module.exports = CategoriesModel

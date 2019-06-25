@@ -90,17 +90,20 @@ heroku account
     Anhboydeptraithe5
   */
 
-
-
-
+const topping = [
+    {id: 1,price: 15},
+    {id: 2,price: 25},
+]
   const a = [
       {
           quantity: 3,
-          unitPrice: 4
+          unitPrice: 4,
+          top: [{id: 1}, {id: 2}]
       },
       {
-        quantity: 7,
-        unitPrice: 2
+            quantity: 7,
+            unitPrice: 2,
+            top: [{id: 2}]
     },
     {
         quantity: 6,
@@ -111,8 +114,3 @@ heroku account
         unitPrice: 10
     }
   ];
-  const b = a.reduce((total, orderDetails) =>{
-        console.log()
-        return total + orderDetails.quantity * orderDetails.unitPrice
-  },0)
-  console.log(b);

@@ -37,6 +37,8 @@ module.exports = {
     },
     updateCustomer: async (request, h) =>{
         try{
+            const id = request.auth.credentials._id;
+            console.log(id);
             const customer = await CustomerService.updateCustomer(id,request.payload)
             return h.response(customer).code(200)
         }catch(error){

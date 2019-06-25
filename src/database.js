@@ -1,5 +1,6 @@
 const Mongoose = require('mongoose');
 module.exports.connect =  async (config) =>{
+    console.log(config.urlMongoAtlas)
     const database = await Mongoose.connect(config.urlMongo,
         {useCreateIndex: true, useNewUrlParser: true, useFindAndModify: false});
 

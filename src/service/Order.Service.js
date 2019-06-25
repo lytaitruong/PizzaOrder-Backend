@@ -20,8 +20,10 @@ module.exports = {
     createOrder: async(customerId, {address,listOrdersDetails}) =>{
         
         const amount = await listOrdersDetails.reduce((total,orderDetails) =>{
+            orderDetails.toppings.reduce(topping => {
+                return top
+            })
             return total + (orderDetails.unitPrice * orderDetails.quantity);
-            orderDetails.toppings.forEach()
         },0)
         //Middleware pre : Check coupon
         // 

@@ -33,6 +33,7 @@ module.exports = {
         return customer;
     },
     updateCustomer: async (id, data) =>{
+        console.log(id)
         const customer = await CustomerModel.findByIdAndUpdate(id,data);
         if(!customer){
             throw Boom.notFound(`CUSTOMER NOT FOUND!`)

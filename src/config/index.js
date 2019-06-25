@@ -9,7 +9,7 @@ module.exports = {
         jwtExpiration: '1h'
     },
     database:{
-        urlMongoAtlas: `mongodb+srv://lytaitruong:Anhboydeptrai5@leeatschool-qo1pj.mongodb.net/test?retryWrites=true&w=majority`,
+        urlMongoAtlas: process.env.MONGO_ATLAS_URL,
         urlMongo: process.env.MONGO_URL ||"mongodb://localhost:27017/Pizza",
         dataUser: process.env.DATA_USER ||"lytaitruong",
         dataPass: process.env.DATA_PASS ||"Anhboydeptrai5",

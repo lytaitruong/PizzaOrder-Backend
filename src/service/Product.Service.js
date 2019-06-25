@@ -1,11 +1,19 @@
 
+const Boom            = require('@hapi/boom')
 const CategoriesModel = require('../models/Categories.Model');
-const Boom = require('@hapi/boom')
-
 module.exports = {
     getAllProducts: async () => {
         const listProduct = await CategoriesModel.aggregate([
-            {$group: {_id: "$imageUrl", listProducts: {$addToSet: '$listProducts'}}}
+            {$group: {_id: "AllProducts", listProducts: {$push: "$listProducts"}}},
+            {"$project": {
+                "listProducts": {
+                    "$reduce": {
+                        "input": "$listProducts",
+                        "initialValue": [],
+                        "in": { "$setUnion": ["$$value", "$$this"] }
+                    }
+                }
+            }}
         ])
         if(!listProduct){
             throw Boom.notFound(`listProduct DATA is not exist`);
@@ -20,32 +28,29 @@ module.exports = {
         };
         return product;
     },
-    ///////////////////////////////////////////////
-    ///////////////////////////////////////////////
-    ///////////////////////////////////////////////
     createProduct: async ({productName, categoryId, size, crust, type, topping, star}) =>{
-        const product = await CategoriesModel.findByIdAndUpdate(
+        const product = await CategoriesModel.update(
             {_id: categoryId},
             {$push: {listProducts: { productName,
-                                         categoryId ,
-                                         size, crust, type,
-                                         topping,star}}},
-            {new: true}
+                                     categoryId ,
+                                     size, crust, type,
+                                     topping,star}}},
         )
-        
-        if(!product){
-            throw Boom.notFound()
+        if(!product.n && ! product.nModified){
+            throw Boom.notFound(`CATEGORY NOT FOUND`);
         }
         return `CREATE SUCCESS`;
     },
     updateProduct: async (id, {productName, categoryId, size, crust, type, topping, star}) =>{        
-        const product = await CategoriesModel.update(
+        const product = await CategoriesModel.updateOne(
             { _id : categoryId, "listProducts._id": id},
-            {$set:  {"listProducts.$": {id,productName,categoryId,size,crust, type, topping,star}}},
-            {new: true}
+            {$set:  {"listProducts.$": {productName, 
+                                        categoryId, 
+                                        size, crust, type, 
+                                        topping, star}}}
         )
-        if(!product){
-            throw Boom.notFound()
+        if(!product.n && !product.nModified){
+            throw Boom.notFound(`CATEGORY NOT FOUND`)
         }
         return `UPDATE SUCCESS`
     },
@@ -54,9 +59,9 @@ module.exports = {
             {_id: categoryId},
             {$pull: {'listProducts': {_id : id}}},
         )
-        if(!product){
-            throw Boom.notFound(`PRODUCT NOT FOUND`)
+        if(!product.n && !product.nModified){
+            throw Boom.notFound(`CATEGORY NOT FOUND`)
         }
-        return product;
+        return `DELETE SUCCESS`;
     }
 }
