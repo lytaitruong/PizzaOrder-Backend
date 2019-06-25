@@ -1,5 +1,5 @@
 const Boom          = require('@hapi/boom');
-const CustomerModel = require('../models/CustomerModel');
+const CustomerModel = require('../models/Customer.Model');
 module.exports = {
     getAllCustomers: async ({limit, page}) => { 
         const customer = await CustomerModel.find()

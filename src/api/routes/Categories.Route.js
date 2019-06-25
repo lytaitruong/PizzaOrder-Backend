@@ -1,5 +1,6 @@
-const CategoriesController = require('../controllers/CategoriesController')
-const CategoriesValidation = require('../validations/CategoriesValidation')
+
+const CategoriesController = require('../controllers/Categories.Controller')
+const CategoriesValidation = require('../validations/Categories.Validation')
 module.exports.register = async (server) =>{
     server.bind(CategoriesController)
     server.route([{

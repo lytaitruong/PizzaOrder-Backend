@@ -1,4 +1,4 @@
-const CustomerModel = require('../../models/CustomerModel');
+const CustomerModel = require('../../models/Customer.Model');
 module.exports = {
     name: 'Cookie Session',
     version: '1.0.0',

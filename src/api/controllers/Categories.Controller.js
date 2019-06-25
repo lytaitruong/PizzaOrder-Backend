@@ -1,4 +1,4 @@
-const CategoriesService = require('../../service/CategoriesService');
+const CategoriesService = require('../../service/Categories.Service');
 module.exports = {
     getCategories: async (request, h) =>{
         try{

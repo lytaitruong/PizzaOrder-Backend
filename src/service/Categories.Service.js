@@ -1,5 +1,5 @@
 const Boom = require('@hapi/boom')
-const CategoriesModel = require('../models/CategoriesModel')
+const CategoriesModel = require('../models/Categories.Model')
 module.exports = {
     getCategories: async () =>{
         const listCategories = await CategoriesModel.find()
@@ -24,8 +24,8 @@ module.exports = {
         }
         return category
     },
-    updateCategory: async(id, {categoryName, imageUrl}) =>{
-        const category =  await CategoriesModel.findByIdAndUpdate(id,{categoryName, imageUrl})
+    updateCategory: async(id, data) =>{
+        const category =  await CategoriesModel.findByIdAndUpdate(id,data)
         if(!category){
             throw Boom.notFound(`CATEGORY NOT FOUND`)
         }

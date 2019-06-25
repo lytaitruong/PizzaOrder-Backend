@@ -1,23 +1,14 @@
-const ProductController = require('../controllers/ProductController')
-const ProductValidation = require('../validations/ProductValidation')
-/**
- **GET     : /products                         //Done                         
- **GET     : /products/{id}                    //Done
- *@POST    : /products          {admin}        //Done
- *?UPDATE  : /products/{}       {admin}        //Done
- *!DELETE  : /products/{}       {admin}        //Done
- 
- */
+const ProductController = require('../controllers/Product.Controller')
+const ProductValidation = require('../validations/Product.Validation')
 module.exports.register = async(server) =>{
     server.bind(ProductController);
     server.route([{
         method  : 'GET',
         path    : '/products',
         options : {
-            auth: false,
-            //auth: {
-            //      scope: 'admin',    
-            //}
+            auth: {
+                scope: 'admin',    
+            },
             tags: ['api','products'],
             description: 'Get all products of all categories',
             handler    : ProductController.getAllProducts,
@@ -37,10 +28,9 @@ module.exports.register = async(server) =>{
         method  : 'POST',
         path    : '/products',
         options : {
-            auth: false,
-            // auth: {
-            //     scope: 'admin'
-            // },
+            auth: {
+                scope: ['admin']
+            },
             tags: ['api','products'],
             description: 'Create product depend on categories ObjectId',
             handler    : ProductController.createProduct,
@@ -50,10 +40,9 @@ module.exports.register = async(server) =>{
         method  : 'PUT',
         path    : '/products/{id}',
         options : {
-            auth: false,
-            // auth: {
-            //     scope: 'admin'
-            // },
+            auth: {
+                scope: ['admin']
+            },
             tags: ['api', 'products'],
             description: 'Update product with id',
             handler    : ProductController.updateProduct,
@@ -63,10 +52,9 @@ module.exports.register = async(server) =>{
         method  : 'DELETE',
         path    : '/products/{id}',
         options : {
-            auth: false,
-            // auth: {
-            //     scope: 'admin'
-            // },
+            auth: {
+                scope: ['admin']
+            },
             tags: ['api', 'products'],
             description: 'Delete product with id',
             handler    : ProductController.deleteProduct,

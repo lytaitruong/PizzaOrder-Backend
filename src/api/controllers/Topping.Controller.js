@@ -1,5 +1,4 @@
-const ToppingService = require('../../service/ToppingService');
-const Boom = require('@hapi/boom')
+const ToppingService = require('../../service/Topping.Service');
 module.exports = {
     getAllToppings: async (request, h) =>{
         try{

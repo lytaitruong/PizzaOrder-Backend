@@ -1,4 +1,4 @@
-const OrderService = require('../../service/OrderService')
+const OrderService = require('../../service/Order.Service')
 module.exports = {
     getAllOrders: async (request, h) =>{
         try{

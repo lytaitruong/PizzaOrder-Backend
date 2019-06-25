@@ -1,5 +1,5 @@
-const CustomerController = require('../controllers/CustomerController');
-const CustomerValidation = require('../validations/CustomerValidation');
+const CustomerController = require('../controllers/Customer.Controller');
+const CustomerValidation = require('../validations/Customer.Validation');
 module.exports.register = async(server) =>{
     server.bind(CustomerController);
     server.route([{

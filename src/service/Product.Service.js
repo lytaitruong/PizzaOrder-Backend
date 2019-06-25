@@ -1,4 +1,5 @@
-const CategoriesModel = require('../models/CategoriesModel');
+
+const CategoriesModel = require('../models/Categories.Model');
 const Boom = require('@hapi/boom')
 
 module.exports = {
@@ -12,40 +13,32 @@ module.exports = {
         return listProduct;
     },
     getProduct: async (id) => {
-        const product = await CategoriesModel.findOne({'listProducts._id': id},
-        {listProducts: {$elemMatch:{_id: id}}})
+        const product = await CategoriesModel.findOne({"listProducts._id": id},
+        {"listProducts": {$elemMatch: {'_id': id}}})
         if(!product){
             throw Boom.notFound(`Product NOT FOUND!`)
         };
         return product;
     },
-    createProduct: async ({productName, categoryId, size, crust, topping, star}) =>{
-        const result = await CategoriesModel.findOne({"listProducts.productName": productName})
-        if(result && result.listProducts._id === id){
-            throw Boom.conflict(`this product Name has been registered`);
-        }
-        const product = await CategoriesModel.updateOne(
+    createProduct: async ({productName, categoryId, size, crust, type, topping, star}) =>{
+        const product = await CategoriesModel.findByIdAndUpdate(
             {_id: categoryId},
-            {$addToSet: {listProducts: { productName,
+            {$push: {listProducts: { productName,
                                          categoryId ,
-                                         size, crust,
+                                         size, crust, type,
                                          topping,star}}},
             {new: true}
         )
+        
         if(!product){
             throw Boom.notFound()
         }
         return `CREATE SUCCESS`;
     },
-    updateProduct: async (id, {productName, categoryId, size, crust, topping, star}) =>{        
-        //Có 1 lỗi khi update số Id bị thay đổi một chút
-        const result = await CategoriesModel.findOne({"listProducts.productName": productName})
-        if(result && result.listProducts._id === id){
-            throw Boom.conflict(`this product Name has been registered`);
-        }
-        const product = await CategoriesModel.updateOne(
+    updateProduct: async (id, {productName, categoryId, size, crust, type, topping, star}) =>{        
+        const product = await CategoriesModel.update(
             { _id : categoryId, "listProducts._id": id},
-            {$set:  {"listProducts.$": {id,productName,categoryId,size,crust,topping,star}}},
+            {$set:  {"listProducts.$": {id,productName,categoryId,size,crust, type, topping,star}}},
             {new: true}
         )
         if(!product){

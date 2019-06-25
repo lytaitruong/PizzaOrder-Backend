@@ -1,5 +1,5 @@
 const Boom       = require('@hapi/boom')
-const OrderModel = require('../models/OrderModel');
+const OrderModel = require('../models/Order.Model');
 module.exports = {
     getAllOrders: async () =>{
         const listOrder = await OrderModel.find('')

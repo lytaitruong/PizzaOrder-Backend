@@ -1,5 +1,5 @@
-const ToppingController = require('../controllers/ToppingController');
-const ToppingValidation = require('../validations/ToppingValidation');
+const ToppingController = require('../controllers/Topping.Controller');
+const ToppingValidation = require('../validations/Topping.Validation');
 module.exports.register = async (server) =>{
     server.bind(ToppingController);
     server.route([{

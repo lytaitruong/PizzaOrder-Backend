@@ -11,7 +11,7 @@ const ProductSchema = new Mongoose.Schema({
         Thin  : {type: Number, required: true},
         Medium: {type: Number, required: true},
     },
-    type   : [{type: String, required: true}],                
+    type   : {type: String, required: true},                
     topping: [{type: Mongoose.Schema.Types.ObjectId, ref: 'ToppingModel'}],
     star   : {type : Number}
 })
@@ -40,9 +40,16 @@ CategoriesSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
     }
     return next
 })
+
+
+CategoriesSchema.pre('update', async function update(next){
+    if(!await CategoriesModel.findById({_id: this.getQuery()._id})){
+        throw Boom.conflict(`this Categories Id is not exist`)
+    }
+
+})
 const CategoriesModel = Mongoose.model('categories', CategoriesSchema); 
 module.exports = CategoriesModel
 
 
 
-// Bestseller

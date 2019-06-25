@@ -1,8 +1,8 @@
-const CategoriesRoute = require('./routes/CategoriesRoute');
-const CustomerRoute   = require('./routes/CustomerRoute');
-const ProductRoute    = require('./routes/ProductRoute');
-const ToppingRoute    = require('./routes/ToppingRoute');
-const OrderRoute      = require('./routes/OrderRoute');
+const CategoriesRoute = require('./routes/Categories.Route');
+const CustomerRoute   = require('./routes/Customer.Route');
+const ProductRoute    = require('./routes/Product.Route');
+const ToppingRoute    = require('./routes/Topping.Route');
+const OrderRoute      = require('./routes/Order.Route');
 module.exports ={
     '/categories': CategoriesRoute,
     '/users'     : CustomerRoute,   

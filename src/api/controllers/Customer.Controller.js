@@ -1,4 +1,4 @@
-const CustomerService = require('../../service/CustomerService');
+const CustomerService = require('../../service/Customer.Service');
 module.exports = {
     getAllCustomers: async(request, h) =>{
         try{

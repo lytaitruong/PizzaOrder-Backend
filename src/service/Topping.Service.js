@@ -1,4 +1,4 @@
-const ToppingModel = require('../models/ToppingModel');
+const ToppingModel = require('../models/Topping.Model');
 const Boom = require('@hapi/boom');
 module.exports = {
     getAllToppings: async() =>{
