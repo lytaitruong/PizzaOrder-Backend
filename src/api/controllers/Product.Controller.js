@@ -26,7 +26,6 @@ module.exports = {
     },
     updateProduct: async (request, h) =>{
         try{
-            console.log(`HERE`);
             const product = await ProductService.updateProduct(request.params.id, request.payload);
             return h.response(product).code(200)
         }catch(error){
@@ -35,7 +34,7 @@ module.exports = {
     },
     deleteProduct: async (request, h) =>{
         try{
-            const product = await ProductService.deleteProduct(request.params.id,request.payload);
+            const product = await ProductService.deleteProduct(request.params.id, request.payload);
             return h.response(product).code(200)
         }catch(error){
             throw error

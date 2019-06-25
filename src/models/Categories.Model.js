@@ -29,7 +29,7 @@ CategoriesSchema.pre('save', async function save(next){
     return next;
 })
 CategoriesSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
-    console.log(`FIND ONE AND UPDATE`);
+    console.log(this.getUpdate().categoryName)
     if(this.getUpdate().categoryName){
         const result = await CategoriesModel.findOne({categoryName: this.getUpdate().categoryName});
         if(result){
@@ -43,9 +43,10 @@ CategoriesSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
 
 
 CategoriesSchema.pre('update', async function update(next){
-    if(!await CategoriesModel.findById({_id: this.getQuery()._id})){
-        throw Boom.conflict(`this Categories Id is not exist`)
-    }
+    console.log(`HERE`);
+    // if(!await CategoriesModel.findById({_id: this.getQuery()._id})){
+    //     throw Boom.conflict(`this Categories Id is not exist`)
+    // }
 
 })
 const CategoriesModel = Mongoose.model('categories', CategoriesSchema); 

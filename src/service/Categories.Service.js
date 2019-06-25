@@ -24,8 +24,8 @@ module.exports = {
         }
         return category
     },
-    updateCategory: async(id, data) =>{
-        const category =  await CategoriesModel.findByIdAndUpdate(id,data)
+    updateCategory: async(id, {categoryName, imageUrl}) =>{
+        const category =  await CategoriesModel.findByIdAndUpdate(id,{categoryName,imageUrl})
         if(!category){
             throw Boom.notFound(`CATEGORY NOT FOUND`)
         }

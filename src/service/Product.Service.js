@@ -20,6 +20,9 @@ module.exports = {
         };
         return product;
     },
+    ///////////////////////////////////////////////
+    ///////////////////////////////////////////////
+    ///////////////////////////////////////////////
     createProduct: async ({productName, categoryId, size, crust, type, topping, star}) =>{
         const product = await CategoriesModel.findByIdAndUpdate(
             {_id: categoryId},
@@ -47,13 +50,13 @@ module.exports = {
         return `UPDATE SUCCESS`
     },
     deleteProduct: async (id, {categoryId}) =>{
-        const product = await CategoriesModel.updateOne(
-            { _id: categoryId},
-            { $pull: {listProducts: {_id : id}}}
+        const product = await CategoriesModel.update(
+            {_id: categoryId},
+            {$pull: {'listProducts': {_id : id}}},
         )
         if(!product){
-            throw Boom.notFound(`Product NOT FOUND!`)
+            throw Boom.notFound(`PRODUCT NOT FOUND`)
         }
-        return `DELETE SUCCESS`;
+        return product;
     }
 }
