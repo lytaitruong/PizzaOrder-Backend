@@ -2,49 +2,46 @@ const Boom          = require('@hapi/boom');
 const CustomerModel = require('../models/Customer.Model');
 module.exports = {
     getAllCustomers: async ({limit, page}) => { 
-        const customer = await CustomerModel.find()
-                                            .skip(limit)
-                                            .limit(limit*(page-1))
-                                            .sort({'username': -1})
-        if(!customer){
-            throw Boom.notFound(`CUSTOMER NOT FOUND!`)
-        }
-        return customer;
+        const listCustomer = await CustomerModel.find()
+                                                .skip(limit)
+                                                .limit(limit*(page-1))
+                                                .sort({'username': 1})
+        return listCustomer;
     },
     getInformation: async (id) =>{
         const customer = await CustomerModel.findById(id)
-        if(!customer){
-            throw Boom.notFound(`CUSTOMER NOT FOUND!`)
-        }
-        return customer;
-    },
-    signUpCustomer: async ({username, email, password, scope}) =>{
-        const customer = await CustomerModel.signUp({username,email,password,scope});
-        if(!customer){
-            throw Boom.badRequest()
-        }
-        return customer;
+        return (customer)
+            ? customer
+            : Boom.notFound(`Customer`)
     },
     signInCustomer: async ({username,password}) =>{
-        const customer = await CustomerModel.signIn({username,password})
-        if(!customer){
-            throw Boom.badRequest()
-        }
-        return customer;
+        const customer = await CustomerModel.findOne({username});
+        const invalid = (!customer || !await customer.validatePassword(password))
+        return (invalid)
+            ? Boom.conflict(`username or password is not correct`)
+            : (!customer)
+            ? Boom.badRequest(`Customer`)            
+            : customer
+    },
+    signUpCustomer: async ({username, email, password, scope}) =>{
+        const invalid =  CustomerModel.findOne({username, email});
+        const customer = await CustomerModel.create({username,email,password,scope, phoneNumber: null});
+        return (invalid)
+            ? Boom.conflict(`This username or email have been registered`)
+            : (!customer)
+            ? Boom.badRequest(`Customer`)
+            : customer;
     },
     updateCustomer: async (id, data) =>{
-        console.log(id)
         const customer = await CustomerModel.findByIdAndUpdate(id,data);
-        if(!customer){
-            throw Boom.notFound(`CUSTOMER NOT FOUND!`)
-        }
-        return customer;
+        return (customer)
+            ? customer
+            : Boom.notFound(`Customer`)
     },
     deleteCustomer: async (id) =>{
         const customer = await CustomerModel.findByIdAndDelete(id);
-        if(!customer){
-            throw Boom.notFound(`CUSTOMER NOT FOUND!`)
-        }
-        return customer;
+        return (customer)
+            ? customer
+            : Boom.notFound(`Customer`);
     },
 }

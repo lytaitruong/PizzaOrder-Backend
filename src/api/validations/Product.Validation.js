@@ -10,17 +10,20 @@ module.exports = {
         payload: Joi.object().keys({
             productName: Joi.string().required(),
             categoryId : Joi.string().required(),
+            imageUri   : Joi.string().required(),
+            type       : Joi.string().required(),
             size: Joi.object().keys({
-                M: Joi.number().integer().required(),
+                S: Joi.number().integer().required(),
                 L: Joi.number().integer().required(),
             }),
             crust: Joi.object().keys({
                 Thin  : Joi.number().integer().required(),
-                Medium: Joi.number().integer().required(),
+                Thick : Joi.number().integer().required(),
             }),
-            type   : Joi.string().required(),
+            price  : Joi.number().integer(),
+            sale   : Joi.number().min(0).max(100).required(),
+            rating : Joi.number().min(0).max(5).required(),
             topping: Joi.array().default([]),
-            star   : Joi.number().integer().min(0).max(5).default(0)
         }),
         headers: jwtValidator
     },
@@ -31,6 +34,8 @@ module.exports = {
         payload: Joi.object().keys({
             productName: Joi.string(),
             categoryId : Joi.string().required(),
+            imageUri   : Joi.string(),
+            type       : Joi.string(),
             size: Joi.object().keys({
                 M: Joi.number().integer(),
                 L: Joi.number().integer(),
@@ -39,9 +44,10 @@ module.exports = {
                 Thin  : Joi.number().integer(),
                 Medium: Joi.number().integer(),
             }),
-            type   : Joi.string(),
+            price  : Joi.number().integer(),
+            sale   : Joi.number().min(0).max(100),
+            ratting: Joi.number().min(0).max(5),
             topping: Joi.array(),
-            star   : Joi.number().integer().min(0).max(5)
         }),
         headers: jwtValidator
     },

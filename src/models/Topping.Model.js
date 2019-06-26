@@ -2,7 +2,7 @@ const Mongoose = require('mongoose');
 const Boom     = require('@hapi/boom');
 const ToppingSchema = new Mongoose.Schema({
     name     : {type: String, required: true, unique: true},
-    imageUrl : {type: String, required: true},
+    imageUri : {type: String, required: true},
     unitPrice: {type: Number, required: true},
 });
 ToppingSchema.pre('save', async function save(next){

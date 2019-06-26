@@ -9,9 +9,8 @@ module.exports = {
     createCategory: {
         payload: Joi.object().keys({
             categoryName: Joi.string().required(),
-            imageUrl    : Joi.string().required(),
-            listProducts: Joi.array().default([]),
-            star        : Joi.number().integer().default(5)
+            imageUri    : Joi.string().required(),
+            listProduct : Joi.array().default([]),
         }),
         headers: jwtValidator
     },
@@ -21,8 +20,8 @@ module.exports = {
         }),
         payload: Joi.object().keys({
             categoryName: Joi.string(),
-            imageUrl    : Joi.string(),
-            listProducts: Joi.array(),
+            imageUri    : Joi.string(),
+            listProduct : Joi.array(),
         }),
         headers: jwtValidator
     },

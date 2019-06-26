@@ -1,35 +1,41 @@
+const Boom           = require('@hapi/boom')
+const {Response}     = require('../../util/index');
 const ToppingService = require('../../service/Topping.Service');
 module.exports = {
     getAllToppings: async (request, h) =>{
         try{
             const listToppings = await ToppingService.getAllToppings();
-            return h.response(listToppings).code(200)
+            return Response(h, listToppings, 200);
         }catch(error){
-            throw error
+            console.log(error);
+            throw Boom.internal()
         }
     },
     createTopping: async (request, h) =>{
         try{
             const topping = await ToppingService.createTopping(request.payload)
-            return h.response(topping).code(201)
+            return Response(h, topping, 201);
         }catch(error){
-            throw error
+            console.log(error);
+            throw Boom.internal()
         }
     },
     updateTopping: async (request, h) =>{
         try{
             const topping = await ToppingService.updateTopping(request.params.id, request.payload)
-            return h.response(topping).code(200)
+            return Response(h, topping, 200);
         }catch(error){
-            throw error;
+            console.log(error);
+            throw Boom.internal()
         }
     },
     deleteTopping: async (request, h) =>{
         try{
             const topping = await ToppingService.deleteTopping(request.params.id)
-            return h.response(topping).code(200);
+            return Response(h, topping, 200);
         }catch(error){
-            throw error
+            console.log(error);
+            throw Boom.internal()
         }
     }
 }

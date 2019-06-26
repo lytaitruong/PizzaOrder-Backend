@@ -1,18 +1,24 @@
-const ProductController = require('../controllers/Product.Controller')
-const ProductValidation = require('../validations/Product.Validation')
+const ProductController  = require('../controllers/Product.Controller')
+const ProductValidation  = require('../validations/Product.Validation')
+const SwaggerDescription = require('../../util/constant');
 module.exports.register = async(server) =>{
     server.bind(ProductController);
     server.route([{
         method  : 'GET',
         path    : '/products',
         options : {
-            auth: {
-                scope: 'admin',    
-            },
+            auth: false,
             tags: ['api','products'],
             description: 'Get all products of all categories',
             handler    : ProductController.getAllProducts,
-            validate   : ProductValidation.getAllProducts,
+            plugins    : {
+                'hapi-swagger': {
+                    responses: {
+                        200: SwaggerDescription[200],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'GET',
@@ -23,6 +29,15 @@ module.exports.register = async(server) =>{
             description: 'Get product by Id',
             handler    : ProductController.getProduct,
             validate   : ProductValidation.getProduct,
+            plugins    : {
+                'hapi-swagger': {
+                    responses: {
+                        200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'POST',
@@ -35,6 +50,15 @@ module.exports.register = async(server) =>{
             description: 'Create a new product',
             handler    : ProductController.createProduct,
             validate   : ProductValidation.createProduct,
+            plugins    : {
+                'hapi-swagger': {
+                    responses: {
+                        200: SwaggerDescription[200],
+                        400: SwaggerDescription[400],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'PUT',
@@ -47,6 +71,15 @@ module.exports.register = async(server) =>{
             description: 'Update product with id',
             handler    : ProductController.updateProduct,
             validate   : ProductValidation.updateProduct,
+            plugins    : {
+                'hapi-swagger': {
+                    responses: {
+                        200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'DELETE',
@@ -59,6 +92,15 @@ module.exports.register = async(server) =>{
             description: 'Delete product with id',
             handler    : ProductController.deleteProduct,
             validate   : ProductValidation.deleteProduct,
+            plugins    : {
+                'hapi-swagger': {
+                    responses: {
+                        200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     }])
 }

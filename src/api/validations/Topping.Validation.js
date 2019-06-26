@@ -3,9 +3,9 @@ const {jwtValidator} = require('../../util');
 module.exports = {
     createTopping: {
         payload: Joi.object().keys({
-            name     : Joi.string().required(),
-            imageUrl : Joi.string().required(),
-            unitPrice: Joi.number().integer().positive().required(),
+            toppingName: Joi.string().required(),
+            imageUri   : Joi.string().required(),
+            unitPrice  : Joi.number().integer().positive().required(),
         }),
         headers: jwtValidator
     },
@@ -15,7 +15,7 @@ module.exports = {
         }),
         payload: Joi.object().keys({
             name     : Joi.string(),
-            imageUrl : Joi.string(),
+            imageUri : Joi.string(),
             unitPrice: Joi.number().integer().positive(),
         }),
         headers: jwtValidator

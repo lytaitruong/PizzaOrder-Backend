@@ -1,5 +1,6 @@
 const CustomerController = require('../controllers/Customer.Controller');
 const CustomerValidation = require('../validations/Customer.Validation');
+const SwaggerDescription = require('../../util/constant');
 module.exports.register = async(server) =>{
     server.bind(CustomerController);
     server.route([{
@@ -13,6 +14,14 @@ module.exports.register = async(server) =>{
             description: 'Get all customers',
             handler : CustomerController.getAllCustomers,
             validate: CustomerValidation.getAllCustomers,
+            plugins : {
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         },
     },{
         method  : "GET",
@@ -22,6 +31,15 @@ module.exports.register = async(server) =>{
             description: "Get customer info.",
             handler    : CustomerController.getInformation,
             validate   : CustomerValidation.getInformation,
+            plugins : {
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         },
     },{
         method  : "POST",
@@ -32,6 +50,16 @@ module.exports.register = async(server) =>{
             description: "Create a new customer.",
             handler    : CustomerController.signUpCustomer,
             validate   : CustomerValidation.signUpCustomer, 
+            plugins : {
+                'hapi-swagger':{
+                    response: {
+                        201: SwaggerDescription[201],
+                        400: SwaggerDescription[400],
+                        409: SwaggerDescription[409],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         },
     },{
         method: "POST",
@@ -45,6 +73,16 @@ module.exports.register = async(server) =>{
             description : "Sign In",
             handler     : CustomerController.signInCustomer,
             validate    : CustomerValidation.signInCustomer,
+            plugins : {
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        400: SwaggerDescription[400],
+                        409: SwaggerDescription[409],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         },
     },{
         method  : "PUT",
@@ -54,6 +92,15 @@ module.exports.register = async(server) =>{
             description: "Update customer info.",
             handler : CustomerController.updateCustomer,
             validate: CustomerValidation.updateCustomer,
+            plugins : {
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         },
     },{
         method  : "DELETE",
@@ -66,6 +113,15 @@ module.exports.register = async(server) =>{
             description: "Delete current Customer.",
             handler    : CustomerController.deleteCustomer,
             validate   : CustomerValidation.deleteCustomer,
+            plugins : {
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         },
     },{
         method: 'GET',
@@ -78,6 +134,14 @@ module.exports.register = async(server) =>{
             description: 'Sign Out',
             handler    : CustomerController.signOutCustomer,
             validate   : CustomerValidation.signOutCustomer,
+            plugins : {
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method: 'GET',

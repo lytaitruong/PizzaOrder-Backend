@@ -1,4 +1,3 @@
-
 const Boom            = require('@hapi/boom')
 const CategoriesModel = require('../models/Categories.Model');
 module.exports = {
@@ -15,53 +14,46 @@ module.exports = {
                 }
             }}
         ])
-        if(!listProduct){
-            throw Boom.notFound(`listProduct DATA is not exist`);
-        }
         return listProduct;
     },
     getProduct: async (id) => {
         const product = await CategoriesModel.findOne({"listProducts._id": id},
         {"listProducts": {$elemMatch: {'_id': id}}})
-        if(!product){
-            throw Boom.notFound(`Product NOT FOUND!`)
-        };
-        return product;
+        return (product) 
+            ? product
+            : Boom.notFound("Product")
     },
-    createProduct: async ({productName, categoryId, size, crust, type, topping, star}) =>{
+    createProduct: async ({productName, categoryId, imageUri, type, size, crust, price, sale, rating, topping}) =>{
+        const data = (type === 'PIZZA')
+            ? {productName, categoryId, imageUri, type, size, crust, sale, rating, topping}
+            : {productName, categoryId, imageUri, type, price, sale, rating, topping}
         const product = await CategoriesModel.update(
             {_id: categoryId},
-            {$push: {listProducts: { productName,
-                                     categoryId ,
-                                     size, crust, type,
-                                     topping,star}}},
+            {$push: {listProducts: { data}}}
         )
-        if(!product.n && ! product.nModified){
-            throw Boom.notFound(`CATEGORY NOT FOUND`);
-        }
-        return `CREATE SUCCESS`;
+        return (product.n && product.nModified) 
+            ? "CREATE SUCCESS"
+            : Boom.notFound(`Category`)
     },
-    updateProduct: async (id, {productName, categoryId, size, crust, type, topping, star}) =>{        
+    updateProduct: async (id, {productName, categoryId, size, crust, type, topping, star}) =>{
+        const data = (type === 'PIZZA')
+            ? {productName, categoryId, imageUri, type, size, crust, sale, rating, topping}
+            : {productName, categoryId, imageUri, type, price, sale, rating, topping}
         const product = await CategoriesModel.updateOne(
             { _id : categoryId, "listProducts._id": id},
-            {$set:  {"listProducts.$": {productName, 
-                                        categoryId, 
-                                        size, crust, type, 
-                                        topping, star}}}
+            {$set:  {"listProducts.$": {data}}}
         )
-        if(!product.n && !product.nModified){
-            throw Boom.notFound(`CATEGORY NOT FOUND`)
-        }
-        return `UPDATE SUCCESS`
+        return (product.n && product.nModified)
+            ? `UPDATE SUCCESS`
+            : Boom.notFound(`Product`)
     },
     deleteProduct: async (id, {categoryId}) =>{
         const product = await CategoriesModel.update(
             {_id: categoryId},
             {$pull: {'listProducts': {_id : id}}},
         )
-        if(!product.n && !product.nModified){
-            throw Boom.notFound(`CATEGORY NOT FOUND`)
-        }
-        return `DELETE SUCCESS`;
+        return (product.n && product.nModified)
+            ? `DELETE SUCCESS`
+            : Boom.notFound(`Product`)
     }
 }

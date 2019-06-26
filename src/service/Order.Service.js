@@ -1,6 +1,5 @@
 const Boom       = require('@hapi/boom')
 const OrderModel = require('../models/Order.Model');
-const CategoriesModel = require('../models/Categories.Model');
 module.exports = {
     getAllOrders: async ({from, to}) =>{
         const listOrder = await OrderModel.find({dateOrder: {$gte: from, $lte: to}})
@@ -47,3 +46,5 @@ module.exports = {
         return order;
     }
 }
+
+

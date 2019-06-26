@@ -1,5 +1,6 @@
-const ToppingController = require('../controllers/Topping.Controller');
-const ToppingValidation = require('../validations/Topping.Validation');
+const ToppingController  = require('../controllers/Topping.Controller');
+const ToppingValidation  = require('../validations/Topping.Validation');
+const SwaggerDescription = require('../../util/constant');
 module.exports.register = async (server) =>{
     server.bind(ToppingController);
     server.route([{
@@ -10,6 +11,14 @@ module.exports.register = async (server) =>{
             tags: ['api','toppings'],
             description: 'Get all topping',
             handler    : ToppingController.getAllToppings,
+            plugins    :{
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'POST',
@@ -22,6 +31,14 @@ module.exports.register = async (server) =>{
             description: 'Create a new topping',
             handler    : ToppingController.createTopping,
             validate   : ToppingValidation.createTopping,
+            plugins    :{
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'PUT',
@@ -34,6 +51,14 @@ module.exports.register = async (server) =>{
             description: 'Update topping with id',
             handler    : ToppingController.updateTopping,
             validate   : ToppingValidation.updateTopping,
+            plugins    :{
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'DELETE',
@@ -46,6 +71,14 @@ module.exports.register = async (server) =>{
             description: 'Delete Topping with id',
             handler    : ToppingController.deleteTopping,
             validate   : ToppingValidation.deleteTopping,
+            plugins    :{
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     }])
 }

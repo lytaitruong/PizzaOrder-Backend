@@ -1,43 +1,50 @@
+const Boom           = require('@hapi/boom')
+const {Response}     = require('../../util/index')
 const ProductService = require('../../service/Product.Service');
 module.exports = {
     getAllProducts: async (request, h) =>{
         try{
             const listProducts = await ProductService.getAllProducts();
-            return h.response(listProducts).code(200);
+            return Response(h, listProducts, 200);
         }catch(error){
-            throw error
+            console.log(error)
+            throw Boom.internal()
         }
     },
     getProduct: async (request, h) =>{
         try{
             const product = await ProductService.getProduct(request.params.id);
-            return h.response(product).code(200)
+            return Response(h, product, 200);
         }catch(error){
-            throw error;
+            console.log(error)
+            throw Boom.internal()
         }
     },
     createProduct: async (request, h) =>{
         try{
             const product = await ProductService.createProduct(request.payload);
-            return h.response(product).code(201)
+            return Response(h, product, 201);
         }catch(error){
-            throw error;
+            console.log(error)
+            throw Boom.internal()
         }
     },
     updateProduct: async (request, h) =>{
         try{
             const product = await ProductService.updateProduct(request.params.id, request.payload);
-            return h.response(product).code(200)
+            return Response(h, product, 200);
         }catch(error){
-            throw error
+            console.log(error)
+            throw Boom.internal()
         }
     },
     deleteProduct: async (request, h) =>{
         try{
             const product = await ProductService.deleteProduct(request.params.id, request.payload);
-            return h.response(product).code(200)
+            return Response(h, product, 200);
         }catch(error){
-            throw error
+            console.log(error)
+            throw Boom.internal()
         }
     }
 }

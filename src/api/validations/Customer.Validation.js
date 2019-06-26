@@ -14,7 +14,7 @@ module.exports = {
     signInCustomer: {
         payload: Joi.object().keys({
             username: Joi.string().trim().min(8).required(),
-            password: Joi.string().trim().min(8).required()
+            password: Joi.string().trim().min(8).required(),
         }),
     },
     signUpCustomer: {
@@ -31,7 +31,7 @@ module.exports = {
     updateCustomer: {
         payload: Joi.object().keys({
             email   : Joi.string().email().min(8).trim(),
-            username: Joi.string().min(3).trim(),
+            username: Joi.string().min(8).trim(),
             password: Joi.string().min(8).trim(),
             scope   : Joi.string().trim()
         }),

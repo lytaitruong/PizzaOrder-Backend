@@ -1,5 +1,6 @@
 const CategoriesController = require('../controllers/Categories.Controller')
 const CategoriesValidation = require('../validations/Categories.Validation')
+const SwaggerDescription   = require('../../util/constant');
 module.exports.register = async (server) =>{
     server.bind(CategoriesController)
     server.route([{
@@ -10,6 +11,14 @@ module.exports.register = async (server) =>{
             tags: ['api', 'categories'],
             description: 'Get all categories',
             handler    : CategoriesController.getCategories,
+            plugins    : {
+                'hapi-swagger': {
+                    responses: {
+                        200: SwaggerDescription[200],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'GET',
@@ -20,6 +29,15 @@ module.exports.register = async (server) =>{
             description: 'Get categories with id',
             handler    : CategoriesController.getCategory,
             validate   : CategoriesValidation.getCategory,
+            plugins    : {
+                'hapi-swagger': {
+                    responses: {
+                        200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'POST',
@@ -32,6 +50,15 @@ module.exports.register = async (server) =>{
             description: 'Create a new categories',
             handler    : CategoriesController.createCategory,
             validate   : CategoriesValidation.createCategory,
+            plugins    : {
+                'hapi-swagger': {
+                    responses: {
+                        201: SwaggerDescription[201],
+                        404: SwaggerDescription[400],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'PUT',
@@ -44,6 +71,15 @@ module.exports.register = async (server) =>{
             description: 'Update Categories with id',
             handler    : CategoriesController.updateCategory,
             validate   : CategoriesValidation.updateCategory,
+            plugins    : {
+                'hapi-swagger': {
+                    responses: {
+                        200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     },{
         method  : 'DELETE',
@@ -56,6 +92,15 @@ module.exports.register = async (server) =>{
             description: 'Delete Categories with id',
             handler    : CategoriesController.deleteCategory,
             validate   : CategoriesValidation.deleteCategory,
+            plugins    : {
+                'hapi-swagger': {
+                    responses: {
+                        200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
         }
     }])
 }
