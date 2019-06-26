@@ -79,5 +79,13 @@ module.exports.register = async(server) =>{
             handler    : CustomerController.signOutCustomer,
             validate   : CustomerValidation.signOutCustomer,
         }
+    },{
+        method: 'GET',
+        path: '/',
+        options: {
+            handler: async (request, h) =>{
+                return `OK`;
+            }
+        }
     }]);
 }
