@@ -1,44 +1,49 @@
 const Boom       = require('@hapi/boom')
 const OrderModel = require('../models/Order.Model');
+const CategoriesModel = require('../models/Categories.Model');
 module.exports = {
-    getAllOrders: async () =>{
-        const listOrder = await OrderModel.find('')
-                                          .select('customerID dateOrder status amount')
+    getAllOrders: async ({from, to}) =>{
+        const listOrder = await OrderModel.find({dateOrder: {$gte: from, $lte: to}})
                                           .sort({'dateOrder': -1})
         if(!listOrder){
-            throw Boom.notFound(`DATA Order is empty`)
-        }
-        return listOrder
-    },
-    getOrder: async (id) =>{
-        const order = await OrderModel.findById(id)
-        if(!customerOrder){
-            throw Boom.notFound(`Order Not Found`)
-        }
-        return order
-    },
-    createOrder: async(customerId, {address,listOrdersDetails}) =>{
-        
-        const amount = await listOrdersDetails.reduce((total,orderDetails) =>{
-            orderDetails.toppings.reduce(topping => {
-                return top
-            })
-            return total + (orderDetails.unitPrice * orderDetails.quantity);
-        },0)
-        //Middleware pre : Check coupon
-        // 
-        const order = await OrderModel.create({
-            customerId,
-            address,
-            amount,
-            dateOrder: new Date(),
-            listOrdersDetails
-        })
-        if(!order){
             throw Boom.notFound(`Order NOT FOUND`)
         }
-        //Middleware post : Add this OrderId & Date & Amount into CustomerHistoryOrder
-        // Add this on 
-        return `CREATE SUCCESS`
     },
+    getOrder: async(id) => {
+        const order = await OrderModel.findById(id);
+        if(!order){
+            throw Boom.notFound(`ORDER NOT FOUND`);
+        }
+        return order;
+    },
+
+    createOrder: async(customerId, {address, phoneNumber, listOrdersDetails}) =>{
+        // const list = await CategoriesModel.find({
+        //     "listProducts._id": {$in : listOrdersDetails.map(value => value._id)}
+        // },"_id size crust topping")
+
+        // const product = await CategoriesModel.find({"listProducts._id": id},
+        // {"listProducts": {$elemMatch: {'_id': id}}})
+        // const list = await CategoriesModel.find({},{}
+
+        // const order = await OrderModel.create({
+        //     customerId,
+        //     address,
+        //     phoneNumber,
+        //     amount,
+        //     dateOrder: new Date.now(),
+        //     listOrdersDetails
+        // })
+        // if(!order){
+        //     throw Boom.badRequest()
+        // }
+        // return order;
+    },
+    deleteOrder: async (id) =>{
+        const order = await OrderModel.findByIdAndDelete(id);
+        if(!order){
+            throw Boom.notFound(`ORDER NOT FOUND`)
+        }
+        return order;
+    }
 }

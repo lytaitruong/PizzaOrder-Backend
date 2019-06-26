@@ -2,33 +2,40 @@ const Joi = require('@hapi/joi');
 const {jwtValidator} = require('../../util');
 module.exports = {
     getAllOrders: {
-        //headers: jwtValidator    
+        query: Joi.object().keys({
+            from: Joi.date().default('2019-01-01'),
+            to  : Joi.date().default(Date.now()),
+        }),
+        headers: jwtValidator
     },
     getOrder: {
         params: Joi.object().keys({
-            id: Joi.string().required().description(`Order ObjectId`)
-        })
-        //headers: jwtValidator
+            id: Joi.string().required()
+        }),
+        headers: jwtValidator
     },
     createOrder: {
         payload: Joi.object().keys({
             address    : Joi.string().required(),
-            coupon     : Joi.number().integer().min(0).max(100).default(0),
+            phoneNumber: Joi.string().required(),
             listOrdersDetails: Joi.array().not([]).required()
-        })
-        //headers: jwtValidator
+        }),
+        headers: jwtValidator
     },
+
+
+
+
+
+
+
+
+
+
     deleteOrder: {
         params: Joi.object().keys({
             id: Joi.string().required().description(`Order ObjectId`)
-        })
-        //headers: jwtValidator
+        }),
+        headers: jwtValidator
     }
 }
-
-
-listOrdersDetails:[
-    {
-        
-    }
-]

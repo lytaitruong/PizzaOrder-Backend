@@ -8,19 +8,10 @@ module.exports = {
                 plugin: require("hapi-swagger"),
                 options: {
                     info: {
-                        title: "Task Api",
-                        description: "Task Api Documentation",
+                        title: "Pizza Order API",
+                        description: "Pizza Order API DOCUMENTATION",
                         version: "1.0"
                     },
-                    tags: [{
-                            name: "tasks",
-                            description: "Api tasks interface."
-                        },
-                        {
-                            name: "users",
-                            description: "Api users interface."
-                        }
-                    ],
                     swaggerUI: true,
                     documentationPage: true,
                     documentationPath: "/documentation",

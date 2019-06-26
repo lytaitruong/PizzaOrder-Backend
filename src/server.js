@@ -7,7 +7,7 @@ module.exports.setupEnvironment = async(configServer, configDatabase) =>{
     // Config the server
     const server = Hapi.server({
         debug: {request: ['error']}, 
-        host: configServer.host,
+        // host: configServer.host,
         port: configServer.port
     });
     // Modifies the root route

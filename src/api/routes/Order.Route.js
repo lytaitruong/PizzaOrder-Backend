@@ -6,10 +6,9 @@ module.exports.register = async(server) =>{
         method  : 'GET',
         path    : '/orders',
         options : {
-            auth: false,
-            // auth:{
-            //     scope: 'admin',     
-            // },
+            auth:{
+                scope: ['admin'],     
+            },
             tags: ['api','orders'],
             description: 'Get All Orders',
             handler    : OrderController.getAllOrders,
@@ -19,12 +18,8 @@ module.exports.register = async(server) =>{
         method  : 'GET',
         path    : '/orders/{id}',
         options : {
-            auth: false,
-            // auth:{
-            //     scope: 'admin',     
-            // },
             tags: ['api','orders'],
-            description: 'Get All Orders',
+            description: 'Get order with id',
             handler    : OrderController.getOrder,
             validate   : OrderValidation.getOrder,
         }
@@ -32,12 +27,8 @@ module.exports.register = async(server) =>{
         method  : 'POST',
         path    : '/orders',
         options : {
-            auth: false,
-            // auth:{
-            //     scope: 'admin',     
-            // },
             tags: ['api','orders'],
-            description: 'Get All Orders',
+            description: 'Create a new Order',
             handler    : OrderController.createOrder,
             validate   : OrderValidation.createOrder,
         }
@@ -45,12 +36,11 @@ module.exports.register = async(server) =>{
         method  : 'DELETE',
         path    : '/orders/{id}',
         options : {
-            auth: false,
-            // auth:{
-            //     scope: 'admin',     
-            // },
+            auth:{
+                scope: ['admin'],     
+            },
             tags: ['api','orders'],
-            description: 'Get All Orders',
+            description: 'Delete order with id',
             handler    : OrderController.deleteOrder,
             validate   : OrderValidation.deleteOrder,
         }

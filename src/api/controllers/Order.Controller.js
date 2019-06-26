@@ -2,7 +2,7 @@ const OrderService = require('../../service/Order.Service')
 module.exports = {
     getAllOrders: async (request, h) =>{
         try{
-            const listOrders = await OrderService.getAllOrders();
+            const listOrders = await OrderService.getAllOrders(request.query);
             return h.response(listOrders).code(200);
         }catch(error){
             throw error;
@@ -10,7 +10,6 @@ module.exports = {
     },
     getOrder: async (request, h) =>{
         try{
-            const id = request.auth.credentials.id; 
             const order = await OrderService.getOrder(request.params.id);
             return h.response(order).code(200)
         }catch(error){
@@ -28,7 +27,6 @@ module.exports = {
     },
     deleteOrder: async (request, h) =>{
         try{
-            const id = request.auth.credentials.id;
             const order = await OrderService.deleteOrder(request.params.id);
             return h.response(order).code(200);
         }catch(error){

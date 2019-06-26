@@ -32,7 +32,7 @@ module.exports.register = async(server) =>{
                 scope: ['admin']
             },
             tags: ['api','products'],
-            description: 'Create product depend on categories ObjectId',
+            description: 'Create a new product',
             handler    : ProductController.createProduct,
             validate   : ProductValidation.createProduct,
         }
