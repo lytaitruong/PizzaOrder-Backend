@@ -84,8 +84,8 @@ module.exports.register = async(server) =>{
         path: '/',
         options: {
             auth: false,
-            handler: async (request, h) =>{
-                return `OK`;
+            handler:  () =>{
+                return "OK";
             }
         }
     }]);
