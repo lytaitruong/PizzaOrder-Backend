@@ -18,6 +18,7 @@
     "hapi-swagger": "^10.0.2",
     "jsonwebtoken": "^8.5.1",
     "lout": "^11.2.3",
+    "dotenv": "^8.0.0",
     "mongoose": "^5.6.0"
   },
   "devDependencies": {
