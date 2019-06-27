@@ -25,7 +25,9 @@ module.exports = {
     signUpCustomer: async (request, h) =>{
         try{
             const customer = await CustomerService.signUpCustomer(request.payload)
+            console.log(customer);
             const token    = AuthService.generateToken(customer);
+            console.log(token);
             request.cookieAuth.set(customer);
             return Response(h, token, 201);
         }catch(error){   

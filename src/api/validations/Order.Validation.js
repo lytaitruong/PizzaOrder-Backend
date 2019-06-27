@@ -16,22 +16,12 @@ module.exports = {
     },
     createOrder: {
         payload: Joi.object().keys({
-            address    : Joi.string().required(),
-            phoneNumber: Joi.string().required(),
-            listOrdersDetails: Joi.array().not([]).required()
+            address         : Joi.string().required(),
+            phoneNumber     : Joi.string().required(),
+            listOrderDetails: Joi.array().not([]).required()
         }),
         headers: jwtValidator
     },
-
-
-
-
-
-
-
-
-
-
     deleteOrder: {
         params: Joi.object().keys({
             id: Joi.string().required().description(`Order ObjectId`)

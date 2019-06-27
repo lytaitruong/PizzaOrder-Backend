@@ -33,7 +33,8 @@ module.exports = {
             email   : Joi.string().email().min(8).trim(),
             username: Joi.string().min(8).trim(),
             password: Joi.string().min(8).trim(),
-            scope   : Joi.string().trim()
+            scope   : Joi.string().trim(),
+            phoneNumber: Joi.number().integer()
         }),
         headers: jwtValidator
     },

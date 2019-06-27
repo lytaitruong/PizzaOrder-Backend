@@ -13,7 +13,7 @@ module.exports = {
     },
     getProduct: async (request, h) =>{
         try{
-            const product = await ProductService.getProduct(request.params.id);
+            const product = await ProductService.getProduct(request.params.productId);
             return Response(h, product, 200);
         }catch(error){
             console.log(error)
@@ -22,7 +22,7 @@ module.exports = {
     },
     createProduct: async (request, h) =>{
         try{
-            const product = await ProductService.createProduct(request.payload);
+            const product = await ProductService.createProduct(request.params.categoryId, request.payload);
             return Response(h, product, 201);
         }catch(error){
             console.log(error)
@@ -31,7 +31,7 @@ module.exports = {
     },
     updateProduct: async (request, h) =>{
         try{
-            const product = await ProductService.updateProduct(request.params.id, request.payload);
+            const product = await ProductService.updateProduct(request.params, request.payload);
             return Response(h, product, 200);
         }catch(error){
             console.log(error)
@@ -40,7 +40,7 @@ module.exports = {
     },
     deleteProduct: async (request, h) =>{
         try{
-            const product = await ProductService.deleteProduct(request.params.id, request.payload);
+            const product = await ProductService.deleteProduct(request.params, request.payload);
             return Response(h, product, 200);
         }catch(error){
             console.log(error)

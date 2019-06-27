@@ -3,25 +3,27 @@ const {jwtValidator} = require('../../util')
 module.exports = {
     getProduct: {
         params: Joi.object().keys({
-            id: Joi.string().required().description(`Product ObjectId`)
+            productId: Joi.string().required().description(`Product ObjectId`)
         })
     },
     createProduct: {
+        params: Joi.object().keys({
+            categoryId: Joi.string().required().description(`Categories ObjectId`)
+        }),
         payload: Joi.object().keys({
             productName: Joi.string().required(),
-            categoryId : Joi.string().required(),
             imageUri   : Joi.string().required(),
             type       : Joi.string().required(),
-            size: Joi.object().keys({
+            size   : {
                 S: Joi.number().integer().required(),
                 L: Joi.number().integer().required(),
-            }),
-            crust: Joi.object().keys({
-                Thin  : Joi.number().integer().required(),
-                Thick : Joi.number().integer().required(),
-            }),
+            },
+            crust  : {
+                Thin: Joi.number().integer().required(),
+                Thick: Joi.number().integer().required(),
+            },
             price  : Joi.number().integer(),
-            sale   : Joi.number().min(0).max(100).required(),
+            sale   : Joi.number().min(0).max(100).default(0),
             rating : Joi.number().min(0).max(5).required(),
             topping: Joi.array().default([]),
         }),
@@ -29,31 +31,32 @@ module.exports = {
     },
     updateProduct: {
         params: Joi.object().keys({
-            id: Joi.string().required().description(`Product ObjectId`)
+            categoryId : Joi.string().required().description(`Categories ObjectId`),
+            productId  : Joi.string().required().description(`Product ObjectId`)
         }),
         payload: Joi.object().keys({
             productName: Joi.string(),
-            categoryId : Joi.string().required(),
             imageUri   : Joi.string(),
             type       : Joi.string(),
-            size: Joi.object().keys({
-                M: Joi.number().integer(),
-                L: Joi.number().integer(),
-            }),
-            crust: Joi.object().keys({
-                Thin  : Joi.number().integer(),
-                Medium: Joi.number().integer(),
-            }),
+            size   : {
+                S: Joi.number().integer().required(),
+                L: Joi.number().integer().required(),
+            },
+            crust  : {
+                Thin: Joi.number().integer().required(),
+                Thick: Joi.number().integer().required(),
+            },
             price  : Joi.number().integer(),
-            sale   : Joi.number().min(0).max(100),
-            ratting: Joi.number().min(0).max(5),
+            sale   : Joi.number().min(0).max(100).default(0),
+            rating: Joi.number().min(0).max(5),
             topping: Joi.array(),
         }),
         headers: jwtValidator
     },
     deleteProduct: {
         params: Joi.object().keys({
-            id: Joi.string().required().description(`Product ObjectId`)
+            categoryId : Joi.string().required().description(`Categories ObjectId`),
+            productId  : Joi.string().required().description(`Product ObjectId`)
         }),
         headers: jwtValidator
     }

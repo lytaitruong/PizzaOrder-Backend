@@ -22,7 +22,7 @@ module.exports.register = async(server) =>{
         }
     },{
         method  : 'GET',
-        path    : '/products/{id}',
+        path    : '/products/{productId}',
         options : {
             auth: false,
             tags: ['api', 'products'],
@@ -41,7 +41,7 @@ module.exports.register = async(server) =>{
         }
     },{
         method  : 'POST',
-        path    : '/products',
+        path    : '/categories/{categoryId}/products',
         options : {
             auth: {
                 scope: ['admin']
@@ -62,7 +62,7 @@ module.exports.register = async(server) =>{
         }
     },{
         method  : 'PUT',
-        path    : '/products/{id}',
+        path    : '/categories/{categoryId}/products/{productId}',
         options : {
             auth: {
                 scope: ['admin']
@@ -83,7 +83,7 @@ module.exports.register = async(server) =>{
         }
     },{
         method  : 'DELETE',
-        path    : '/products/{id}',
+        path    : '/categories/{categoryId}/products/{productId}',
         options : {
             auth: {
                 scope: ['admin']

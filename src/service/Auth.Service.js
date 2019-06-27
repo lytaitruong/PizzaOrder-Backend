@@ -1,5 +1,5 @@
 const Config = require('../config');
-
+const JWT    = require('jsonwebtoken');
 module.exports = {
     generateToken: (customer) =>{
         return JWT.sign({

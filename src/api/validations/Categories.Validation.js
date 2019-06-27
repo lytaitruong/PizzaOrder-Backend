@@ -21,7 +21,6 @@ module.exports = {
         payload: Joi.object().keys({
             categoryName: Joi.string(),
             imageUri    : Joi.string(),
-            listProduct : Joi.array(),
         }),
         headers: jwtValidator
     },

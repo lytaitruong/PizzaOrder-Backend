@@ -1,36 +1,51 @@
-const OrderService = require('../../service/Order.Service')
+const Boom              = require('@hapi/boom')
+const Response          = require('../../util/index');
+const OrderService      = require('../../service/Order.Service')
+const ProductService    = require('../../service/Product.Service');
 module.exports = {
     getAllOrders: async (request, h) =>{
         try{
             const listOrders = await OrderService.getAllOrders(request.query);
-            return h.response(listOrders).code(200);
+            return Response(h, listOrders, 200)
         }catch(error){
-            throw error;
+            console.log(error);
+            throw Boom.internal()
         }
     },
     getOrder: async (request, h) =>{
         try{
             const order = await OrderService.getOrder(request.params.id);
-            return h.response(order).code(200)
+            return Response(h, order, 200);
         }catch(error){
-            throw error;
+            console.log(error);
+            throw Boom.internal()
         }
     },
     createOrder: async (request, h) =>{
         try{
             const id = request.auth.credentials.id;
+            
+            const {listOrderDetails} = request.payload;
+
+            const listProduct = await ProductService.getProduct(listOrderDetails)
+
+            
+
+
             const order = await OrderService.createOrder(id, request.payload);
-            return h.response(order).code(201)
+            return Response(h, order, 201)
         }catch(error){
-            throw error;
+            console.log(error);
+            throw Boom.internal()
         }
     },
     deleteOrder: async (request, h) =>{
         try{
             const order = await OrderService.deleteOrder(request.params.id);
-            return h.response(order).code(200);
+            return Response(h, order, 200);
         }catch(error){
-            throw error;
+            console.log(error);
+            throw Boom.internal()
         }
     }
 }
