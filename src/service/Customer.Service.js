@@ -25,7 +25,7 @@ module.exports = {
     },
     signUpCustomer: async ({username, email, password, scope}) =>{
         const invalid =  CustomerModel.findOne({username, email});
-        const customer = await CustomerModel.create({username,email,password,scope, phoneNumber: null});
+        const customer = await CustomerModel.create({email, fullname,password,scope, phoneNumber: null});
         return (invalid)
             ? Boom.conflict(`This username or email have been registered`)
             : (!customer)
