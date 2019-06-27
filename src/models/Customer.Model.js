@@ -3,9 +3,9 @@ const Bcrypt   = require('bcrypt')
 const Mongoose = require('mongoose');
 const Boom     = require('@hapi/boom');
 const CustomerSchema = new Mongoose.Schema({
-    username     : {type: String, required: true, unique: true},
-    password     : {type: String, required: true},
     email        : {type: String, required: true, unique: true},
+    name         : {type: String, required: true},
+    password     : {type: String, required: true},
     scope        : {type: String, required: true, enum: ['admin','user']},
     phoneNumber  : {type: String},
     historyOrders: [{type: Mongoose.Schema.Types.ObjectId, ref: "orders"}],

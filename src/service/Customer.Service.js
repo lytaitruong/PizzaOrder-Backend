@@ -5,7 +5,7 @@ module.exports = {
         const listCustomer = await CustomerModel.find()
                                                 .skip(limit)
                                                 .limit(limit*(page-1))
-                                                .sort({'username': 1})
+                                                .sort({'email': 1})
         return listCustomer;
     },
     getInformation: async (id) =>{
@@ -14,20 +14,20 @@ module.exports = {
             ? customer
             : Boom.notFound(`Customer`)
     },
-    signInCustomer: async ({username,password}) =>{
-        const customer = await CustomerModel.findOne({username});
+    signInCustomer: async ({email,password}) =>{
+        const customer = await CustomerModel.findOne({email});
         const invalid = (!customer || !await customer.validatePassword(password))
         return (invalid)
-            ? Boom.conflict(`username or password is not correct`)
+            ? Boom.conflict(`email or password is not correct`)
             : (!customer)
             ? Boom.badRequest(`Customer`)            
             : customer
     },
-    signUpCustomer: async ({username, email, password, scope}) =>{
-        const invalid =  CustomerModel.findOne({username, email});
-        const customer = await CustomerModel.create({email, fullname,password,scope, phoneNumber: null});
+    signUpCustomer: async ({email, name, password, scope}) =>{
+        const invalid =  CustomerModel.findOne({email});
+        const customer = await CustomerModel.create({email, name ,password,scope, phoneNumber: null});
         return (invalid)
-            ? Boom.conflict(`This username or email have been registered`)
+            ? Boom.conflict(`This email or email have been registered`)
             : (!customer)
             ? Boom.badRequest(`Customer`)
             : customer;
