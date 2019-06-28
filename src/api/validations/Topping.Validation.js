@@ -14,9 +14,9 @@ module.exports = {
             id: Joi.string().required().description(`Topping ObjectId`)
         }),
         payload: Joi.object().keys({
-            name     : Joi.string(),
-            imageUri : Joi.string(),
-            unitPrice: Joi.number().integer().positive(),
+            toppingName: Joi.string().required(),
+            imageUri   : Joi.string().required(),
+            unitPrice  : Joi.number().integer().positive().required(),
         }),
         headers: jwtValidator
     },

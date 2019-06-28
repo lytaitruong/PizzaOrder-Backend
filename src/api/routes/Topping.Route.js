@@ -35,6 +35,7 @@ module.exports.register = async (server) =>{
                 'hapi-swagger':{
                     response: {
                         200: SwaggerDescription[200],
+                        400: SwaggerDescription[400],
                         500: SwaggerDescription[500],
                     }
                 }
@@ -55,6 +56,7 @@ module.exports.register = async (server) =>{
                 'hapi-swagger':{
                     response: {
                         200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
                         500: SwaggerDescription[500],
                     }
                 }
@@ -75,6 +77,7 @@ module.exports.register = async (server) =>{
                 'hapi-swagger':{
                     response: {
                         200: SwaggerDescription[200],
+                        404: SwaggerDescription[404],
                         500: SwaggerDescription[500],
                     }
                 }

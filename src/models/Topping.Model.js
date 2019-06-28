@@ -1,8 +1,8 @@
 const Mongoose = require('mongoose');
 const ToppingSchema = new Mongoose.Schema({
-    name     : {type: String, required: true, unique: true},
-    imageUri : {type: String, required: true},
-    unitPrice: {type: Number, required: true},
+    toppingName: {type: String, required: true, unique: true},
+    imageUri   : {type: String, required: true},
+    unitPrice  : {type: Number, required: true},
 });
 
 const ToppingModel = Mongoose.model('toppings', ToppingSchema);
