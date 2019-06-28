@@ -33,10 +33,11 @@ module.exports = {
             : Boom.notFound(`Category`)
     },
     updateProduct: async ({categoryId, productId}, 
-                          {productName, imageUri, type, size, crust, sale, price, topping, rating}) =>{
+                          {productName, imageUri, type, description, 
+                           size, crust, sale, price, topping, rating}) =>{
         const data = (type === 'PIZZA')
-            ? {productName, imageUri, type, size, crust, sale, rating, topping}
-            : {productName, imageUri, type, price,       sale, rating, topping}
+            ? {productName, imageUri, description, type, size, crust, sale, rating, topping}
+            : {productName, imageUri, description, type, price,       sale, rating, topping}
         const product = await CategoriesModel.updateOne(
             { _id : categoryId, "listProduct._id": productId},
             {$set:  {"listProduct.$": data}}

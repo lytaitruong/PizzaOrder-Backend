@@ -1,5 +1,5 @@
 const Boom              = require('@hapi/boom')
-const Response          = require('../../util/index');
+const {Response}          = require('../../util/index');
 const OrderService      = require('../../service/Order.Service')
 const ProductService    = require('../../service/Product.Service');
 module.exports = {
@@ -23,8 +23,7 @@ module.exports = {
     },
     createOrder: async (request, h) =>{
         try{
-            const id = request.auth.credentials.id;
-            
+            const id = request.auth.credentials._id;
             const order = await OrderService.createOrder(id, request.payload);
             return Response(h, order, 201)
         }catch(error){

@@ -1,6 +1,7 @@
 const Boom       = require('@hapi/boom')
 const OrderModel = require('../models/Order.Model');
 const CategoriesModel = require('../models/Categories.Model')
+const Mongoose = require('mongoose');
 module.exports = {
     getAllOrders: async ({from, to}) =>{
         const listOrder = await OrderModel.find({dateOrder: {$gte: from, $lte: to}})
@@ -25,44 +26,32 @@ module.exports = {
         // {"listProducts": {$elemMatch: {'_id': id}}})
         // const list = await CategoriesModel.find({},{}
 
-        // const order = await OrderModel.create({
-        //     customerId,
-        //     address,
-        //     phoneNumber,
-        //     amount,
-        //     dateOrder: new Date.now(),
-        //     listOrdersDetails
-        // })
-        // if(!order){
-        //     throw Boom.badRequest()
-        // }
-        // return order;
-        const listId = listOrderDetails.map(value => value._id);
-
+        const listID = listOrderDetails.map(value => Mongoose.Types.ObjectId(value._id));
         const listProducts = await CategoriesModel.find(
-            {"listProduct._id": {$in: listId}},
-            {"listProduct": {$elemMatch: {'id': {$in: listId}}}})
+            {"listProduct._id": {$in: listID}},
+            {"listProduct": {$elemMatch: {'_id': {$in: listID}}}})
             .populate('topping','unitPrice').exec()
+        // console.log(listProducts);
+        // const order = await CategoriesModel.aggregate([
+        //     {$unwind: "$listProduct"},
+        //     {$match : {"listProduct._id": {"$in": listID}}},
+        // ])
+        
+
         console.log(listProducts);
-
-        const amount = listProducts.reduce((total,listOrder) =>{
-
-            return total + listOrderDetails
+        const amount = listOrderDetails.reduce((total, orderDetail) =>{
+            const {_id, size, crust, quantity, topping} = orderDetail
+            // console.log({_id,size,crust,quantity,topping})
+            return total
         },0)
-        listProducts
-
-
-
-
         const order = await OrderModel.create({
-            cutstomerId,
+            customerId,
             phoneNumber,
             address,
             amount,
             dateOrder: new Date.now(),
-            listOrderDetails
+            //
         })
-
         return (order)
             ? order
             : Boom.badRequest('Order')

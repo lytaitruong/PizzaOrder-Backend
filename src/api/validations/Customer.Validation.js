@@ -18,12 +18,12 @@ module.exports = {
         }),
     },
     signUpCustomer: {
-        payload: Joi.object().keys({
+        payload: {
             email   : Joi.string().email().required(),
             name    : Joi.string().min(8).required(),
             password: Joi.string().min(8).required(),
             scope   : Joi.string().default('user'),
-        })
+        }
     },
     signOutCustomer:{
         headers: jwtValidator

@@ -44,7 +44,7 @@ module.exports = {
                 request.cookieAuth.set(customer);
                 customer = AuthService.generateToken(customer);
             }
-            return Response(h, token, 200);
+            return Response(h, customer, 200);
         }catch(error){
             console.log(error);
             throw Boom.internal();

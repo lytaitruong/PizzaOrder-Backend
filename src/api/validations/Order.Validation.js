@@ -18,7 +18,7 @@ module.exports = {
         payload: Joi.object().keys({
             address         : Joi.string().required(),
             phoneNumber     : Joi.string().required(),
-            listOrderDetails: Joi.array().not([]).required()
+            listOrderDetails: Joi.array().required()
         }),
         headers: jwtValidator
     },

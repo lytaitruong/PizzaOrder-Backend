@@ -19,6 +19,7 @@ module.exports = {
             productName: Joi.string().required(),
             imageUri   : Joi.string().required(),
             type       : Joi.string().required(),
+            description: Joi.string().required(),
             size   : {
                 S: Joi.number().integer().required(),
                 L: Joi.number().integer().required(),
@@ -43,6 +44,7 @@ module.exports = {
             productName: Joi.string(),
             imageUri   : Joi.string(),
             type       : Joi.string(),
+            description: Joi.string(),
             size   : {
                 S: Joi.number().integer().required(),
                 L: Joi.number().integer().required(),

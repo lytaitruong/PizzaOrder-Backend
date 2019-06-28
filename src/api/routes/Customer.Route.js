@@ -134,14 +134,7 @@ module.exports.register = async(server) =>{
             description: 'Sign Out',
             handler    : CustomerController.signOutCustomer,
             validate   : CustomerValidation.signOutCustomer,
-            plugins : {
-                'hapi-swagger':{
-                    response: {
-                        200: SwaggerDescription[200],
-                        500: SwaggerDescription[500],
-                    }
-                }
-            }
+            
         }
     },{
         method: 'GET',
