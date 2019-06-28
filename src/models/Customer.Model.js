@@ -1,7 +1,6 @@
 
 const Bcrypt   = require('bcrypt')
 const Mongoose = require('mongoose');
-const Boom     = require('@hapi/boom');
 const CustomerSchema = new Mongoose.Schema({
     email        : {type: String, required: true, unique: true},
     name         : {type: String, required: true},
@@ -11,10 +10,10 @@ const CustomerSchema = new Mongoose.Schema({
     historyOrders: [{type: Mongoose.Schema.Types.ObjectId, ref: "orders"}],
 });
 //Methods of Instance
-
 CustomerSchema.methods.validatePassword = async function validatePassword(password){
     return await Bcrypt.compare(password, this.password);
 }
+
 //Middleware Pre
 CustomerSchema.pre('save', async function save(next){
     if(!this.isModified('password')) return next
@@ -26,14 +25,10 @@ CustomerSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
         const result = await CustomerModel.findOne({email: this.getUpdate().email});
         if(result){
             if(result._id != this.getQuery()._id){
-                throw Boom.badRequest(`This email have been registered`)
+                return Boom.badRequest(`This email have been registered`)
             }
         }
     }
-    if(this.getUpdate().password){
-        this.getUpdate().password = await Bcrypt.hash(this.getUpdate().password,10);
-    }
     return next;
 })
-const CustomerModel = Mongoose.model('customers', CustomerSchema);
-module.exports = CustomerModel
+module.exports = Mongoose.model('customers', CustomerSchema);

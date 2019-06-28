@@ -14,9 +14,10 @@ module.exports = {
     },
     getInformation: async(request, h) =>{
         try{
-            const id = (request.auth.credentials.scope === 'admin' && request.params.id !== 'info')
+            const {scope, _id} = request.auth.credentials;
+            const id = (scope === 'admin' && request.params.id !== 'info')
                 ? request.params.id
-                : request.auth.credentials.id
+                : _id
             const customer = await CustomerService.getInformation(id);
             return Response(h, customer, 200);
         }catch(error){
@@ -26,7 +27,7 @@ module.exports = {
     },
     signUpCustomer: async (request, h) =>{
         try{
-            let customer = await CustomerService.signUpCustomer(request.payload)
+            let customer = await CustomerService.signUpCustomer(request.payload);
             if(!Boom.isBoom(customer)){
                 request.cookieAuth.set(customer);
                 customer = AuthService.generateToken(customer);
@@ -52,9 +53,10 @@ module.exports = {
     },
     updateCustomer: async (request, h) =>{
         try{
-            const id = (request.auth.credentials.scope === 'admin' && request.params.id !== 'info')
+            const {scope, _id} = request.auth.credentials;
+            const id = (scope === 'admin' && request.params.id !== 'info')
                 ? request.params.id
-                : request.auth.credentials._id
+                : _id
             const customer = await CustomerService.updateCustomer(id,request.payload)
             return Response(h, customer, 200);
         }catch(error){
@@ -80,4 +82,14 @@ module.exports = {
             throw Boom.internal();
         }
     },
+    changePassword: async (request, h) =>{
+        try{
+            const id = request.auth.credentials._id
+            const customer = await CustomerService.changePassword(id, request.payload);
+            return Response(h, customer, 200);
+        }catch(error){
+            console.log(error);
+            throw Boom.internal()
+        }
+    }
 }

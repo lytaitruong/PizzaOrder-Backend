@@ -28,7 +28,7 @@ module.exports.register = async(server) =>{
         path    : "/customers/{id}",
         options : {
             tags: ["api", "customers"],
-            description: "Get customer info.",
+            description: "Get customer info with id.",
             handler    : CustomerController.getInformation,
             validate   : CustomerValidation.getInformation,
             plugins : {
@@ -54,30 +54,6 @@ module.exports.register = async(server) =>{
                 'hapi-swagger':{
                     response: {
                         201: SwaggerDescription[201],
-                        400: SwaggerDescription[400],
-                        409: SwaggerDescription[409],
-                        500: SwaggerDescription[500],
-                    }
-                }
-            }
-        },
-    },{
-        method: "POST",
-        path: "/login",
-        options: {
-            auth: {
-                strategy: 'session',
-                mode: 'try'
-            },
-            tags: ["api", "customers"],
-            description : "Sign In",
-            handler     : CustomerController.signInCustomer,
-            validate    : CustomerValidation.signInCustomer,
-            plugins : {
-                'hapi-swagger':{
-                    response: {
-                        200: SwaggerDescription[200],
-                        400: SwaggerDescription[400],
                         409: SwaggerDescription[409],
                         500: SwaggerDescription[500],
                     }
@@ -124,9 +100,9 @@ module.exports.register = async(server) =>{
             }
         },
     },{
-        method: 'GET',
-        path: '/logout',
-        options: {
+        method  : 'GET',
+        path    : '/logout',
+        options : {
             auth:{
                 strategy: 'session',
             },
@@ -137,12 +113,44 @@ module.exports.register = async(server) =>{
             
         }
     },{
-        method: 'GET',
-        path: '/',
-        options: {
-            auth: false,
-            handler:  () =>{
-                return "OK";
+        method  : "POST",
+        path    : "/login",
+        options : {
+            auth: {
+                strategy: 'session',
+                mode: 'try'
+            },
+            tags: ["api", "customers"],
+            description: "Sign In",
+            handler    : CustomerController.signInCustomer,
+            validate   : CustomerValidation.signInCustomer,
+            plugins : {
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        400: SwaggerDescription[400],
+                        409: SwaggerDescription[409],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
+        },
+    },{
+        method  : "PUT",
+        path    : "/changePassword",
+        options : {
+            tags: ["api", "customers"],
+            description: "Change password of Customer",
+            handler    : CustomerController.changePassword,
+            validate   : CustomerValidation.changePassword,
+            plugins: {
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        400: SwaggerDescription[400],
+                        500: SwaggerDescription[500],
+                    }
+                }
             }
         }
     }]);

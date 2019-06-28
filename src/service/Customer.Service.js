@@ -14,20 +14,20 @@ module.exports = {
             ? customer
             : Boom.notFound(`Customer`)
     },
+    signUpCustomer: async ({email, name, password}) =>{
+        const valid =  await CustomerModel.findOne({email});
+        return (valid) 
+            ? Boom.conflict(`This email have been registered`)
+            : await CustomerModel.create({email, name ,password, 
+                                        scope: 'user', phoneNumber: null,
+                                        historyOrder: []});
+    },
     signInCustomer: async ({email,password}) =>{
         const customer = await CustomerModel.findOne({email});
         const invalid = (!customer || !await customer.validatePassword(password))
         return (invalid)
             ? Boom.conflict(`email or password is not correct`)
             : customer
-    },
-    signUpCustomer: async ({email, name, password, scope}) =>{
-        const valid =  await CustomerModel.findOne({email});
-        console.log(valid);
-        const customer = await CustomerModel.create({email, name ,password,scope, phoneNumber: null});
-        return (valid)
-            ? Boom.conflict(`This email have been registered`)
-            : customer;
     },
     updateCustomer: async (id, data) =>{
         const customer = await CustomerModel.findByIdAndUpdate(id,data);
@@ -41,4 +41,13 @@ module.exports = {
             ? customer
             : Boom.notFound(`Customer`);
     },
+    changePassword: async(id, {password, newPassword, autPassword}) =>{
+        const customer = await CustomerModel.findById(id);
+        const valid = (await customer.validatePassword(password) && (newPassword === autPassword))
+        if(valid){
+            await customer.update({password: newPassword})
+            return customer;
+        }
+        return Boom.badRequest(`password is not match`);
+    }
 }
