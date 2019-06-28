@@ -4,8 +4,8 @@ const ToppingService = require('../../service/Topping.Service');
 module.exports = {
     getAllToppings: async (request, h) =>{
         try{
-            const listToppings = await ToppingService.getAllToppings();
-            return Response(h, listToppings, 200);
+            const topping = await ToppingService.getAllToppings();
+            return Response(h, topping, 200);
         }catch(error){
             console.log(error);
             throw Boom.internal()

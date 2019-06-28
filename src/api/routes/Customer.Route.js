@@ -25,7 +25,7 @@ module.exports.register = async(server) =>{
         },
     },{
         method  : "GET",
-        path    : "/customers/info",
+        path    : "/customers/{id}",
         options : {
             tags: ["api", "customers"],
             description: "Get customer info.",
@@ -86,10 +86,10 @@ module.exports.register = async(server) =>{
         },
     },{
         method  : "PUT",
-        path    : "/customers/info",
+        path    : "/customers/{id}",
         options : {
             tags: ["api", "customers"],
-            description: "Update customer info.",
+            description: "Update customer with id.",
             handler : CustomerController.updateCustomer,
             validate: CustomerValidation.updateCustomer,
             plugins : {
@@ -110,7 +110,7 @@ module.exports.register = async(server) =>{
                 scope: ['admin']
             },
             tags: ["api", "customers"],
-            description: "Delete current Customer.",
+            description: "Delete Customer with id.",
             handler    : CustomerController.deleteCustomer,
             validate   : CustomerValidation.deleteCustomer,
             plugins : {

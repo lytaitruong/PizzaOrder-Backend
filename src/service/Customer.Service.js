@@ -10,7 +10,7 @@ module.exports = {
     },
     getInformation: async (id) =>{
         const customer = await CustomerModel.findById(id)
-        return (customer)
+        return (customer)   
             ? customer
             : Boom.notFound(`Customer`)
     },
@@ -19,17 +19,14 @@ module.exports = {
         const invalid = (!customer || !await customer.validatePassword(password))
         return (invalid)
             ? Boom.conflict(`email or password is not correct`)
-            : (!customer)
-            ? Boom.badRequest(`Customer`)            
             : customer
     },
     signUpCustomer: async ({email, name, password, scope}) =>{
-        const invalid =  CustomerModel.findOne({email});
+        const valid =  await CustomerModel.findOne({email});
+        console.log(valid);
         const customer = await CustomerModel.create({email, name ,password,scope, phoneNumber: null});
-        return (invalid)
-            ? Boom.conflict(`This email or email have been registered`)
-            : (!customer)
-            ? Boom.badRequest(`Customer`)
+        return (valid)
+            ? Boom.conflict(`This email have been registered`)
             : customer;
     },
     updateCustomer: async (id, data) =>{

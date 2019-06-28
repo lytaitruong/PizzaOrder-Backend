@@ -5,12 +5,13 @@ module.exports.register = async(server) =>{
     server.bind(ProductController);
     server.route([{
         method  : 'GET',
-        path    : '/products',
+        path    : '/categories/{categoryId}/products',
         options : {
             auth: false,
             tags: ['api','products'],
             description: 'Get all products of all categories',
             handler    : ProductController.getAllProducts,
+            validate   : ProductValidation.getAllProducts,
             plugins    : {
                 'hapi-swagger': {
                     responses: {

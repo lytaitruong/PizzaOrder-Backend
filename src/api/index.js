@@ -5,8 +5,8 @@ const ToppingRoute    = require('./routes/Topping.Route');
 const OrderRoute      = require('./routes/Order.Route');
 module.exports ={
     '/categories': CategoriesRoute,
-    '/users'     : CustomerRoute,   
+    '/customers' : CustomerRoute,   
+    '/orders'    : OrderRoute,
     '/products'  : ProductRoute,
     '/toppings'  : ToppingRoute,
-    '/orders'    : OrderRoute,
 }

@@ -1,6 +1,11 @@
 const Joi = require('@hapi/joi')
 const {jwtValidator} = require('../../util')
 module.exports = {
+    getAllProducts: {
+        params: Joi.object().keys({
+            categoryId: Joi.string().required().description(`Category ObjectId`)
+        })
+    },
     getProduct: {
         params: Joi.object().keys({
             productId: Joi.string().required().description(`Product ObjectId`)
@@ -8,7 +13,7 @@ module.exports = {
     },
     createProduct: {
         params: Joi.object().keys({
-            categoryId: Joi.string().required().description(`Categories ObjectId`)
+            categoryId: Joi.string().required().description(`Category ObjectId`)
         }),
         payload: Joi.object().keys({
             productName: Joi.string().required(),
@@ -31,7 +36,7 @@ module.exports = {
     },
     updateProduct: {
         params: Joi.object().keys({
-            categoryId : Joi.string().required().description(`Categories ObjectId`),
+            categoryId : Joi.string().required().description(`Category ObjectId`),
             productId  : Joi.string().required().description(`Product ObjectId`)
         }),
         payload: Joi.object().keys({
@@ -55,7 +60,7 @@ module.exports = {
     },
     deleteProduct: {
         params: Joi.object().keys({
-            categoryId : Joi.string().required().description(`Categories ObjectId`),
+            categoryId : Joi.string().required().description(`Category ObjectId`),
             productId  : Joi.string().required().description(`Product ObjectId`)
         }),
         headers: jwtValidator

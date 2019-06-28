@@ -5,8 +5,8 @@ const CustomerService = require('../../service/Customer.Service');
 module.exports = {
     getAllCustomers: async(request, h) =>{
         try{
-            const listCustomers = await CustomerService.getAllCustomers(request.query);
-            return Response(h, listCustomers, 200);
+            const customer = await CustomerService.getAllCustomers(request.query);
+            return Response(h, customer, 200);
         }catch(error){
             console.log(error);
             throw Boom.internal();
@@ -14,7 +14,9 @@ module.exports = {
     },
     getInformation: async(request, h) =>{
         try{
-            const id = request.auth.credentials._id;
+            const id = (request.auth.credentials.scope === 'admin' && request.params.id !== 'info')
+                ? request.params.id
+                : request.auth.credentials.id
             const customer = await CustomerService.getInformation(id);
             return Response(h, customer, 200);
         }catch(error){
@@ -24,10 +26,12 @@ module.exports = {
     },
     signUpCustomer: async (request, h) =>{
         try{
-            const customer = await CustomerService.signUpCustomer(request.payload)
-            const token    = AuthService.generateToken(customer);
-            request.cookieAuth.set(customer);
-            return Response(h, token, 201);
+            let customer = await CustomerService.signUpCustomer(request.payload)
+            if(!Boom.isBoom(customer)){
+                request.cookieAuth.set(customer);
+                customer = AuthService.generateToken(customer);
+            }
+            return Response(h, customer, 201);
         }catch(error){   
             console.log(error);
             throw Boom.internal();
@@ -35,9 +39,11 @@ module.exports = {
     },
     signInCustomer: async (request, h) => {
         try{
-            const customer = await CustomerService.signInCustomer(request.payload);
-            const token    = AuthService.generateToken(customer);
-            request.cookieAuth.set(customer);
+            let customer = await CustomerService.signInCustomer(request.payload);
+            if(!Boom.isBoom(customer)){
+                request.cookieAuth.set(customer);
+                customer = AuthService.generateToken(customer);
+            }
             return Response(h, token, 200);
         }catch(error){
             console.log(error);
@@ -46,7 +52,9 @@ module.exports = {
     },
     updateCustomer: async (request, h) =>{
         try{
-            const id = request.auth.credentials._id;
+            const id = (request.auth.credentials.scope === 'admin' && request.params.id !== 'info')
+                ? request.params.id
+                : request.auth.credentials._id
             const customer = await CustomerService.updateCustomer(id,request.payload)
             return Response(h, customer, 200);
         }catch(error){

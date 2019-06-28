@@ -8,23 +8,26 @@ module.exports = {
         return listCategories
     },
     getCategory: async(id) =>{
-        const category = await CategoriesModel.findById(id).select('categoryName imageUri')
-        return (category)   ? category
-                            : Boom.notFound("Category")
+        const category = await CategoriesModel.findById(id)
+        return (category)   
+            ? category
+            : Boom.notFound("Category")
     },
     createCategory: async({categoryName, imageUri, listProduct}) =>{
         const category = await CategoriesModel.create({categoryName,imageUri,listProduct})
-        return (category)   ? category
-                            : Boom.badRequest("Category")
+        return (category)   
+            ? category
+            : Boom.badRequest("Category")
     },
     updateCategory: async(id, {categoryName, imageUri}) =>{
         const category =  await CategoriesModel.findByIdAndUpdate(id,{categoryName,imageUri})
-        return (category)   ? category
-                            : Boom.notFound("Category")
+        return (category)   
+            ? category
+            : Boom.notFound("Category")
     },
     deleteCategory: async(id) =>{
         const category = await CategoriesModel.findByIdAndDelete(id);
-        return (category) 
+        return (category)   
             ? category
             : Boom.notFound(`Category`); 
     }

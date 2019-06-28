@@ -43,9 +43,9 @@ module.exports.register = async (server) =>{
         method  : 'POST',
         path    : '/categories',
         options : {
-            // auth: {
-            //     scope: ['admin']
-            // },
+            auth: {
+                scope: ['admin']
+            },
             tags: ['api', 'categories'],
             description: 'Create a new categories',
             handler    : CategoriesController.createCategory,
@@ -64,9 +64,9 @@ module.exports.register = async (server) =>{
         method  : 'PUT',
         path    : '/categories/{id}',
         options : {
-            // auth: {
-            //     scope: ['admin']
-            // },
+            auth: {
+                scope: ['admin']
+            },
             tags: ['api', 'categories'],
             description: 'Update Categories with id',
             handler    : CategoriesController.updateCategory,
@@ -85,9 +85,9 @@ module.exports.register = async (server) =>{
         method  : 'DELETE',
         path    : '/categories/{id}',
         options : {
-            // auth: {
-            //     scope: ['admin']
-            // },
+            auth: {
+                scope: ['admin']
+            },
             tags: ['api', 'categories'],
             description: 'Delete Categories with id',
             handler    : CategoriesController.deleteCategory,

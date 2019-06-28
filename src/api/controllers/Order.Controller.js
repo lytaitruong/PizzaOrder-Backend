@@ -5,8 +5,8 @@ const ProductService    = require('../../service/Product.Service');
 module.exports = {
     getAllOrders: async (request, h) =>{
         try{
-            const listOrders = await OrderService.getAllOrders(request.query);
-            return Response(h, listOrders, 200)
+            const order = await OrderService.getAllOrders(request.query);
+            return Response(h, order, 200)
         }catch(error){
             console.log(error);
             throw Boom.internal()
@@ -25,13 +25,6 @@ module.exports = {
         try{
             const id = request.auth.credentials.id;
             
-            const {listOrderDetails} = request.payload;
-
-            const listProduct = await ProductService.getProduct(listOrderDetails)
-
-            
-
-
             const order = await OrderService.createOrder(id, request.payload);
             return Response(h, order, 201)
         }catch(error){
