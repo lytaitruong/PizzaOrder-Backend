@@ -4,7 +4,7 @@ const CategoriesService = require('../../service/Categories.Service');
 module.exports = {
     getCategories: async (request, h) =>{
         try{
-            const categories = await CategoriesService.getCategories(request.query);
+            const categories = await CategoriesService.getCategories();
             return Response(h , categories, 200);
         }catch(error){
             console.log(error);

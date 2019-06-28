@@ -114,22 +114,3 @@ const topping = [
         unitPrice: 10
     }
   ];
-
-  // CategoriesSchema.pre('save', async function save(error, next){
-//     if(await CategoriesModel.findOne({categoryName: this.categoryName})){
-//         return next(Boom.conflict(`this topping's name have been registered`));
-//     }
-//     return next;
-// })
-// CategoriesSchema.pre('findOneAndUpdate', async function findOneAndUpdate(next){
-//     if(this.getUpdate().categoryName){
-//         const result = await CategoriesModel.findOne({categoryName: this.getUpdate().categoryName});
-//         if(result){
-//             if(result._id != this.getQuery()._id){
-//                 return Boom.conflict(`This topping's name have been registered`)
-//             }
-//         }
-//     }
-//     return next
-// })
-    

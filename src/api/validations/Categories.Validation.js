@@ -10,7 +10,6 @@ module.exports = {
         payload: Joi.object().keys({
             categoryName: Joi.string().required(),
             imageUri    : Joi.string().required(),
-            listProduct : Joi.array().default([]),
         }),
         headers: jwtValidator
     },
@@ -19,8 +18,8 @@ module.exports = {
             id: Joi.string().required().description('Categories ObjectId') 
         }),
         payload: Joi.object().keys({
-            categoryName: Joi.string(),
-            imageUri    : Joi.string(),
+            categoryName: Joi.string().required(),
+            imageUri    : Joi.string().required(),
         }),
         headers: jwtValidator
     },

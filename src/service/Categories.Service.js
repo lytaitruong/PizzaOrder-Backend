@@ -3,8 +3,6 @@ const CategoriesModel = require('../models/Categories.Model')
 module.exports = {
     getCategories: async () =>{
         const listCategories = await CategoriesModel.find()
-                                                    .select('categoryName imageUri')
-                                                    .sort({'categoryName': 1})
         return listCategories
     },
     getCategory: async(id) =>{
@@ -13,8 +11,8 @@ module.exports = {
             ? category
             : Boom.notFound("Category")
     },
-    createCategory: async({categoryName, imageUri, listProduct}) =>{
-        const category = await CategoriesModel.create({categoryName,imageUri,listProduct})
+    createCategory: async({categoryName, imageUri}) =>{
+        const category = await CategoriesModel.create({categoryName,imageUri})
         return (category)   
             ? category
             : Boom.badRequest("Category")
