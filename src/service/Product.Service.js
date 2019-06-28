@@ -1,7 +1,7 @@
 const Boom            = require('@hapi/boom')
 const CategoriesModel = require('../models/Categories.Model');
 module.exports = {
-    get: async() =>{        
+    getAllProducts: async () => {
         const listProduct = await CategoriesModel.aggregate([
             {$group: {_id: "AllProducts", listProduct: {$push: "$listProduct"}}},
             {"$project": {
@@ -14,10 +14,6 @@ module.exports = {
                 }
             }}
         ])
-    },
-    getAllProducts: async () => {
-        const listProduct = await CategoriesModel.findById(id)
-                                                 .sort({"listProducts.productName": 1})
         return listProduct;
     },
     getProduct: async (productId) => {
