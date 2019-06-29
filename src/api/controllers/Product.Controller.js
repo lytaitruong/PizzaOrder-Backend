@@ -40,7 +40,7 @@ module.exports = {
     },
     deleteProduct: async (request, h) =>{
         try{
-            const product = await ProductService.deleteProduct(request.params.id, request.payload);
+            const product = await ProductService.deleteProduct(request.params.id);
             return Response(h, product, 200);
         }catch(error){
             console.log(error)

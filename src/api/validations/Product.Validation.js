@@ -3,9 +3,9 @@ const {jwtValidator} = require('../../util')
 module.exports = {
     getAllProducts: {
         query: Joi.object().keys({
-            categoryId: Joi.string().required().default({}),
-            limit     : Joi.string().required().min(0).max(100).default(0),
-            page      : Joi.string().required().default(1)
+            categoryId: Joi.string().default(undefined),
+            limit     : Joi.string().min(0).max(100).default(0),
+            page      : Joi.string().default(1)
         })
     },
     getProduct: {
@@ -19,18 +19,18 @@ module.exports = {
             imageUri   : Joi.string().required(),
             type       : Joi.string().required(),
             description: Joi.string().required(),
-            size   : {
+            categoryId : Joi.string().required(),
+            size   : Joi.object().keys({
                 S: Joi.number().integer().required(),
                 L: Joi.number().integer().required(),
-            },
-            crust  : {
+            }),
+            crust  : Joi.object().keys({
                 Thin: Joi.number().integer().required(),
                 Thick: Joi.number().integer().required(),
-            },
-            categoryId: Joi.string().required(),
+            }),
             price  : Joi.number().integer(),
             sale   : Joi.number().min(0).max(100).default(0),
-            rating : Joi.number().min(0).max(5).required(),
+            rating : Joi.number().min(0).max(5).default(0),
             topping: Joi.array().default([]),
         }),
         headers: jwtValidator
@@ -44,14 +44,15 @@ module.exports = {
             imageUri   : Joi.string(),
             type       : Joi.string(),
             description: Joi.string(),
-            size   : {
+            categoryId : Joi.string(),
+            size   : Joi.object().keys({
                 S: Joi.number().integer().required(),
                 L: Joi.number().integer().required(),
-            },
-            crust  : {
+            }),
+            crust  : Joi.object().keys({
                 Thin: Joi.number().integer().required(),
                 Thick: Joi.number().integer().required(),
-            },
+            }),
             price  : Joi.number().integer(),
             sale   : Joi.number().min(0).max(100).default(0),
             rating: Joi.number().min(0).max(5),

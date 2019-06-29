@@ -2,7 +2,8 @@ const Boom            = require('@hapi/boom')
 const ProductModel    = require('../models/Product.Model');
 module.exports = {
     getAllProducts: async ({categoryId, limit, page}) => {
-        const listProduct = await ProductModel.find({categoryId})
+        const id = (!categoryId) ? {} : {categoryId: categoryId}
+        const listProduct = await ProductModel.find(id)
                                               .limit(limit)
                                               .skip(limit * (page -1))
                                               .sort({"productName": 1})
@@ -21,14 +22,12 @@ module.exports = {
             : Boom.badRequest(`Product`)
     },
     updateProduct: async (id, data) =>{
-        const product = await ProductModel.findByIdAndUpdate(id, {
-
-        })
+        const product = await ProductModel.findByIdAndUpdate(id, data)
         return (product)
             ? product
             : Boom.notFound(`Product`)
     },
-    deleteProduct: async ({categoryId, productId}) =>{
+    deleteProduct: async (id) =>{
         const product = await ProductModel.findByIdAndDelete(id);
         return (product)
             ? product
