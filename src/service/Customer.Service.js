@@ -45,7 +45,7 @@ module.exports = {
         const customer = await CustomerModel.findById(id);
         const valid = (await customer.validatePassword(password) && (newPassword === autPassword))
         if(valid){
-            await customer.update({password: newPassword})
+            await customer.update({password: await customer.encryptPassword(newPassword)})
             return customer;
         }
         return Boom.badRequest(`password is not match`);

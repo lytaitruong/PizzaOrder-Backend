@@ -3,7 +3,7 @@ const Boom = require('@hapi/boom');
 module.exports = {
     getAllToppings: async() =>{
         const listToppings = await ToppingModel.find()
-                                               .sort({'name': 1});
+                                               .sort({'toppingName': 1});
         return listToppings;
     },
     createTopping: async({toppingName, imageUri, unitPrice}) =>{

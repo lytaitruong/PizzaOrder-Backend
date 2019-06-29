@@ -10,10 +10,12 @@ const CustomerSchema = new Mongoose.Schema({
     historyOrders: [{type: Mongoose.Schema.Types.ObjectId, ref: "orders"}],
 });
 //Methods of Instance
+CustomerSchema.methods.encryptPassword = async function encryptPassword(password){
+    return await Bcrypt.hash(password,10);
+}
 CustomerSchema.methods.validatePassword = async function validatePassword(password){
     return await Bcrypt.compare(password, this.password);
 }
-
 //Middleware Pre
 CustomerSchema.pre('save', async function save(next){
     if(!this.isModified('password')) return next

@@ -1,19 +1,25 @@
-[{
+[
+    {
         "categoryName": "Appertizers",
         "imageUri": "https://drive.google.com/uc?export=download&id=1tQQfMYK0YzW3UH7CSDZvqiGMcxaGFr5m"
-    }, {
+    }, 
+    {
         "categoryName": "Drinks",
         "imageUri": "https://drive.google.com/uc?export=download&id=1Bqfy3pPG5jKjmwjpAF6YV7d9dwrqB1cl"
-    }, {
+    }, 
+    {
         "categoryName": "Jumpo-Puffs",
         "imageUri": "https://drive.google.com/uc?export=download&id=1Ycio_lhDmu60uhhFePFUk7-30qVH0jFl"
-    }, {
+    }, 
+    {
         "categoryName": "Salads",
         "imageUri": "https://drive.google.com/uc?export=download&id=1q1l-pMeGdgzZyqoIeqx4r8K5TCddNzTT"
-    }, {
+    }, 
+    {
         "categoryName": "Spaghettis",
         "imageUri": "https://drive.google.com/uc?export=download&id=1VLhFXl7z6c5tpZrk5xxETt5IMHtTLI2I"
-    }, {
+    }, 
+    {
         "categoryName": "Pizzas",
         "imageUri": "https://drive.google.com/uc?export=download&id=1zQf8gsf7WXuxECSxRHI4qSyo5LHToiI8"
     }

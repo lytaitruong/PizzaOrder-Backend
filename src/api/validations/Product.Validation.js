@@ -3,7 +3,7 @@ const {jwtValidator} = require('../../util')
 module.exports = {
     getAllProducts: {
         query: Joi.object().keys({
-            categoryId: Joi.string().default(undefined),
+            categoryId: Joi.string().default(),
             limit     : Joi.string().min(0).max(100).default(0),
             page      : Joi.string().default(1)
         })
