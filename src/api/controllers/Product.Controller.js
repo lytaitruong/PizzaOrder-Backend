@@ -4,7 +4,7 @@ const ProductService = require('../../service/Product.Service');
 module.exports = {
     getAllProducts: async (request, h) =>{
         try{
-            const product = await ProductService.getAllProducts();
+            const product = await ProductService.getAllProducts(request.query);
             return Response(h, product, 200);
         }catch(error){
             console.log(error)
@@ -13,7 +13,7 @@ module.exports = {
     },
     getProduct: async (request, h) =>{
         try{
-            const product = await ProductService.getProduct(request.params.productId);
+            const product = await ProductService.getProduct(request.params.id);
             return Response(h, product, 200);
         }catch(error){
             console.log(error)
@@ -22,7 +22,7 @@ module.exports = {
     },
     createProduct: async (request, h) =>{
         try{
-            const product = await ProductService.createProduct(request.params.categoryId, request.payload);
+            const product = await ProductService.createProduct(request.payload);
             return Response(h, product, 201);
         }catch(error){
             console.log(error)
@@ -31,7 +31,7 @@ module.exports = {
     },
     updateProduct: async (request, h) =>{
         try{
-            const product = await ProductService.updateProduct(request.params, request.payload);
+            const product = await ProductService.updateProduct(request.params.id, request.payload);
             return Response(h, product, 200);
         }catch(error){
             console.log(error)
@@ -40,7 +40,7 @@ module.exports = {
     },
     deleteProduct: async (request, h) =>{
         try{
-            const product = await ProductService.deleteProduct(request.params, request.payload);
+            const product = await ProductService.deleteProduct(request.params.id, request.payload);
             return Response(h, product, 200);
         }catch(error){
             console.log(error)

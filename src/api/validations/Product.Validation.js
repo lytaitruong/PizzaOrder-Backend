@@ -2,19 +2,18 @@ const Joi = require('@hapi/joi')
 const {jwtValidator} = require('../../util')
 module.exports = {
     getAllProducts: {
-        params: Joi.object().keys({
-            categoryId: Joi.string().required().description(`Category ObjectId`)
+        query: Joi.object().keys({
+            categoryId: Joi.string().required().default({}),
+            limit     : Joi.string().required().min(0).max(100).default(0),
+            page      : Joi.string().required().default(1)
         })
     },
     getProduct: {
         params: Joi.object().keys({
-            productId: Joi.string().required().description(`Product ObjectId`)
+            id: Joi.string().required().description(`Product ObjectId`)
         })
     },
     createProduct: {
-        params: Joi.object().keys({
-            categoryId: Joi.string().required().description(`Category ObjectId`)
-        }),
         payload: Joi.object().keys({
             productName: Joi.string().required(),
             imageUri   : Joi.string().required(),
@@ -28,6 +27,7 @@ module.exports = {
                 Thin: Joi.number().integer().required(),
                 Thick: Joi.number().integer().required(),
             },
+            categoryId: Joi.string().required(),
             price  : Joi.number().integer(),
             sale   : Joi.number().min(0).max(100).default(0),
             rating : Joi.number().min(0).max(5).required(),
@@ -37,8 +37,7 @@ module.exports = {
     },
     updateProduct: {
         params: Joi.object().keys({
-            categoryId : Joi.string().required().description(`Category ObjectId`),
-            productId  : Joi.string().required().description(`Product ObjectId`)
+            id  : Joi.string().required().description(`Product ObjectId`)
         }),
         payload: Joi.object().keys({
             productName: Joi.string(),
@@ -62,8 +61,7 @@ module.exports = {
     },
     deleteProduct: {
         params: Joi.object().keys({
-            categoryId : Joi.string().required().description(`Category ObjectId`),
-            productId  : Joi.string().required().description(`Product ObjectId`)
+            id  : Joi.string().required().description(`Product ObjectId`)
         }),
         headers: jwtValidator
     }

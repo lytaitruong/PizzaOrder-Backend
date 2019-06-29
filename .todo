@@ -43,29 +43,6 @@
  *
 
 
-/**
- * TODO: QUESTION OF THE HAPI.JS
- * ? When i delete the customer account
- * ! How i remove the session (cookie) of that customer
- * * Position: src/service/CustomerService.js           deleteCustomer()
- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -90,27 +67,59 @@ heroku account
     Anhboydeptraithe5
   */
 
-const topping = [
-    {id: 1,price: 15},
-    {id: 2,price: 25},
-]
-  const a = [
-      {
-          quantity: 3,
-          unitPrice: 4,
-          top: [{id: 1}, {id: 2}]
-      },
-      {
-            quantity: 7,
-            unitPrice: 2,
-            top: [{id: 2}]
+
+getAllProducts: async () => {
+        const listProduct = await CategoriesModel.aggregate([
+            {$group: {_id: "AllProducts", listProduct: {$push: "$listProduct"}}},
+            {"$project": {
+                "listProduct": {
+                    "$reduce": {
+                        "input": "$listProduct",
+                        "initialValue": [],
+                        "in": { "$setUnion": ["$$value", "$$this"] }
+                    }
+                }
+            }}
+        ])
+        return listProduct;
     },
-    {
-        quantity: 6,
-        unitPrice: 9,
+    getProduct: async (productId) => {
+        const product = await CategoriesModel.findOne({"listProduct._id": productId},
+        {"listProduct": {$elemMatch: {'_id': productId}}})
+        return (product) 
+            ? product
+            : Boom.notFound("Product")
     },
-    {
-        quantity: 14,
-        unitPrice: 10
+    createProduct: async (categoryId, data) =>{
+        const product = await CategoriesModel.update(
+            {_id: categoryId},
+            {$push: {listProduct: data}}
+        )
+        return (product.n && product.nModified) 
+            ? "CREATE SUCCESS"
+            : Boom.notFound(`Category`)
+    },
+    updateProduct: async ({categoryId, productId}, 
+                          {productName, imageUri, type, description, 
+                           size, crust, sale, price, topping, rating}) =>{
+        const data = (type === 'PIZZA')
+            ? {productName, imageUri, description, type, size, crust, sale, rating, topping}
+            : {productName, imageUri, description, type, price,       sale, rating, topping}
+        const product = await CategoriesModel.updateOne(
+            { _id : categoryId, "listProduct._id": productId},
+            {$set:  {"listProduct.$": data}}
+        )
+        console.log(product);
+        return (product.n && product.nModified)
+            ? `UPDATE SUCCESS`
+            : Boom.notFound(`Product`)
+    },
+    deleteProduct: async ({categoryId, productId}) =>{
+        const product = await CategoriesModel.update(
+            {_id: categoryId},
+            {$pull: {'listProduct': {_id : productId}}},
+        )
+        return (product.n && product.nModified)
+            ? `DELETE SUCCESS`
+            : Boom.notFound(`Product`)
     }
-  ];

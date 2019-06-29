@@ -5,7 +5,7 @@ const ProductSchema = new Mongoose.Schema({
     imageUri   : {type: String, required: true},
     type       : {type: String, required: true},
     description: {type: String, required: true},
-    categoryId : {type: Mongoose.Schema.Types.ObjectId, ref: 'categories'},
+    categoryId : {type: Mongoose.Schema.Types.ObjectId, ref: 'categories', required: true},
     size: {
         S: {type: Number},
         L: {type: Number},
