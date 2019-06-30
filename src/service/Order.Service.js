@@ -2,6 +2,9 @@ const Boom       = require('@hapi/boom')
 const OrderModel = require('../models/Order.Model');
 module.exports = {
     getAllOrders: async (from, to) =>{
+        if(from > to){
+            return Boom.badRequest(`From must be smaller than to`);
+        }
         const listOrder = await OrderModel.find({dateOrder: {$gte: from, $lte: to + 86400000}})
                                           .sort({'dateOrder': 1})
         return (listOrder)
@@ -28,9 +31,6 @@ module.exports = {
             ? order
             : Boom.badRequest(`Order`)
     },
-    
-
-
     calculateTopping:  (productTopping, orderDetailTopping) =>{
         return orderDetailTopping.reduce((total, detailTopping) =>{
             const topping = productTopping.find(topping => topping._id == detailTopping._id)
@@ -40,7 +40,7 @@ module.exports = {
     calculateAmount: (listProduct, listOrderDetails) => {
         return listOrderDetails.reduce((total, orderDetail) =>{
             const product = listProduct.find(pro => pro._id == orderDetail._id);
-            const value = (orderDetail.type === 'PIZZA')
+            const value = (product.type === 'PIZZA')
                 ? product.size[orderDetail.size] + product.crust[orderDetail.crust]
                     + module.exports.calculateTopping(product.topping, orderDetail.topping)
                 : product.price

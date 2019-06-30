@@ -1,7 +1,12 @@
 const Boom           = require('@hapi/boom')
 const {Response}     = require('../../util/index')
 const ProductService = require('../../service/Product.Service');
+const OrderService   = require('../../service/Order.Service');
 module.exports = {
+    getBestSellers: async (request, h) =>{
+        const {from, to} = request.query
+        const order = await OrderService.getAllOrders(getTime(from),)
+    },
     getAllProducts: async (request, h) =>{
         try{
             const product = await ProductService.getAllProducts(request.query);

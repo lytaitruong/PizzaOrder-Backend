@@ -1,19 +1,20 @@
-const Boom            = require('@hapi/boom')
-const ProductModel    = require('../models/Product.Model');
+const Boom         = require('@hapi/boom')
+const ProductModel = require('../models/Product.Model');
+const {productDTO} = require('../util/ConvertToDTO');
 module.exports = {
     findArray: async (listId) =>{
         return await ProductModel.find({_id : {$in: listId}})
                                             .select("size crust price type topping")
                                             .populate('topping',"unitPrice")  
     },
-
+    
     getAllProducts: async ({categoryId, limit, page}) => {
         const id = (!categoryId) ? {} : {categoryId: categoryId}
         const listProduct = await ProductModel.find(id)
                                               .limit(limit)
                                               .skip(limit * (page -1))
                                               .sort({"productName": 1})
-        return listProduct;
+        return productDTO(listProduct);
     },
     getProduct: async (id) => {
         const product = await ProductModel.findById(id);

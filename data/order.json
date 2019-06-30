@@ -1,44 +1,60 @@
-{
-	"address": "30 Dinh Hoa Street",
+[{
+	"address": "30 Washington",
 	"phoneNumber": "0347309247",
-	"listOrderDetails":[
-		{
-			"_id": "5d157eb8f601210644b8302a",
-			"productName": "Aloha",
-			"size": "S",
-			"crust": "Thin",
-			"quantity": 3,
-			"topping":[
-				{
-					"_id": "5d153a9b25746aa00c9ff1ee",
+	"listOrderDetails": [{
+			"_id": "5d17a032fcc9b225c4391a7d",
+			"productName": "Tropical Seafood",
+			"size": "L",
+			"crust": "Thick",
+			"quantity": 8,
+			"topping": [{
+					"_id": "5d164b8f92af512dc462fa32",
 					"quantity": 4
-				},
-				{
-					"_id": "5d153a9b25746aa00c9ff1ef",
-					"quantity": 7
-				},
-				{
-					"_id": "5d153a9b25746aa00c9ff1f0",
-					"quantity": 2
 				}
 			]
 		},
 		{
-			"_id": "5d157f37f601210644b8302b",
-			"productName": "Aloha",
-			"size": "L",
-			"crust": "Thin",
-			"quantity": 1,
-			"topping":[
-				{
-					"_id": "5d153a9b25746aa00c9ff1f1",
-					"quantity": 10
-				},
-				{
-					"_id": "5d153a9b25746aa00c9ff1f2",
-					"quantity": 5
-				}
-			]
+			"_id": "5d17167010dfaa3b602654f7",
+			"productName": "Korean style chicken wings",
+			"quantity": 1
 		}
 	]
-}
+}, {
+	"address": "30 DInh Hoa",
+	"phoneNumber": "0347309247",
+	"listOrderDetails": [{
+			"_id": "5d17a032fcc9b225c4391a7a",
+			"size": "L",
+			"crust": "Thick",
+			"quantity": 1,
+			"topping": [{
+					"_id": "5d164ba792af512dc462fa36",
+					"quantity": 1
+				},
+				{
+					"_id": "5d164b9b92af512dc462fa34",
+					"quantity": 1
+				}
+			]
+		},
+		{
+			"_id": "5d17a032fcc9b225c4391a7d",
+			"size": "S",
+			"crust": "Thin",
+			"quantity": 1,
+			"topping": [{
+					"_id": "5d164b8f92af512dc462fa32",
+					"quantity": 1
+				},
+				{
+					"_id": "5d164b7b92af512dc462fa30",
+					"quantity": 1
+				}
+			]
+		},
+		{
+			"_id": "5d17a032fcc9b225c4391a87",
+			"quantity": 1
+		}
+	]
+}]
