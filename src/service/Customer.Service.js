@@ -10,6 +10,7 @@ module.exports = {
     },
     getInformation: async (id) =>{
         const customer = await CustomerModel.findById(id)
+                                            .populate('historyOrders', "amount dateOrder")
         return (customer)   
             ? customer
             : Boom.notFound(`Customer`)
@@ -20,7 +21,7 @@ module.exports = {
             ? Boom.conflict(`This email have been registered`)
             : await CustomerModel.create({email, name ,password, 
                                         scope: 'user', phoneNumber: null,
-                                        historyOrder: []});
+                                        historyOrders: []});
     },
     signInCustomer: async ({email,password}) =>{
         const customer = await CustomerModel.findOne({email});
@@ -49,5 +50,12 @@ module.exports = {
             return customer;
         }
         return Boom.badRequest(`password is not match`);
+    },
+    addOrder: async (id, orderId) => {
+        const customer = await CustomerModel.findByIdAndUpdate(id,
+            {$push: {historyOrders: orderId}})
+        return (customer)
+            ? customer
+            : Boom.notFound(`Customer`)
     }
 }

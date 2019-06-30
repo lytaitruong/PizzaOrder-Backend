@@ -123,3 +123,25 @@ getAllProducts: async () => {
             ? `DELETE SUCCESS`
             : Boom.notFound(`Product`)
     }
+
+    /**
+     const listID = listOrderDetails.map(value => Mongoose.Types.ObjectId(value._id));
+        const order = await CategoriesModel.aggregate([
+            {$unwind: "$listProduct"},
+            {$unwind: "$listProduct.topping"},
+            {$match : {"listProduct._id": {"$in": listID}}},
+            {$lookup: {
+                "from": "toppings",
+                "localField": "listProduct.topping",
+                "foreignField": "_id",
+                "as": "resultToppingArray" 
+            }},
+            {$unwind: "$resultToppingArray"},
+            {$group : {
+                _id: "listProductMatchOrderDetail",
+                listProduct: {$addToSet: "$resultToppingArray"},
+                countProduct: {$sum : 1}
+            }}
+        ])
+        console.log(order);
+    */

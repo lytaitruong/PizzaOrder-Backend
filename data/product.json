@@ -1,9 +1,8 @@
-[
-    {
+[{
         "productName": "BBQ Chicken Wings",
         "imageUri": "https://drive.google.com/uc?export=download&id=15kMPlWLcvv3T_Stz6yfIKKwZcOUrHLrE",
         "type": "APPERTIZER",
-        "description": "",
+        "description": "deliciousFood",
         "categoryId": "5d1642837d763e32d8bf676d",
         "price": "100000"
     },
@@ -11,77 +10,80 @@
         "productName": "Bread stick with dipping sauce",
         "imageUri": "https://drive.google.com/uc?export=download&id=13OYGB2551iHDRDK0ETscTgDGPbkmtncI",
         "type": "APPERTIZER",
-        "description": "",
+        "description": "deliciousFood",
         "categoryId": "5d1642837d763e32d8bf676d",
-        "price": "100000"
+        "price": "110000"
     },
     {
         "productName": "Calamari",
         "imageUri": "https://drive.google.com/uc?export=download&id=1J32jLWJBoqYeqOBWA_Ro1PKAun0wE5C7",
         "type": "APPERTIZER",
-        "description": "",
+        "description": "deliciousFood",
         "categoryId": "5d1642837d763e32d8bf676d",
-        "price": "100000"
+        "price": "120000"
     },
     {
         "productName": "Cheese garlic bread",
         "imageUri": "https://drive.google.com/uc?export=download&id=1jhRO3_A2tZYnlKEOANzwXCPc_HsvneNy",
         "type": "APPERTIZER",
-        "description": "",
+        "description": "deliciousFood",
         "categoryId": "5d1642837d763e32d8bf676d",
-        "price": "100000"
+        "price": "130000"
     },
     {
         "productName": "French fries",
         "imageUri": "https://drive.google.com/uc?export=download&id=1rBEiByGhvhQawHJLE_VXLN-ONNuVdy1W",
         "type": "APPERTIZER",
-        "description": "",
+        "description": "deliciousFood",
         "categoryId": "5d1642837d763e32d8bf676d",
-        "price": "100000"
+        "price": "140000"
     },
     {
         "productName": "Garlic bread",
         "imageUri": "https://drive.google.com/uc?export=download&id=1tnYzHmvsKnN-KxCKtgpyIPGhcw96_Ao5",
         "type": "APPERTIZER",
-        "description": "",
+        "description": "deliciousFood",
         "categoryId": "5d1642837d763e32d8bf676d",
-        "price": "100000"
+        "price": "150000"
     },
     {
         "productName": "Korean style chicken wings",
         "imageUri": "https://drive.google.com/uc?export=download&id=1YZ98UegH3KR1Jq6CK6hnmZoUKyjJRMBy",
         "type": "APPERTIZER",
-        "description": "",
+        "description": "deliciousFood",
         "categoryId": "5d1642837d763e32d8bf676d",
-        "price": "100000"
+        "price": "160000"
     },
     {
         "productName": "Platter",
         "imageUri": "https://drive.google.com/uc?export=download&id=17lu_7E6b0JdYLiBZ7pbP1n0_MjsLAFsq",
         "type": "APPERTIZER",
-        "description": "",
+        "description": "deliciousFood",
         "categoryId": "5d1642837d763e32d8bf676d",
-        "price": "100000"
+        "price": "170000"
     },
     {
         "productName": "Pork rack ribs",
         "imageUri": "https://drive.google.com/uc?export=download&id=1GNMj0ffTanB2_8I_eYaYpLEXaS5Rp4WD",
         "type": "APPERTIZER",
-        "description": "",
+        "description": "deliciousFood",
         "categoryId": "5d1642837d763e32d8bf676d",
-        "price": "100000"
+        "price": "180000"
     },
     {
         "productName": "Potato basket",
         "imageUri": "https://drive.google.com/uc?export=download&id=1zPwmh3weQBgHo9PfLQddrTUDb0sQoJPP",
         "type": "APPERTIZER",
-        "description": "",
+        "description": "deliciousFood",
         "categoryId": "5d1642837d763e32d8bf676d",
-        "price": "100000"
-    }, {
+        "price": "190000"
+    },
+    {
         "imageUri": "https://drive.google.com/uc?export=download&id=1mhoO9NDZBTo-pY1P2jpKJ9BfzVKp6xMp",
         "type": "DRINK",
         "productName": "7Up",
+        "description": "drink",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
         "sale": 0,
         "price": "17000",
         "rating": 5
@@ -90,6 +92,8 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=1pKUrMr1FGLTLx0604Duhb3mngkewFvMB",
         "type": "DRINK",
         "productName": "333",
+        "description": "drink",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
         "sale": 0,
         "price": "24000",
         "rating": 5
@@ -98,6 +102,8 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=1lfUoBdbfCHfpEy9QGQgAUSNfdBugr7NP",
         "type": "DRINK",
         "productName": "Aquafina",
+        "description": "drink",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
         "sale": 0,
         "price": "9000",
         "rating": 5
@@ -106,6 +112,8 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=1iz2cuSZ0pk2EwWp5ro8C00ynHxdlfZpP",
         "type": "DRINK",
         "productName": "Heineken",
+        "description": "drink",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
         "price": "27000",
         "sale": 0,
         "rating": 5
@@ -114,6 +122,8 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=1FenYNcNQAs3_a5eq8Vg57sF4blFzhHzo",
         "type": "DRINK",
         "productName": "Pepsi light",
+        "description": "drink",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
         "price": "17000",
         "sale": 0,
         "rating": 5
@@ -122,6 +132,8 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=13BmlRvz3S1tZY8MhNpQW9hTShhrC1no-",
         "type": "DRINK",
         "productName": "Pepsi",
+        "description": "drink",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
         "price": "17000",
         "sale": 0,
         "rating": 5
@@ -131,6 +143,8 @@
         "type": "DRINK",
         "productName": "Strongbow Dark Fruit",
         "sale": 0,
+        "description": "drink",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
         "price": "20000",
         "rating": 5
     },
@@ -138,6 +152,8 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=1w_XBx4OQRAASxJZlHhlO2PFRW5Icseve",
         "type": "DRINK",
         "sale": 0,
+        "description": "drink",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
         "productName": "Strongbow Elder Flower",
         "price": "20000",
         "rating": 5
@@ -146,6 +162,8 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=112JBT7XpLJpeVQdopwY4LUfifvEkbO50",
         "type": "DRINK",
         "productName": "Strongbow Gold Apple",
+        "description": "drink",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
         "sale": 0,
         "price": "20000",
         "rating": 5
@@ -154,6 +172,8 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=1pkJ2wXTqjJJV9lds0c6wALoa6y4duLkV",
         "type": "DRINK",
         "productName": "Strongbow Honey",
+        "description": "drink",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
         "price": "20000",
         "sale": 0,
         "rating": 5
@@ -162,14 +182,19 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=1OukzcfBvUVhsqVe2RP7pySDxcYyLwq8u",
         "type": "DRINK",
         "productName": "Strongbow Red Berries",
+        "categoryId": "5d172a5e4fe77e00163a9e0d",
+        "description": "drink",
         "price": "20000",
         "sale": 0,
         "rating": 5
-    }, {
+    },
+    {
         "imageUri": "https://drive.google.com/uc?export=download&id=1AO4QkKN-OegHZMHBwiK9ar_mwWHpm7IF",
         "type": "PUFF",
         "productName": "Chicken Trio Puff",
-        "price": "100000",
+        "description": "puff",
+        "price": "120000",
+        "categoryId": "5d172a654fe77e00163a9e0e",
         "sale": 0,
         "rating": 5
     },
@@ -177,193 +202,362 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=1eLdDn0QDMPwEohr6gsYxYfW2MZua-MLG",
         "type": "PUFF",
         "productName": "Hawaiian Puff",
+        "description": "puff",
         "sale": 0,
-        "price": "100000",
+        "price": "140000",
+        "categoryId": "5d172a654fe77e00163a9e0e",
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=149a0ahjuFm_ucS1luKC5zzm-aZW2F9rL",
         "type": "PUFF",
+        "description": "puff",
         "productName": "Super Deluxe Puff",
         "sale": 0,
-        "price": "100000",
+        "categoryId": "5d172a654fe77e00163a9e0e",
+        "price": "160000",
         "rating": 5
-    }, {
-        "imageUri": "https://drive.google.com/uc?export=download&id=1zoqvicSiwZfsvrcmsSZAq46E5_j6QO25",
-        "type": "PIZZA",
-        "productName": "Aloha",
-        "price": "220000",
-        "rating": 5
-    },
+    }, 
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=18mcYP-spHo92koiPWY16PztazBr94R6p",
         "type": "PIZZA",
         "productName": "Canadian Bacon",
-        "price": "220000",
+        "description": "this is Pizza",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1Ftpt_0JATBhgHf-6sCk1ExPz1Fh4n2kV",
         "type": "PIZZA",
         "productName": "Chicken Caldo",
-        "price": "220000",
+        "description": "this is Pizza",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1w30JynCM635VPdxkg5NdE2uMHiVnH9pk",
         "type": "PIZZA",
         "productName": "Chicken Trio",
-        "price": "220000",
+        "description": "this is Pizza",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1GYpslyqDrRla-iYpAGjK-txEQwUjGKOm",
         "type": "PIZZA",
+        "description": "this is Pizza",
         "productName": "Double Cheese",
-        "price": "220000",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1uJ4Cyg8u1hEEHoDNN07Yj6JkU-ElEphg",
         "type": "PIZZA",
         "productName": "Double Pepperoni",
-        "price": "220000",
+        "description": "this is Pizza",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1KKtg_6qnaLgQULZv6rU-8CwELX5E1krZ",
         "type": "PIZZA",
+        "description": "this is Pizza",
         "productName": "Ham & Mushroom",
-        "price": "220000",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1BSCefmt3E39tkQWMTkzADPuCe4lU6RoN",
         "type": "PIZZA",
         "productName": "Hawaiian",
-        "price": "220000",
+        "description": "this is Pizza",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1ZRVoGTGUPlPL6nzAL-tf-U5BnjVxkd8n",
         "type": "PIZZA",
+        "description": "this is Pizza",
         "productName": "Meat Deluxe",
-        "price": "220000",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1BGjQ7dYPE9yjyNFfeCP-mxOWKibG7jMw",
         "type": "PIZZA",
         "productName": "Pizza Dark Chocolate Crust with Cheese-Seafood Pesto",
-        "price": "220000",
+        "description": "this is Pizza",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1lF7Zo_9ZEV7YhXsx_Oy0dkGiXqQlBoiC",
         "type": "PIZZA",
+        "description": "this is Pizza",
         "productName": "Pizza Seafood Pesto",
-        "price": "220000",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1ARE_Fv1X7A_tB7JbwB_wv1yXP2rv1jw-",
         "type": "PIZZA",
         "productName": "Pizza Tom Yum Kung",
-        "price": "220000",
+        "description": "this is Pizza",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1f_DVbgvmVU91fmiKCLuiPcJobjvtOyWz",
         "type": "PIZZA",
         "productName": "Seafood Cocktail",
-        "price": "220000",
+        "description": "this is Pizza",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1DUGFem1vMugvl-qsgZKe-3iqCodsaprA",
         "type": "PIZZA",
         "productName": "Seafood Deluxe",
-        "price": "220000",
+        "description": "this is Pizza",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size": {
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust": {
+            "Thin": "25000",
+            "Thick": "45000"
+        },
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=137DwwGNVruLU9uthj1eUTWAr0DeaeVrA",
         "type": "PIZZA",
+        "description": "this is Pizza",
         "productName": "Shrimp Cocktail",
-        "price": "220000",
-        "rating": 5
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size":{
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust":{
+            "Thin": "25000",
+            "Thick": "45000"
+        },"rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1d_EA_usMHR6MrJn4JhdJN64VFh7NoS-i",
         "type": "PIZZA",
+        "description": "this is Pizza",
         "productName": "Super Deluxe",
-        "price": "220000",
-        "rating": 5
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size":{
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust":{
+            "Thin": "25000",
+            "Thick": "45000"
+        },"rating": 5
     },
     {
+        "description": "this is Pizza",
         "imageUri": "https://drive.google.com/uc?export=download&id=1QDrcPZJkurF1StTCSvkhU47v_fpFL2Px",
         "type": "PIZZA",
         "productName": "Bacon Super Delight",
-        "price": "220000",
-        "rating": 5
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "size":{
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust":{
+            "Thin": "25000",
+            "Thick": "45000"
+        },"rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1Axd6veRRIdLrXJzaH8gzmspDx26dUL15",
         "type": "PIZZA",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
+        "description": "this is Pizza",
         "productName": "Tropical Seafood",
-        "price": "220000",
-        "rating": 5
+        "size":{
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust":{
+            "Thin": "25000",
+            "Thick": "45000"
+        },"rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1-AVjfWB-q_HZHHKpQ5LU1GcufSKwkkPO",
         "type": "PIZZA",
+        "categoryId": "5d172a7a4fe77e00163a9e11",
         "productName": "Veggie",
-        "price": "220000",
-        "rating": 5
-    }, {
+        "description": "this is Pizza",
+        "size":{
+            "S": "120000",
+            "L": "180000"
+        },
+        "crust":{
+            "Thin": "25000",
+            "Thick": "45000"
+        },"rating": 5
+    },
+    {
         "imageUri": "https://drive.google.com/uc?export=download&id=1pq0lvqvCMVnokhSPwroD1lTbkn6H_oEr",
         "type": "SALAD",
-        "sale": 20,
+        "sale": 10,
+        "categoryId": "5d172a6e4fe77e00163a9e0f",
         "productName": "Caesar's salad",
-        "price": "100000",
+        "description": "this is Salad",
+        "price": "20000",
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1fMY1nMHViY3NutBPq2tcWEcFcZC35d6k",
         "type": "SALAD",
         "productName": "Garden salad with Balsamic vinegar dressing",
-        "sale": 20,
-        "price": "100000",
+        "categoryId": "5d172a6e4fe77e00163a9e0f",
+        "description": "this is Salad",
+        "sale": 10,
+        "price": "20000",
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1_S_A4KUHp29EHoyjofQgYpAKlPWDhKos",
         "type": "SALAD",
         "productName": "Signature salad",
-        "sale": 20,
-        "price": "100000",
+        "description": "this is Salad",
+        "categoryId": "5d172a6e4fe77e00163a9e0f",
+        "sale": 10,
+        "price": "20000",
         "rating": 5
-    }, {
+    },
+    {
         "imageUri": "https://drive.google.com/uc?export=download&id=1FjU9B_o7gEm_JC9mj9iMZuNVB4dFbIdJ",
         "type": "SPAGHETTI",
         "productName": "Pasta Bolognese",
+        "categoryId": "5d172a754fe77e00163a9e10",
+        "description": "this is Spagetti",
         "sale": 0,
-        "price": "150000",
+        "price": "65000",
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1ZIeiearMTMxUXmSI03UUfhfYcqTpUcIh",
         "type": "SPAGHETTI",
+        "categoryId": "5d172a754fe77e00163a9e10",
+        "description": "this is Spagetti",
         "productName": "Pasta ham & mushroom in creamy sauce",
         "sale": 0,
-        "price": "150000",
+        "price": "55000",
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1mz8u3q0sGIZ2_3zgPNcGZYC4ZgTJRoET",
         "type": "SPAGHETTI",
         "productName": "Pasta mushroom with creamy sauce",
-        "price": "150000",
+        "categoryId": "5d172a754fe77e00163a9e10",
+        "description": "this is Spagetti",
+        "price": "70000",
         "sale": 0,
         "rating": 5
     },
@@ -371,7 +565,9 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=1VqdzTP3B4z6g4JbCxFDeeLAqPfyCWjPq",
         "type": "SPAGHETTI",
         "productName": "Pasta shrimp rose",
-        "price": "150000",
+        "description": "this is Spagetti",
+        "categoryId": "5d172a754fe77e00163a9e10",
+        "price": "60000",
         "sale": 0,
         "rating": 5
     },
@@ -379,40 +575,50 @@
         "imageUri": "https://drive.google.com/uc?export=download&id=1aLLnUMGFslgABJGrz5EuybcUInk4eFka",
         "type": "SPAGHETTI",
         "productName": "Pasta spicy bacon",
+        "description": "this is Spagetti",
+        "categoryId": "5d172a754fe77e00163a9e10",
         "sale": 0,
-        "price": "150000",
+        "price": "50000",
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=15kSZhGCXuNE1focGFpnUAYI88v9DrBQT",
         "type": "SPAGHETTI",
+        "categoryId": "5d172a754fe77e00163a9e10",
+        "description": "this is Spagetti",
         "productName": "Pasta Tom Yum Yum",
-        "price": "150000",
+        "price": "30000",
         "sale": 0,
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1Bd-JuuET1ddxsC8U8IyUPZDx_wNx_pbQ",
         "type": "SPAGHETTI",
+        "categoryId": "5d172a754fe77e00163a9e10",
+        "description": "this is Spagetti",
         "productName": "Pasta with vegetable in tomata sauce",
         "sale": 0,
-        "price": "150000",
+        "price": "400000",
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1SkSUuUM5g_xthnwr6DO-nqh_zVWSwiw2",
         "type": "SPAGHETTI",
         "sale": 0,
+        "categoryId": "5d172a754fe77e00163a9e10",
         "productName": "Stir fried pasta with spicy sausage",
-        "price": "150000",
+        "price": "500000",
+        "description": "this is Spagetti",
         "rating": 5
     },
     {
         "imageUri": "https://drive.google.com/uc?export=download&id=1wsve_9JBGxsyD4jX8g3K8Pq7TOqrhwY4",
         "type": "SPAGHETTI",
         "productName": "Stir fried pasta with spicy seafood",
+        "categoryId": "5d172a754fe77e00163a9e10",
+        "description": "this is Spagetti",
         "sale": 0,
-        "price": "150000",
+        "price": "450000",
         "rating": 5
     }
 ]

@@ -59,26 +59,5 @@ module.exports.register = async(server) =>{
                 }
             }
         }
-    },{
-        method  : 'DELETE',
-        path    : '/orders/{id}',
-        options : {
-            auth:{
-                scope: ['admin'],     
-            },
-            tags: ['api','orders'],
-            description: 'Delete order with id',
-            handler    : OrderController.deleteOrder,
-            validate   : OrderValidation.deleteOrder,
-            plugins    : {
-                'hapi-swagger':{
-                    response: {
-                        200: SwaggerDescription[200],
-                        404: SwaggerDescription[404],
-                        500: SwaggerDescription[500],
-                    }
-                }
-            }
-        }
     }])
 }

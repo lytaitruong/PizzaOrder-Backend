@@ -6,6 +6,6 @@ const OrderSchema = new Mongoose.Schema({
     address    : {type: String, required: true},
     amount     : {type: Number, required: true},
     dateOrder  : {type: Date  , required: true},
-    listOrderDetails: [{type: Mongoose.Schema.Types.ObjectId, ref: "products", required: true}]
+    listOrderDetails: {type: Array, required: true},
 });
 module.exports = Mongoose.model('orders', OrderSchema);

@@ -1,16 +1,16 @@
 const Joi = require('@hapi/joi');
-const {jwtValidator} = require('../../util');
+const {jwtValidator, getDate} = require('../../util');
 module.exports = {
     getAllOrders: {
         query: Joi.object().keys({
-            from: Joi.date().default('2019-01-01'),
-            to  : Joi.date().default(Date.now()),
+            from: Joi.date().default(getDate("01-01-2019")),
+            to  : Joi.date().default(getDate()),
         }),
         headers: jwtValidator
     },
     getOrder: {
         params: Joi.object().keys({
-            id: Joi.string().required()
+            id: Joi.string().required().description(`Order ObjectId`)
         }),
         headers: jwtValidator
     },
@@ -22,10 +22,4 @@ module.exports = {
         }),
         headers: jwtValidator
     },
-    deleteOrder: {
-        params: Joi.object().keys({
-            id: Joi.string().required().description(`Order ObjectId`)
-        }),
-        headers: jwtValidator
-    }
 }

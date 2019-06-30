@@ -1,6 +1,12 @@
 const Boom            = require('@hapi/boom')
 const ProductModel    = require('../models/Product.Model');
 module.exports = {
+    findArray: async (listId) =>{
+        return await ProductModel.find({_id : {$in: listId}})
+                                            .select("size crust price type topping")
+                                            .populate('topping',"unitPrice")  
+    },
+
     getAllProducts: async ({categoryId, limit, page}) => {
         const id = (!categoryId) ? {} : {categoryId: categoryId}
         const listProduct = await ProductModel.find(id)
