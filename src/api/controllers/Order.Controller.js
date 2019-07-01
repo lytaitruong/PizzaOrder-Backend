@@ -27,7 +27,7 @@ module.exports = {
         try{
             const id            = request.auth.credentials._id;
             const listProductId = request.payload.listOrderDetails.map(product => product._id);
-            const listProduct   = await ProductService.findArray(listProductId);
+            const listProduct   = await ProductService.findArray(listProductId, "size crust price type topping ");
             const order         = await OrderService.createOrder(id, listProduct, request.payload)
             const historyOrder  = await CustomerService.addOrder(id, order._id);
             return Response(h, order, 201)

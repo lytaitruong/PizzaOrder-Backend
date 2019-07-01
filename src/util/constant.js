@@ -1,7 +1,7 @@
 const Joi = require('@hapi/joi')
 module.exports = {
     200:{
-      description: '',
+      description: 'OK',
       schema: Joi.object({
           statusCode: Joi.number().default(200),
           message   : Joi.string(),

@@ -7,7 +7,7 @@ module.exports.categoriesDTO = (categories) => {
 
 module.exports.productDTO = (product) => {
     return {
-        _id        : product,_id,
+        _id        : product._id,
         productName: product.productName,
         imageUri   : product.imageUri,
         type       : product.type, 
