@@ -7,9 +7,7 @@ module.exports = {
         }
         const listOrder = await OrderModel.find({dateOrder: {$gte: from, $lte: to + 86400000}})
                                           .sort({'dateOrder': 1})
-        return (listOrder)
-        ? listOrder
-        : Boom.notFound(`Order`)
+        return listOrder;
     },
     getOrder: async(id) => {
         const order = await OrderModel.findById(id);
