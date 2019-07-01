@@ -1,6 +1,6 @@
-const Mongoose = require('mongoose');
+// const Mongoose = require('mongoose');
 
 
-module.exports = new Mongoose.Schema({
+// module.exports = new Mongoose.Schema({
     
-})
+// })
