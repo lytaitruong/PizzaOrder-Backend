@@ -1,6 +1,12 @@
 const Joi = require('@hapi/joi')
-const {jwtValidator} = require('../../util')
+const {jwtValidator, getDate} = require('../../util')
 module.exports = {
+    getBestSeller: {
+        query: Joi.object().keys({
+            from: Joi.date().default(getDate("01-01-2019")),
+            to  : Joi.date().default(getDate()),
+        }),
+    },
     getAllProducts: {
         query: Joi.object().keys({
             categoryId: Joi.string().default(),

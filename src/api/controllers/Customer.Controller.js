@@ -30,7 +30,10 @@ module.exports = {
             let customer = await CustomerService.signUpCustomer(request.payload);
             if(!Boom.isBoom(customer)){
                 request.cookieAuth.set(customer);
-                customer = AuthService.generateToken(customer);
+                customer = {
+                    _id   : customer._id,
+                    token : AuthService.generateToken(customer)
+                };
             }
             return Response(h, customer, 201);
         }catch(error){   
@@ -43,7 +46,10 @@ module.exports = {
             let customer = await CustomerService.signInCustomer(request.payload);
             if(!Boom.isBoom(customer)){
                 request.cookieAuth.set(customer);
-                customer = AuthService.generateToken(customer);
+                customer = {
+                    _id   : customer._id,
+                    token : AuthService.generateToken(customer)
+                };
             }
             return Response(h, customer, 200);
         }catch(error){

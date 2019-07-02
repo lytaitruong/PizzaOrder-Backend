@@ -18,29 +18,3 @@ module.exports.Response = (h, data, statusCode) => {
   return (Boom.isBoom(data)) ? data :
     h.response(data).code(statusCode)
 }
-
-
-module.exports.ObjectToArray = (data, id, quantity) => {
-  return Object.keys(data).map(value => {
-    const JSON = {};
-    JSON[id] = value,
-      JSON[quantity] = data[value]
-    return JSON;
-  })
-}
-
-module.exports.countProductOrder = (listOrder, typeCategories) => {
-  const listProduct = {};
-  listOrder.forEach(order => {
-    //console.log(order.amount)
-    order.listOrderDetails.forEach(product => {
-      if(product.type === typeCategories || !typeCategories)
-        if (!listProduct[product._id]) {
-          listProduct[product._id] = product.quantity
-        } else {
-          listProduct[product._id] += product.quantity
-        }
-    })
-  })
-  return listProduct
-}

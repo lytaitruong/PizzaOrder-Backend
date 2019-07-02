@@ -5,6 +5,24 @@ module.exports.register = async(server) =>{
     server.bind(ProductController);
     server.route([{
         method  : 'GET',
+        path    : '/bestsellers',
+        options : {
+            auth: false,
+            tags: ['api', 'bestsellers'],
+            description: 'Get bestSeller for each categories',
+            handler    : ProductController.getBestSeller,
+            validate   : ProductValidation.getBestSeller,
+            plugins    : {
+                'hapi-swagger':{
+                    response: {
+                        200: SwaggerDescription[200],
+                        500: SwaggerDescription[500],
+                    }
+                }
+            }
+        }
+    },{
+        method  : 'GET',
         path    : '/products',
         options : {
             auth: false,

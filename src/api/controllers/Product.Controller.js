@@ -1,7 +1,22 @@
-const Boom           = require('@hapi/boom')
-const {Response}     = require('../../util/index')
-const ProductService = require('../../service/Product.Service');
+const Boom              = require('@hapi/boom')
+const OrderService      = require('../../service/Order.Service');
+const ProductService    = require('../../service/Product.Service');
+const BestSellerService = require('../../service/BestSeller.Service')
+const CategoriesService = require('../../service/Categories.Service');
+const {Time, Response} = require('../../util')
 module.exports = {
+    getBestSeller: async (request, h) =>{
+        const {from, to}       = request.query;
+        const listOrder        = await OrderService.getAllOrders(Time(from), Time(to));
+        const listCategories   = await CategoriesService.getCategories();
+        const countProduct     = BestSellerService.countProductOrder(listOrder);
+        const listBestSeller   = BestSellerService.ObjectToArray(countProduct, "_id", "quantity")
+        const listProduct      = await ProductService.findArray(
+            listBestSeller.map(product => product._id),
+            "productName type description imageUri categoryId");
+        const BestSellerProduct= BestSellerService.classifyCategories(listBestSeller,listProduct,listCategories); 
+        return Response(h, BestSellerProduct, 201);
+    },
     getAllProducts: async (request, h) =>{
         try{
             const product = await ProductService.getAllProducts(request.query);
