@@ -14,7 +14,7 @@ module.exports = {
     const order = await OrderModel.findById(id)
     return order ? order : Boom.notFound(`Order`)
   },
-  createOrder: async (customerId, listProduct, { address, phoneNumber, listOrderDetails }) => {
+  createOrder: async (customerId, listProduct, { address, phoneNumber, listOrderDetails, typePayment }) => {
     const amount = module.exports.calculateAmount(listProduct, listOrderDetails)
     const order = OrderModel.create({
       customerId,
@@ -22,6 +22,7 @@ module.exports = {
       address,
       amount,
       dateOrder: new Date().getTime(),
+      typePayment,
       listOrderDetails,
     })
     return order ? order : Boom.badRequest(`Order`)

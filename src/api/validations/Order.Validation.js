@@ -20,6 +20,7 @@ module.exports = {
     payload: Joi.object().keys({
       address: Joi.string().required(),
       phoneNumber: Joi.string().required(),
+      typePayment: Joi.string().required(),
       listOrderDetails: Joi.array().required(),
     }),
     headers: jwtValidator,
