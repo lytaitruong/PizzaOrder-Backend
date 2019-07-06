@@ -11,10 +11,7 @@ module.exports = {
       const listCategories = await CategoriesService.getCategories()
       const countProduct = BestSellerService.countProductOrder(listOrder)
       const listBestSeller = BestSellerService.ObjectToArray(countProduct, '_id', 'quantity')
-      const listProduct = await ProductService.findArray(
-        listBestSeller.map(product => product._id),
-        'productName type description imageUri categoryId'
-      )
+      const listProduct = await ProductService.findArray(listBestSeller.map(product => product._id))
       const BestSellerProduct = BestSellerService.classifyCategories(listBestSeller, listProduct, listCategories)
       return Response(h, BestSellerProduct, 200)
     } catch (error) {
