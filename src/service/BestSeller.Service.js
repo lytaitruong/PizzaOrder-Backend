@@ -11,7 +11,6 @@ module.exports = {
   countProductOrder: listOrder => {
     const listProduct = {}
     listOrder.forEach(order => {
-      //console.log(order.amount)
       order.listOrderDetails.forEach(product => {
         listProduct[product._id] = !listProduct[product._id]
           ? product.quantity
@@ -30,11 +29,7 @@ module.exports = {
   },
   classify: listCategories => {
     const list = {}
-    listCategories.forEach(category => {
-      if (!list[category._id]) {
-        list[category._id] = []
-      }
-    })
+    listCategories.forEach(category => (list[category._id] = []))
     return list
   },
 }

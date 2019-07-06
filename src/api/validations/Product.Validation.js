@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const { jwtValidator, getDate } = require('../../util')
+const { jwtValidator, joiObjectId, getDate } = require('../../util')
 module.exports = {
   getBestSeller: {
     query: Joi.object().keys({
@@ -20,9 +20,7 @@ module.exports = {
   },
   getProduct: {
     params: Joi.object().keys({
-      id: Joi.string()
-        .required()
-        .description(`Product ObjectId`),
+      id: joiObjectId,
     }),
   },
   createProduct: {
@@ -63,9 +61,7 @@ module.exports = {
   },
   updateProduct: {
     params: Joi.object().keys({
-      id: Joi.string()
-        .required()
-        .description(`Product ObjectId`),
+      id: joiObjectId,
     }),
     payload: Joi.object().keys({
       productName: Joi.string(),
@@ -103,9 +99,7 @@ module.exports = {
   },
   deleteProduct: {
     params: Joi.object().keys({
-      id: Joi.string()
-        .required()
-        .description(`Product ObjectId`),
+      id: joiObjectId,
     }),
     headers: jwtValidator,
   },

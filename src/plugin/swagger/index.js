@@ -4,6 +4,7 @@ module.exports = {
   register: server => {
     try {
       server.register([
+        require('lout'),
         require('@hapi/inert'),
         require('@hapi/vision'),
         {

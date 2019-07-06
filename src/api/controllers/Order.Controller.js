@@ -7,11 +7,10 @@ module.exports = {
   getAllOrders: async (request, h) => {
     try {
       const { from, to } = request.query
-      const order = await OrderService.getAllOrders(Time(from), Time(to))
-      return Response(h, order, 200)
+      const listOrder = await OrderService.getAllOrders(Time(from), Time(to))
+      return Response(h, listOrder, 200)
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandlerError(error, h)
     }
   },
   getOrder: async (request, h) => {
@@ -19,8 +18,7 @@ module.exports = {
       const order = await OrderService.getOrder(request.params.id)
       return Response(h, order, 200)
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandlerError(error, h)
     }
   },
   createOrder: async (request, h) => {
@@ -34,8 +32,7 @@ module.exports = {
       }
       return Response(h, order, 201)
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandlerError(error, h)
     }
   },
 }

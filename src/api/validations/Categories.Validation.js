@@ -1,11 +1,9 @@
 const Joi = require('@hapi/joi')
-const { jwtValidator } = require('../../util')
+const { jwtValidator, joiObjectId } = require('../../util')
 module.exports = {
   getCategory: {
     params: Joi.object().keys({
-      id: Joi.string()
-        .required()
-        .description('Categories ObjectId'),
+      id: joiObjectId,
     }),
   },
   createCategory: {
@@ -17,9 +15,7 @@ module.exports = {
   },
   updateCategory: {
     params: Joi.object().keys({
-      id: Joi.string()
-        .required()
-        .description('Categories ObjectId'),
+      id: joiObjectId,
     }),
     payload: Joi.object().keys({
       categoryName: Joi.string().required(),
@@ -29,9 +25,7 @@ module.exports = {
   },
   deleteCategory: {
     params: Joi.object().keys({
-      id: Joi.string()
-        .required()
-        .description('Categories ObjectId'),
+      id: joiObjectId,
     }),
     headers: jwtValidator,
   },

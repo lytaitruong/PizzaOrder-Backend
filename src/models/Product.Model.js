@@ -1,5 +1,4 @@
 const Mongoose = require('mongoose')
-
 const ProductSchema = new Mongoose.Schema({
   productName: { type: String, required: true, unique: true },
   imageUri: { type: String, required: true },
@@ -23,5 +22,4 @@ const ProductSchema = new Mongoose.Schema({
   rating: { type: Number, min: 0, max: 5, required: true },
   topping: [{ type: Mongoose.Schema.Types.ObjectId, ref: 'toppings' }],
 })
-
 module.exports = Mongoose.model('products', ProductSchema)

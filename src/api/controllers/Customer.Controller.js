@@ -1,5 +1,5 @@
 const Boom = require('@hapi/boom')
-const { Response } = require('../../util/index')
+const { Response, HandleError } = require('../../util/index')
 const AuthService = require('../../service/Auth.Service')
 const CustomerService = require('../../service/Customer.Service')
 module.exports = {
@@ -8,8 +8,7 @@ module.exports = {
       const customer = await CustomerService.getAllCustomers(request.query)
       return Response(h, customer, 200)
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandleError(error, h)
     }
   },
   getInformation: async (request, h) => {
@@ -19,8 +18,7 @@ module.exports = {
       const customer = await CustomerService.getInformation(id)
       return Response(h, customer, 200)
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandleError(error, h)
     }
   },
   signUpCustomer: async (request, h) => {
@@ -35,8 +33,7 @@ module.exports = {
       }
       return Response(h, customer, 201)
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandleError(error, h)
     }
   },
   signInCustomer: async (request, h) => {
@@ -51,8 +48,7 @@ module.exports = {
       }
       return Response(h, customer, 200)
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandleError(error, h)
     }
   },
   updateCustomer: async (request, h) => {
@@ -62,8 +58,7 @@ module.exports = {
       const customer = await CustomerService.updateCustomer(id, request.payload)
       return Response(h, customer, 200)
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandleError(error, h)
     }
   },
   deleteCustomer: async (request, h) => {
@@ -71,8 +66,7 @@ module.exports = {
       const customer = await CustomerService.deleteCustomer(request.params.id)
       return Response(h, customer, 200)
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandleError(error, h)
     }
   },
   signOutCustomer: async (request, h) => {
@@ -80,8 +74,7 @@ module.exports = {
       request.cookieAuth.clear()
       return h.redirect('/')
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandleError(error, h)
     }
   },
   changePassword: async (request, h) => {
@@ -90,8 +83,7 @@ module.exports = {
       const customer = await CustomerService.changePassword(id, request.payload)
       return Response(h, customer, 200)
     } catch (error) {
-      console.log(error)
-      throw Boom.internal()
+      return HandleError(error, h)
     }
   },
 }

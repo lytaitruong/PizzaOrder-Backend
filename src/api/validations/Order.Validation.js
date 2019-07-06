@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const { jwtValidator, getDate } = require('../../util')
+const { jwtValidator, joiObjectId, getDate } = require('../../util')
 module.exports = {
   getAllOrders: {
     query: Joi.object().keys({
@@ -10,9 +10,7 @@ module.exports = {
   },
   getOrder: {
     params: Joi.object().keys({
-      id: Joi.string()
-        .required()
-        .description(`Order ObjectId`),
+      id: joiObjectId,
     }),
     headers: jwtValidator,
   },

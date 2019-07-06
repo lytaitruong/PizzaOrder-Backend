@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const { jwtValidator } = require('../../util')
+const { jwtValidator, joiObjectId } = require('../../util')
 module.exports = {
   createTopping: {
     payload: Joi.object().keys({
@@ -14,9 +14,7 @@ module.exports = {
   },
   updateTopping: {
     params: Joi.object().keys({
-      id: Joi.string()
-        .required()
-        .description(`Topping ObjectId`),
+      id: joiObjectId,
     }),
     payload: Joi.object().keys({
       toppingName: Joi.string().required(),
@@ -30,9 +28,7 @@ module.exports = {
   },
   deleteTopping: {
     params: Joi.object().keys({
-      id: Joi.string()
-        .required()
-        .description(`Topping ObjectId`),
+      id: joiObjectId,
     }),
     headers: jwtValidator,
   },

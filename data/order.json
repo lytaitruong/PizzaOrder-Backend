@@ -1,21 +1,23 @@
 [{
 	"address": "30 Washington",
 	"phoneNumber": "0347309247",
+	"typePayment": "cash",
 	"listOrderDetails": [{
-			"_id": "5d17a032fcc9b225c4391a7d",
+			"_id": "5d174a6817b70246e8c3b3ec",
 			"productName": "Tropical Seafood",
 			"size": "L",
 			"crust": "Thick",
+            "type": "PIZZA",
 			"quantity": 8,
 			"topping": [{
-				"_id": "5d164b8f92af512dc462fa32",
+				"_id": "5d172dab4fe77e00163a9e28",
 				"quantity": 4
 			}]
 		},
-		{
-			"_id": "5d17167010dfaa3b602654f7",
+        {
+			"_id": "5d1740c04fe77e00163a9e31",
 			"productName": "Korean style chicken wings",
-			"quantity": 1
+			"quantity": 2
 		}
 	]
 }, {

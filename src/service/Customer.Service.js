@@ -12,7 +12,7 @@ module.exports = {
     const customer = await CustomerModel.findById(id).populate('historyOrders', 'amount dateOrder')
     return customer ? customer : Boom.notFound(`Customer`)
   },
-  signUpCustomer: async ({ email, name, password }) => {
+  signUpCustomer: async ({ email, name, password, phoneNumber }) => {
     const valid = await CustomerModel.findOne({ email })
     return valid
       ? Boom.conflict(`This email have been registered`)
@@ -21,7 +21,7 @@ module.exports = {
           name,
           password,
           scope: 'user',
-          phoneNumber: null,
+          phoneNumber,
           historyOrders: [],
         })
   },

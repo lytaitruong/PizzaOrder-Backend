@@ -1,6 +1,5 @@
 module.exports = {
   server: {
-    // host: process.env.HOST || 'localhost',
     port: process.env.PORT || 3000,
     routePrefix: process.env.ROUTE || '',
     plugins: ['auth', 'cookie', 'logger', 'swagger'],
