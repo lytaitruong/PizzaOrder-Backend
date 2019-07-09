@@ -92,7 +92,7 @@ module.exports.register = async server => {
           scope: ['admin'],
         },
         tags: ['api', 'products'],
-        description: 'Update product with id',
+        description: 'Update product by id',
         handler: ProductController.updateProduct,
         validate: ProductValidation.updateProduct,
         plugins: {
@@ -114,7 +114,7 @@ module.exports.register = async server => {
           scope: ['admin'],
         },
         tags: ['api', 'products'],
-        description: 'Delete product with id',
+        description: 'Delete product by id',
         handler: ProductController.deleteProduct,
         validate: ProductValidation.deleteProduct,
         plugins: {

@@ -23,6 +23,26 @@ module.exports.register = async server => {
       },
     },
     {
+      method: 'GET',
+      path: '/toppings/{id}',
+      options: {
+        auth: false,
+        tags: ['api', 'toppings'],
+        description: 'Get topping by id',
+        handler: ToppingController.getTopping,
+        validate: ToppingValidation.getTopping,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerDescription[200],
+              400: SwaggerDescription[400],
+              500: SwaggerDescription[500],
+            },
+          },
+        },
+      },
+    },
+    {
       method: 'POST',
       path: '/toppings',
       options: {
@@ -52,7 +72,7 @@ module.exports.register = async server => {
           scope: ['admin'],
         },
         tags: ['api', 'toppings'],
-        description: 'Update topping with id',
+        description: 'Update topping by id',
         handler: ToppingController.updateTopping,
         validate: ToppingValidation.updateTopping,
         plugins: {
@@ -74,7 +94,7 @@ module.exports.register = async server => {
           scope: ['admin'],
         },
         tags: ['api', 'toppings'],
-        description: 'Delete Topping with id',
+        description: 'Delete Topping by id',
         handler: ToppingController.deleteTopping,
         validate: ToppingValidation.deleteTopping,
         plugins: {

@@ -9,7 +9,7 @@ module.exports = {
   },
   getAllProducts: {
     query: Joi.object().keys({
-      categoryId: Joi.string().default(),
+      categoryId: Joi.string().default(undefined),
       limit: Joi.number()
         .integer()
         .default(0),

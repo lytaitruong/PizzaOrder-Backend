@@ -1,9 +1,13 @@
 const ToppingModel = require('../models/Topping.Model')
-const Boom = require('@hapi/boom')
 module.exports = {
   getAllToppings: async () => {
     const listToppings = await ToppingModel.find().sort({ toppingName: 1 })
     return listToppings
+  },
+  getTopping: async id =>{
+    console.log(id)
+    const topping = await ToppingModel.findById(id)
+    return topping;
   },
   createTopping: async ({ toppingName, imageUri, unitPrice }) => {
     const topping = await ToppingModel.create({
@@ -11,7 +15,7 @@ module.exports = {
       imageUri,
       unitPrice,
     })
-    return topping ? topping : Boom.badRequest(`Topping`)
+    return topping
   },
   updateTopping: async (id, { toppingName, imageUri, unitPrice }) => {
     const topping = await ToppingModel.findByIdAndUpdate(id, {
@@ -19,10 +23,10 @@ module.exports = {
       imageUri,
       unitPrice,
     })
-    return topping ? topping : Boom.notFound(`Topping`)
+    return topping
   },
   deleteTopping: async id => {
     const topping = await ToppingModel.findByIdAndDelete(id)
-    return topping ? topping : Boom.notFound(`Topping`)
+    return topping
   },
 }

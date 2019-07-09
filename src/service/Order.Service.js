@@ -1,18 +1,14 @@
-const Boom = require('@hapi/boom')
 const OrderModel = require('../models/Order.Model')
 module.exports = {
   getAllOrders: async (from, to) => {
-    const listOrder =
-      from > to
-        ? Boom.badRequest('`From must be smaller than to')
-        : await OrderModel.find({
+    const listOrder = await OrderModel.find({
             dateOrder: { $gte: from, $lte: to + 86400000 },
-          }).sort({ dateOrder: -1 })
+          }).sort({ dateOrder: 1 })
     return listOrder
   },
   getOrder: async id => {
     const order = await OrderModel.findById(id)
-    return order ? order : Boom.notFound(`Order`)
+    return order
   },
   createOrder: async (customerId, listProduct, { address, phoneNumber, listOrderDetails, typePayment }) => {
     const amount = module.exports.calculateAmount(listProduct, listOrderDetails)
@@ -25,7 +21,11 @@ module.exports = {
       typePayment,
       listOrderDetails,
     })
-    return order ? order : Boom.badRequest(`Order`)
+    return order
+  },
+  deleteOrder: async (_id, customerId) =>{
+    const order = await OrderModel.findOneAndDelete({_id, customerId})
+    return order;
   },
   calculateTopping: (productTopping, orderDetailTopping) => {
     return orderDetailTopping.reduce((total, detailTopping) => {

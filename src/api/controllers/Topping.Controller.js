@@ -9,6 +9,14 @@ module.exports = {
       return HandlerError(error, h)
     }
   },
+  getTopping: async (request, h) =>{
+    try{
+      const topping = await ToppingService.getTopping(request.params.id);
+      return Response(h, topping, 200)
+    }catch(error){
+      return HandlerError(error, h)
+    }
+  },
   createTopping: async (request, h) => {
     try {
       const topping = await ToppingService.createTopping(request.payload)

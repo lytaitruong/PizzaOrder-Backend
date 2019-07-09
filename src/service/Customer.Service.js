@@ -10,7 +10,8 @@ module.exports = {
   },
   getInformation: async id => {
     const customer = await CustomerModel.findById(id).populate('historyOrders', 'amount dateOrder')
-    return customer ? customer : Boom.notFound(`Customer`)
+    customer.historyOrders.reverse()
+    return customer
   },
   signUpCustomer: async ({ email, name, password, phoneNumber }) => {
     const valid = await CustomerModel.findOne({ email })
@@ -32,11 +33,11 @@ module.exports = {
   },
   updateCustomer: async (id, data) => {
     const customer = await CustomerModel.findByIdAndUpdate(id, data)
-    return customer ? customer : Boom.notFound(`Customer`)
+    return customer
   },
   deleteCustomer: async id => {
     const customer = await CustomerModel.findByIdAndDelete(id)
-    return customer ? customer : Boom.notFound(`Customer`)
+    return customer
   },
   changePassword: async (id, { password, newPassword, autPassword }) => {
     const customer = await CustomerModel.findById(id)
@@ -53,6 +54,6 @@ module.exports = {
     const customer = await CustomerModel.findByIdAndUpdate(id, {
       $push: { historyOrders: orderId },
     })
-    return customer ? customer : Boom.notFound(`Customer`)
-  },
+    return customer
+  }
 }

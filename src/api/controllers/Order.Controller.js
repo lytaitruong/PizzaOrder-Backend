@@ -25,7 +25,7 @@ module.exports = {
     try {
       const id = request.auth.credentials._id
       const listProductId = request.payload.listOrderDetails.map(product => product._id)
-      const listProduct = await ProductService.findArray(listProductId, 'size crust price type topping ')
+      const listProduct = await ProductService.findArray(listProductId, 'size crust price type topping ', 'unitPrice')
       const order = await OrderService.createOrder(id, listProduct, request.payload)
       if (!Boom.isBoom(order)) {
         await CustomerService.addOrder(id, order._id)
@@ -35,4 +35,15 @@ module.exports = {
       return HandlerError(error, h)
     }
   },
+  deleteOrder: async (request, h) =>{
+    try{
+      const customerId = request.auth.credentials._id
+      console.log(customerId)
+      console.log(request.params.id)
+      const order = await OrderService.deleteOrder(request.params.id,customerId)
+      return Response(h, order, 200)
+    }catch(error) {
+      return HandlerError(error, h)
+    }
+  }
 }

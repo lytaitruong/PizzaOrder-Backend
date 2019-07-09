@@ -3,7 +3,7 @@ module.exports = {
   200: {
     description: 'OK',
     schema: Joi.object({
-      statusCode: Joi.number().default(200),
+      statusCode: 200,
       message: Joi.string(),
       data: Joi.string(),
     }),
@@ -11,7 +11,7 @@ module.exports = {
   201: {
     description: 'Create Success',
     schema: Joi.object({
-      statusCode: Joi.number().default(201),
+      statusCode: 201,
       message: Joi.string(),
       data: Joi.string(),
     }),
@@ -19,7 +19,7 @@ module.exports = {
   400: {
     description: 'Bad Request',
     schema: Joi.object({
-      statusCode: Joi.number().default(400),
+      statusCode: 400,
       message: Joi.string(),
       data: Joi.string(),
     }),
@@ -27,15 +27,15 @@ module.exports = {
   404: {
     description: 'Not Found',
     schema: Joi.object({
-      statusCode: Joi.number().default(404),
+      statusCode: 404,
       message: Joi.string(),
       error: Joi.string(),
     }),
   },
   409: {
-    description: 'It has been exist',
+    description: 'This data is unique! Duplicate',
     schema: Joi.object({
-      statusCode: Joi.number().default(409),
+      statusCode: 409,
       message: Joi.string(),
       error: Joi.string(),
     }),
@@ -43,7 +43,7 @@ module.exports = {
   500: {
     description: 'Internal Server Error',
     schema: Joi.object({
-      statusCode: Joi.number().default(500),
+      statusCode: 500,
       message: Joi.string(),
       error: Joi.string(),
     }),

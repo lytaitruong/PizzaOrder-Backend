@@ -28,7 +28,7 @@ module.exports.register = async server => {
       options: {
         auth: false,
         tags: ['api', 'categories'],
-        description: 'Get categories with id',
+        description: 'Get categories by id',
         handler: CategoriesController.getCategory,
         validate: CategoriesValidation.getCategory,
         plugins: {
@@ -72,7 +72,7 @@ module.exports.register = async server => {
           scope: ['admin'],
         },
         tags: ['api', 'categories'],
-        description: 'Update Categories with id',
+        description: 'Update Categories by id',
         handler: CategoriesController.updateCategory,
         validate: CategoriesValidation.updateCategory,
         plugins: {
@@ -94,7 +94,7 @@ module.exports.register = async server => {
           scope: ['admin'],
         },
         tags: ['api', 'categories'],
-        description: 'Delete Categories with id',
+        description: 'Delete Categories by id',
         handler: CategoriesController.deleteCategory,
         validate: CategoriesValidation.deleteCategory,
         plugins: {

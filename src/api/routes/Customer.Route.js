@@ -30,7 +30,7 @@ module.exports.register = async server => {
       path: '/customers/{id}',
       options: {
         tags: ['api', 'customers'],
-        description: 'Get customer info with id.',
+        description: 'Get customer info by id.',
         handler: CustomerController.getInformation,
         validate: CustomerValidation.getInformation,
         plugins: {
@@ -69,7 +69,7 @@ module.exports.register = async server => {
       path: '/customers/{id}',
       options: {
         tags: ['api', 'customers'],
-        description: 'Update customer with id.',
+        description: 'Update customer by id.',
         handler: CustomerController.updateCustomer,
         validate: CustomerValidation.updateCustomer,
         plugins: {
@@ -91,7 +91,7 @@ module.exports.register = async server => {
           scope: ['admin'],
         },
         tags: ['api', 'customers'],
-        description: 'Delete Customer with id.',
+        description: 'Delete Customer by id.',
         handler: CustomerController.deleteCustomer,
         validate: CustomerValidation.deleteCustomer,
         plugins: {

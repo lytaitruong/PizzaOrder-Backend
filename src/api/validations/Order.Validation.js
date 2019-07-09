@@ -23,4 +23,9 @@ module.exports = {
     }),
     headers: jwtValidator,
   },
+  deleteOrder: {
+    params: Joi.object().keys({
+      id: joiObjectId
+    })
+  }
 }

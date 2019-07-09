@@ -8,18 +8,18 @@ module.exports.getDate = time => {
   return time ? new Date(time).toLocaleDateString() : new Date().toLocaleDateString()
 }
 module.exports.Response = (h, data, statusCode) => {
-  return Boom.isBoom(data) ? data : h.response(data).code(statusCode)
+  return (data) ? h.response(data).code(statusCode) : Boom.badRequest(`Invalid Params ID`)
 }
 module.exports.HandlerError = (err, h) => {
   console.log(err)
-  if (err.name === 'MongoError') {
+  const {code} = err;
+  if(code){
     switch (err.code) {
       case 11000:
         throw Boom.conflict('This data have been exist')
-      default:
-        throw Boom.internal()
     }
   }
+  throw Boom.internal()
 }
 
 module.exports.joiObjectId = Joi.objectID()

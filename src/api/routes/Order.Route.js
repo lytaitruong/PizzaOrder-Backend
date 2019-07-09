@@ -30,7 +30,7 @@ module.exports.register = async server => {
       path: '/orders/{id}',
       options: {
         tags: ['api', 'orders'],
-        description: 'Get order with id',
+        description: 'Get order by id',
         handler: OrderController.getOrder,
         validate: OrderValidation.getOrder,
         plugins: {
@@ -52,6 +52,25 @@ module.exports.register = async server => {
         description: 'Create a new Order',
         handler: OrderController.createOrder,
         validate: OrderValidation.createOrder,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              201: SwaggerDescription[201],
+              400: SwaggerDescription[400],
+              500: SwaggerDescription[500],
+            },
+          },
+        },
+      },
+    },
+    {
+      method: 'DELETE',
+      path: '/orders/{id}',
+      options: {
+        tags: ['api', 'orders'],
+        description: 'Delete order by id',
+        handler: OrderController.deleteOrder,
+        validate: OrderValidation.deleteOrder,
         plugins: {
           'hapi-swagger': {
             response: {

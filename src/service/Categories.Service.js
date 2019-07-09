@@ -1,4 +1,3 @@
-const Boom = require('@hapi/boom')
 const CategoriesModel = require('../models/Categories.Model')
 module.exports = {
   getCategories: async () => {
@@ -7,21 +6,21 @@ module.exports = {
   },
   getCategory: async id => {
     const category = await CategoriesModel.findById(id)
-    return category ? category : Boom.notFound('Category')
+    return category
   },
   createCategory: async ({ categoryName, imageUri }) => {
     const category = await CategoriesModel.create({ categoryName, imageUri })
-    return category ? category : Boom.badRequest('Category')
+    return category
   },
   updateCategory: async (id, { categoryName, imageUri }) => {
     const category = await CategoriesModel.findByIdAndUpdate(id, {
       categoryName,
       imageUri,
     })
-    return category ? category : Boom.notFound('Category')
+    return category
   },
   deleteCategory: async id => {
     const category = await CategoriesModel.findByIdAndDelete(id)
-    return category ? category : Boom.notFound(`Category`)
+    return category
   },
 }
