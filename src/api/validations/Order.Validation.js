@@ -25,7 +25,7 @@ module.exports = {
   },
   deleteOrder: {
     params: Joi.object().keys({
-      id: joiObjectId
-    })
-  }
+      id: joiObjectId,
+    }),
+  },
 }

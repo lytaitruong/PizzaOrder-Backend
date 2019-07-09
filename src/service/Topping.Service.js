@@ -4,10 +4,10 @@ module.exports = {
     const listToppings = await ToppingModel.find().sort({ toppingName: 1 })
     return listToppings
   },
-  getTopping: async id =>{
+  getTopping: async id => {
     console.log(id)
     const topping = await ToppingModel.findById(id)
-    return topping;
+    return topping
   },
   createTopping: async ({ toppingName, imageUri, unitPrice }) => {
     const topping = await ToppingModel.create({

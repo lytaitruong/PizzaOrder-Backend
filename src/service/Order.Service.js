@@ -2,8 +2,8 @@ const OrderModel = require('../models/Order.Model')
 module.exports = {
   getAllOrders: async (from, to) => {
     const listOrder = await OrderModel.find({
-            dateOrder: { $gte: from, $lte: to + 86400000 },
-          }).sort({ dateOrder: 1 })
+      dateOrder: { $gte: from, $lte: to + 86400000 },
+    }).sort({ dateOrder: 1 })
     return listOrder
   },
   getOrder: async id => {
@@ -23,9 +23,9 @@ module.exports = {
     })
     return order
   },
-  deleteOrder: async (_id, customerId) =>{
-    const order = await OrderModel.findOneAndDelete({_id, customerId})
-    return order;
+  deleteOrder: async (_id, customerId) => {
+    const order = await OrderModel.findOneAndDelete({ _id, customerId })
+    return order
   },
   calculateTopping: (productTopping, orderDetailTopping) => {
     return orderDetailTopping.reduce((total, detailTopping) => {

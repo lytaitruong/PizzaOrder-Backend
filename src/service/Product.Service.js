@@ -1,9 +1,9 @@
 const ProductModel = require('../models/Product.Model')
 module.exports = {
-  findArray: async (listId, select, populate) => {
+  findArray: async (listId, select, typePopulate = '', populate) => {
     return await ProductModel.find({ _id: { $in: listId } })
       .select(select)
-      .populate('topping', populate)
+      .populate(typePopulate, populate)
   },
 
   getAllProducts: async ({ categoryId, limit, page }) => {

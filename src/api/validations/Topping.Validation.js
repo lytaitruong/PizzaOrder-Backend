@@ -3,8 +3,8 @@ const { jwtValidator, joiObjectId } = require('../../util')
 module.exports = {
   getTopping: {
     params: Joi.object().keys({
-      id: joiObjectId
-    })
+      id: joiObjectId,
+    }),
   },
   createTopping: {
     payload: Joi.object().keys({

@@ -8,12 +8,12 @@ module.exports.getDate = time => {
   return time ? new Date(time).toLocaleDateString() : new Date().toLocaleDateString()
 }
 module.exports.Response = (h, data, statusCode) => {
-  return (data) ? h.response(data).code(statusCode) : Boom.badRequest(`Invalid Params ID`)
+  return data ? h.response(data).code(statusCode) : Boom.badRequest(`Invalid Params ID`)
 }
 module.exports.HandlerError = (err, h) => {
   console.log(err)
-  const {code} = err;
-  if(code){
+  const { code } = err
+  if (code) {
     switch (err.code) {
       case 11000:
         throw Boom.conflict('This data have been exist')

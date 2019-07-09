@@ -55,5 +55,5 @@ module.exports = {
       $push: { historyOrders: orderId },
     })
     return customer
-  }
+  },
 }

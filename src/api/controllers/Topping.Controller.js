@@ -9,11 +9,11 @@ module.exports = {
       return HandlerError(error, h)
     }
   },
-  getTopping: async (request, h) =>{
-    try{
-      const topping = await ToppingService.getTopping(request.params.id);
+  getTopping: async (request, h) => {
+    try {
+      const topping = await ToppingService.getTopping(request.params.id)
       return Response(h, topping, 200)
-    }catch(error){
+    } catch (error) {
       return HandlerError(error, h)
     }
   },
