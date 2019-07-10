@@ -1,10 +1,11 @@
 const { Response, HandlerError } = require('../../util/index')
+const { CODE } = require('../../util/constant')
 const ToppingService = require('../../service/Topping.Service')
 module.exports = {
   getAllToppings: async (request, h) => {
     try {
       const topping = await ToppingService.getAllToppings()
-      return Response(h, topping, 200)
+      return Response(h, topping, CODE.SUCCESS)
     } catch (error) {
       return HandlerError(error, h)
     }
@@ -12,7 +13,7 @@ module.exports = {
   getTopping: async (request, h) => {
     try {
       const topping = await ToppingService.getTopping(request.params.id)
-      return Response(h, topping, 200)
+      return Response(h, topping, CODE.SUCCESS)
     } catch (error) {
       return HandlerError(error, h)
     }
@@ -20,7 +21,7 @@ module.exports = {
   createTopping: async (request, h) => {
     try {
       const topping = await ToppingService.createTopping(request.payload)
-      return Response(h, topping, 201)
+      return Response(h, topping, CODE.CREATE)
     } catch (error) {
       return HandlerError(error, h)
     }
@@ -28,7 +29,7 @@ module.exports = {
   updateTopping: async (request, h) => {
     try {
       const topping = await ToppingService.updateTopping(request.params.id, request.payload)
-      return Response(h, topping, 200)
+      return Response(h, topping, CODE.SUCCESS)
     } catch (error) {
       return HandlerError(error, h)
     }
@@ -36,7 +37,7 @@ module.exports = {
   deleteTopping: async (request, h) => {
     try {
       const topping = await ToppingService.deleteTopping(request.params.id)
-      return Response(h, topping, 200)
+      return Response(h, topping, CODE.SUCCESS)
     } catch (error) {
       return HandlerError(error, h)
     }

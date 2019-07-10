@@ -10,7 +10,7 @@ module.exports.getDate = time => {
 module.exports.Response = (h, data, statusCode) => {
   return data ? h.response(data).code(statusCode) : Boom.badRequest(`Invalid Params ID`)
 }
-module.exports.HandlerError = (err, h) => {
+module.exports.HandlerError = err => {
   console.log(err)
   const { code } = err
   if (code) {

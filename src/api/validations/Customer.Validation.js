@@ -24,16 +24,16 @@ module.exports = {
     payload: Joi.object().keys({
       email: Joi.string()
         .min(8)
-        .required()
-        .email(),
+        .email({ minDomainSegments: 2 })
+        .required(),
       name: Joi.string()
-        .min(8)
+        .regex(/^[a-zA-Z0-9]{8,30}$/)
         .required(),
       password: Joi.string()
-        .min(8)
+        .regex(/^[a-zA-Z0-9]{8,30}$/)
         .required(),
       phoneNumber: Joi.string()
-        .min(10)
+        .regex(/^[0-9]{10}$/)
         .required(),
     }),
   },
@@ -42,9 +42,9 @@ module.exports = {
       id: joiObjectId,
     }),
     payload: Joi.object().keys({
-      name: Joi.string().min(8),
-      phoneNumber: Joi.string().min(8),
-      scope: Joi.string(),
+      name: Joi.string().regex(/^[a-zA-Z0-9]{8,30}$/),
+      phoneNumber: Joi.string().regex(/^[0-9]{10}$/),
+      scope: Joi.string().valid(['user', 'admin']),
     }),
     headers: jwtValidator,
   },
@@ -57,12 +57,11 @@ module.exports = {
   signInCustomer: {
     payload: Joi.object().keys({
       email: Joi.string()
-        .trim()
         .min(8)
+        .email({ minDomainSegments: 2 })
         .required(),
       password: Joi.string()
-        .trim()
-        .min(8)
+        .regex(/^[a-zA-Z0-9]{8,30}$/)
         .required(),
     }),
   },
@@ -72,16 +71,13 @@ module.exports = {
   changePassword: {
     payload: Joi.object().keys({
       password: Joi.string()
-        .trim()
-        .min(8)
+        .regex(/^[a-zA-Z0-9]{8,30}$/)
         .required(),
       newPassword: Joi.string()
-        .trim()
-        .min(8)
+        .regex(/^[a-zA-Z0-9]{8,30}$/)
         .required(),
       autPassword: Joi.string()
-        .trim()
-        .min(8)
+        .regex(/^[a-zA-Z0-9]{8,30}$/)
         .required(),
     }),
     headers: jwtValidator,

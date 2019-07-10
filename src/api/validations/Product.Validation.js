@@ -29,7 +29,7 @@ module.exports = {
       imageUri: Joi.string().required(),
       type: Joi.string().required(),
       description: Joi.string().required(),
-      categoryId: Joi.string().required(),
+      categoryId: joiObjectId,
       size: Joi.object().keys({
         S: Joi.number()
           .integer()
@@ -68,7 +68,7 @@ module.exports = {
       imageUri: Joi.string(),
       type: Joi.string(),
       description: Joi.string(),
-      categoryId: Joi.string(),
+      categoryId: joiObjectId,
       size: Joi.object().keys({
         S: Joi.number()
           .integer()

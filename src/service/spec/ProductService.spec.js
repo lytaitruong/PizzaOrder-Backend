@@ -134,7 +134,7 @@ describe('Test #DeleteProduct', () => {
   })
 })
 
-describe('#Test findArray', () => {
+describe('#Test findListProduct', () => {
   const listId = ['1', '2']
   test('Should return list Topping by listId', async () => {
     ProductModel.find = jest.fn(() => ({
@@ -142,7 +142,7 @@ describe('#Test findArray', () => {
       populate: jest.fn(() => Promise.resolve(resultProduct)),
     }))
     //ProductModel.populate = jest.fn(() => Promise.resolve(resultProduct))
-    const listProducts = await ProductService.findArray(listId, null, null)
+    const listProducts = await ProductService.findListProduct(listId, null, null)
     expect(listProducts).toEqual(resultProduct)
   })
 })
