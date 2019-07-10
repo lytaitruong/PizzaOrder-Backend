@@ -27,7 +27,7 @@ module.exports = {
         .email({ minDomainSegments: 2 })
         .required(),
       name: Joi.string()
-        .regex(/^[a-zA-Z0-9]{8,30}$/)
+        .regex(/^[a-zA-Z0-9 ]{8,30}$/)
         .required(),
       password: Joi.string()
         .regex(/^[a-zA-Z0-9]{8,30}$/)
@@ -42,7 +42,7 @@ module.exports = {
       id: Joi.string().required(),
     }),
     payload: Joi.object().keys({
-      name: Joi.string().regex(/^[a-zA-Z0-9]{8,30}$/),
+      name: Joi.string().regex(/^[a-zA-Z0-9 ]{8,30}$/),
       phoneNumber: Joi.string().regex(/^[0-9]{10}$/),
       scope: Joi.string().valid(['user', 'admin']),
     }),
