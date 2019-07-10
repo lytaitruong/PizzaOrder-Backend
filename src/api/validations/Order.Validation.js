@@ -37,7 +37,7 @@ module.exports = {
         .regex(/^[0-9]{10}$/)
         .required(),
       typePayment: Joi.string().valid(['cash', 'visa', 'mastercard']),
-      status: Joi.string().valid(["received","delivery","success","canceled"])
+      status: Joi.string().valid(["delivery","successed","cancelled"])
     }),
     headers: jwtValidator
   },
