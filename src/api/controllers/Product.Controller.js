@@ -16,7 +16,7 @@ module.exports = {
       const BestSellerProduct = BestSellerService.classifyCategories(listBestSeller, listProduct, listCategories)
       return Response(h, BestSellerProduct, CODE.SUCCESS)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
   getAllProducts: async (request, h) => {
@@ -24,7 +24,7 @@ module.exports = {
       const product = await ProductService.getAllProducts(request.query)
       return Response(h, product, CODE.SUCCESS)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
   getProduct: async (request, h) => {
@@ -32,7 +32,7 @@ module.exports = {
       const product = await ProductService.getProduct(request.params.id)
       return Response(h, product, CODE.SUCCESS)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
   createProduct: async (request, h) => {
@@ -40,7 +40,7 @@ module.exports = {
       const product = await ProductService.createProduct(request.payload)
       return Response(h, product, CODE.CREATE)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
   updateProduct: async (request, h) => {
@@ -48,7 +48,7 @@ module.exports = {
       const product = await ProductService.updateProduct(request.params.id, request.payload)
       return Response(h, product, CODE.SUCCESS)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
   deleteProduct: async (request, h) => {
@@ -56,7 +56,7 @@ module.exports = {
       const product = await ProductService.deleteProduct(request.params.id)
       return Response(h, product, CODE.SUCCESS)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
 }
