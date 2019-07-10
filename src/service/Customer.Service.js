@@ -22,18 +22,18 @@ const signUpCustomer = async ({ email, name, password, phoneNumber }) => {
     password,
     scope: 'user',
     phoneNumber,
-    historyOrders: []
+    historyOrders: [],
   })
-  return customer;
+  return customer
 }
 
 const signInCustomer = async ({ email, password }) => {
   const customer = await CustomerModel.findOne({ email })
   const invalid = !customer || !(await customer.validatePassword(password))
-  if(invalid){
+  if (invalid) {
     throw Boom.conflict(`email or password is not correct`)
   }
-  return customer;
+  return customer
 }
 
 const updateCustomer = async (id, data) => {
@@ -48,8 +48,8 @@ const deleteCustomer = async id => {
 
 const changePassword = async (id, { password, newPassword, autPassword }) => {
   const customer = await CustomerModel.findById(id)
-  if(!customer){
-    return null;
+  if (!customer) {
+    return null
   }
   const valid = (await customer.validatePassword(password)) && newPassword === autPassword
   if (valid) {
