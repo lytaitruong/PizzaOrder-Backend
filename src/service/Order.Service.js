@@ -25,7 +25,10 @@ const createOrder = async (customerId, listProduct, { address, phoneNumber, list
   })
   return order
 }
-
+const updateOrder = async (id, data) =>{
+  const order = await OrderModel.findByIdAndUpdate(id,data);
+  return order;  
+}
 const deleteOrder = async (_id, customerId) => {
   const order = await OrderModel.findOneAndDelete({ _id, customerId })
   return order
@@ -55,6 +58,7 @@ module.exports = {
   getAllOrders,
   getOrder,
   createOrder,
+  updateOrder,
   deleteOrder,
   calculateTopping,
   calculateAmount,

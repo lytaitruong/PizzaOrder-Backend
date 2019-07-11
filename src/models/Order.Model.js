@@ -10,6 +10,7 @@ const OrderSchema = new Mongoose.Schema({
   amount: { type: Number, required: true },
   dateOrder: { type: Date, required: true },
   typePayment: { type: String, required: true, enum: ['visa', 'mastercard', 'cash'] },
+  status: {type: String, required: true, enum: ['received']},
   listOrderDetails: { type: Array, required: true },
 })
 module.exports = Mongoose.model('orders', OrderSchema)
