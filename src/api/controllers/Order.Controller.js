@@ -41,14 +41,6 @@ module.exports = {
       return HandlerError(error, h)
     }
   },
-  updateOrder: async (request, h) => {
-    try{
-      const order = await OrderService.updateOrder(request.params.id, request.payload)
-      return Response(h, order, CODE.SUCCESS)
-    }catch(error){
-      return HandlerError(error,h)
-    }
-  },
   deleteOrder: async (request, h) => {
     try {
       const customerId = request.auth.credentials._id

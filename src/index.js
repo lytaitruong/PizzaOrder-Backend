@@ -4,7 +4,6 @@ const Server = require('./server')
 const start = async () => {
   const server = await Server.setupEnvironment(Config.server, Config.database)
   await server.start()
-  require('./kafka/consumer')
   console.log(`Server running at: ${server.info.uri}`)
 }
 

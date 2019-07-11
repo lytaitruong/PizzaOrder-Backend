@@ -64,25 +64,6 @@ module.exports.register = async server => {
       },
     },
     {
-      method: 'PUT',
-      path: '/orders/{id}',
-      options: {
-        tags: ['api', 'orders'],
-        description: 'Update order by id',
-        handler: OrderController.updateOrder,
-        validate: OrderValidation.updateOrder,
-        plugins: {
-          'hapi-swagger': {
-            response: {
-              201: SwaggerDescription[201],
-              400: SwaggerDescription[400],
-              500: SwaggerDescription[500],
-            },
-          },
-        },
-      },
-    },
-    {
       method: 'DELETE',
       path: '/orders/{id}',
       options: {

@@ -42,15 +42,6 @@ module.exports = {
     }),
     headers: jwtValidator,
   },
-  updateOrder: {
-    params: Joi.object().keys({
-      id: joiObjectId
-    }),
-    payload: Joi.object().keys({
-
-    }),
-    headers: jwtValidator
-  },
   deleteOrder: {
     params: Joi.object().keys({
       id: joiObjectId,
