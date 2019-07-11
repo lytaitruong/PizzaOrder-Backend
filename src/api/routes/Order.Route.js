@@ -62,8 +62,7 @@ module.exports.register = async server => {
           },
         },
       },
-    },
-    {
+    },{
       method: 'DELETE',
       path: '/orders/{id}',
       options: {
@@ -74,7 +73,7 @@ module.exports.register = async server => {
         plugins: {
           'hapi-swagger': {
             response: {
-              201: SwaggerDescription[201],
+              200: SwaggerDescription[200],
               400: SwaggerDescription[400],
               500: SwaggerDescription[500],
             },

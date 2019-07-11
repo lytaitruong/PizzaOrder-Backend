@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const { jwtValidator, joiObjectId } = require('../../util')
+const { jwtValidator} = require('../../util')
 module.exports = {
   getAllCustomers: {
     query: Joi.object().keys({
@@ -16,7 +16,7 @@ module.exports = {
   },
   getInformation: {
     params: Joi.object().keys({
-      id: joiObjectId,
+      id: Joi.string().required(),
     }),
     headers: jwtValidator,
   },
@@ -27,7 +27,7 @@ module.exports = {
         .email({ minDomainSegments: 2 })
         .required(),
       name: Joi.string()
-        .regex(/^[a-zA-Z0-9]{8,30}$/)
+        .regex(/^[a-zA-Z0-9 ]{8,30}$/)
         .required(),
       password: Joi.string()
         .regex(/^[a-zA-Z0-9]{8,30}$/)
@@ -39,10 +39,10 @@ module.exports = {
   },
   updateCustomer: {
     params: Joi.object().keys({
-      id: joiObjectId,
+      id: Joi.string().required(),
     }),
     payload: Joi.object().keys({
-      name: Joi.string().regex(/^[a-zA-Z0-9]{8,30}$/),
+      name: Joi.string().regex(/^[a-zA-Z0-9 ]{8,30}$/),
       phoneNumber: Joi.string().regex(/^[0-9]{10}$/),
       scope: Joi.string().valid(['user', 'admin']),
     }),
@@ -50,7 +50,7 @@ module.exports = {
   },
   deleteCustomer: {
     params: Joi.object().keys({
-      id: joiObjectId,
+      id: Joi.string().required(),
     }),
     headers: jwtValidator,
   },

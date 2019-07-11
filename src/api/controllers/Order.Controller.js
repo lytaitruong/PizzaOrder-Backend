@@ -1,5 +1,5 @@
 const Boom = require('@hapi/boom')
-const { Response, Time } = require('../../util/index')
+const { Response, HandlerError, Time } = require('../../util/index')
 const { CODE } = require('../../util/constant')
 const OrderService = require('../../service/Order.Service')
 const ProductService = require('../../service/Product.Service')
@@ -19,7 +19,7 @@ module.exports = {
       const order = await OrderService.getOrder(request.params.id)
       return Response(h, order, CODE.SUCCESS)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
   createOrder: async (request, h) => {
@@ -38,7 +38,7 @@ module.exports = {
       }
       return Response(h, order, CODE.CREATE)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
   deleteOrder: async (request, h) => {
@@ -49,7 +49,7 @@ module.exports = {
       const order = await OrderService.deleteOrder(request.params.id, customerId)
       return Response(h, order, CODE.SUCCESS)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
 }

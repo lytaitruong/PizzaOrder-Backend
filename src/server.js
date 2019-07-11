@@ -17,7 +17,6 @@ module.exports.setupEnvironment = async (configServer, configDatabase) => {
     console.log(`Register plugin ${plugin.name} with version: ${plugin.version}`)
     return plugin.register(server, configServer)
   })
-
   await Promise.all(pluginsPromises)
   console.log(`All plugins have been registered successfully`)
 

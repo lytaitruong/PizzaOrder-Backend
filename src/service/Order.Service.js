@@ -21,9 +21,15 @@ const createOrder = async (customerId, listProduct, { address, phoneNumber, list
     amount,
     dateOrder: new Date().getTime(),
     typePayment,
+    status: "received",
     listOrderDetails,
   })
   return order
+}
+
+const updateOrder = async(_id , data) =>{
+  const order = await OrderModel.findByIdAndUpdate(_id, {status: "delivery"},{new:true})
+  return order;
 }
 
 const deleteOrder = async (_id, customerId) => {
@@ -55,6 +61,7 @@ module.exports = {
   getAllOrders,
   getOrder,
   createOrder,
+  updateOrder,
   deleteOrder,
   calculateTopping,
   calculateAmount,
