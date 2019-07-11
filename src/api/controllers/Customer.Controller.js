@@ -1,5 +1,5 @@
 const Boom = require('@hapi/boom')
-const { Response, HandleError } = require('../../util')
+const { Response, HandlerError } = require('../../util')
 const { CODE } = require('../../util/constant')
 const AuthService = require('../../service/Auth.Service')
 const CustomerService = require('../../service/Customer.Service')
@@ -9,7 +9,7 @@ module.exports = {
       const customer = await CustomerService.getAllCustomers(request.query)
       return Response(h, customer, CODE.SUCCESS)
     } catch (error) {
-      return HandleError(error, h)
+      return HandlerError(error)
     }
   },
   getInformation: async (request, h) => {
@@ -19,7 +19,7 @@ module.exports = {
       const customer = await CustomerService.getInformation(id)
       return Response(h, customer, CODE.SUCCESS)
     } catch (error) {
-      return HandleError(error, h)
+      return HandlerError(error)
     }
   },
   signUpCustomer: async (request, h) => {
@@ -34,7 +34,7 @@ module.exports = {
       }
       return Response(h, customer, CODE.CREATE)
     } catch (error) {
-      return HandleError(error, h)
+      return HandlerError(error)
     }
   },
   signInCustomer: async (request, h) => {
@@ -49,7 +49,7 @@ module.exports = {
       }
       return Response(h, customer, CODE.SUCCESS)
     } catch (error) {
-      return HandleError(error, h)
+      return HandlerError(error)
     }
   },
   updateCustomer: async (request, h) => {
@@ -59,7 +59,7 @@ module.exports = {
       const customer = await CustomerService.updateCustomer(id, request.payload)
       return Response(h, customer, CODE.SUCCESS)
     } catch (error) {
-      return HandleError(error, h)
+      return HandlerError(error)
     }
   },
   deleteCustomer: async (request, h) => {
@@ -67,7 +67,7 @@ module.exports = {
       const customer = await CustomerService.deleteCustomer(request.params.id)
       return Response(h, customer, CODE.SUCCESS)
     } catch (error) {
-      return HandleError(error, h)
+      return HandlerError(error)
     }
   },
   signOutCustomer: async (request, h) => {
@@ -75,7 +75,7 @@ module.exports = {
       request.cookieAuth.clear()
       return h.redirect('/')
     } catch (error) {
-      return HandleError(error, h)
+      return HandlerError(error)
     }
   },
   changePassword: async (request, h) => {
@@ -84,7 +84,7 @@ module.exports = {
       const customer = await CustomerService.changePassword(id, request.payload)
       return Response(h, customer, CODE.SUCCESS)
     } catch (error) {
-      return HandleError(error, h)
+      return HandlerError(error)
     }
   },
 }

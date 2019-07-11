@@ -11,7 +11,7 @@ module.exports = {
       const listOrder = await OrderService.getAllOrders(Time(from), Time(to))
       return Response(h, listOrder, CODE.SUCCESS)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
   getOrder: async (request, h) => {
@@ -19,7 +19,7 @@ module.exports = {
       const order = await OrderService.getOrder(request.params.id)
       return Response(h, order, CODE.SUCCESS)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
   createOrder: async (request, h) => {
@@ -38,7 +38,7 @@ module.exports = {
       }
       return Response(h, order, CODE.CREATE)
     } catch (error) {
-      return HandlerError(error, h)
+      return HandlerError(error)
     }
   },
   updateOrder: async (request, h) => {

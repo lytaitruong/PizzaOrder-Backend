@@ -33,8 +33,9 @@ module.exports = {
     }),
     payload: {
       address: Joi.string(),
-      phoneNumber: Joi.string().regex(/^[0-9{10}]$/),
+      phoneNumber: Joi.string().regex(/^[0-9]{10}$/),
       typePayment: Joi.string().valid(['cash','visa','mastercard']),
+      status: Joi.string().valid(['delivery,successed,cancelled'])
     },
     headers: jwtValidator
   },
