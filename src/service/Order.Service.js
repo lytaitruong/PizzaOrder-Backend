@@ -20,6 +20,7 @@ const createOrder = async (customerId, listProduct, { address, phoneNumber, list
     address,
     amount,
     dateOrder: new Date().getTime(),
+    status: "received",
     typePayment,
     listOrderDetails,
   })
