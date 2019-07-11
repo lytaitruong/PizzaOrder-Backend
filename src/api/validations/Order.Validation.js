@@ -27,9 +27,21 @@ module.exports = {
     }),
     headers: jwtValidator,
   },
+  updateOrder: {
+    params: Joi.object().keys({
+      id: joiObjectId,
+    }),
+    payload: {
+      address: Joi.string(),
+      phoneNumber: Joi.string().regex(/^[0-9{10}]$/),
+      typePayment: Joi.string().valid(['cash','visa','mastercard']),
+    },
+    headers: jwtValidator
+  },
   deleteOrder: {
     params: Joi.object().keys({
       id: joiObjectId,
     }),
+    headers: jwtValidator
   },
 }
