@@ -27,8 +27,8 @@ const createOrder = async (customerId, listProduct, { address, phoneNumber, list
   return order
 }
 
-const updateOrder = async( id , data) =>{
-  const order = await OrderModel.findByIdAndUpdate(id, data)
+const updateOrder = async(_id , data) =>{
+  const order = await OrderModel.findByIdAndUpdate(_id, {status: "delivery"},{new:true})
   return order;
 }
 

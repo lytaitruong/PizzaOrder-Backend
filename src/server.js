@@ -1,6 +1,7 @@
 const Hapi = require('@hapi/hapi')
 const Routes = require('./api')
 const Database = require('./database')
+const producer = require('./kafka/producer')
 module.exports.setupEnvironment = async (configServer, configDatabase) => {
   Database.connect(configDatabase)
   const server = Hapi.server({
@@ -17,7 +18,6 @@ module.exports.setupEnvironment = async (configServer, configDatabase) => {
     console.log(`Register plugin ${plugin.name} with version: ${plugin.version}`)
     return plugin.register(server, configServer)
   })
-
   await Promise.all(pluginsPromises)
   console.log(`All plugins have been registered successfully`)
 
