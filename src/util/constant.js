@@ -53,3 +53,8 @@ module.exports.CODE = {
   SUCCESS: 200,
   CREATE: 201,
 }
+
+module.exports.PRODUCT = {
+  ID: '_id',
+  QUANTITY: 'quantity'
+}

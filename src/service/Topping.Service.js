@@ -6,7 +6,6 @@ const getAllToppings = async () => {
 }
 
 const getTopping = async id => {
-  console.log(id)
   const topping = await ToppingModel.findById(id)
   return topping
 }

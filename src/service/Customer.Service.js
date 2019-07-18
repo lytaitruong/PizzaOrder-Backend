@@ -53,7 +53,7 @@ const changePassword = async (id, { password, newPassword, autPassword }) => {
   }
   const valid = (await customer.validatePassword(password)) && newPassword === autPassword
   if (valid) {
-    const a = await customer.update({
+    await customer.update({
       password: await customer.encryptPassword(newPassword),
     })
     return customer
