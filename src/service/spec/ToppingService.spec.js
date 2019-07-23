@@ -34,18 +34,18 @@ describe('Test #getAllToppings', () => {
 })
 
 describe('Test #GetTopping', () => {
-  test('Should return topping by id', async () =>{
+  test('Should return topping by id', async () => {
     ToppingModel.findById = jest.fn().mockResolvedValue(resultTopping[0])
     const topping = await ToppingService.getTopping(id)
     expect(topping).toEqual(resultTopping[0])
   })
 
-  test('Should return null by invalid id ',async () => {
+  test('Should return null by invalid id ', async () => {
     ToppingModel.findById = jest.fn().mockResolvedValue(null)
     const topping = await ToppingService.getTopping(id)
     expect(topping).toBeNull()
-  });
-});
+  })
+})
 describe('Test #createTopping', () => {
   test('Should create topping', async () => {
     ToppingModel.create = jest.fn().mockResolvedValue(resultTopping[0])

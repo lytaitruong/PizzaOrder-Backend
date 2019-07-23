@@ -8,9 +8,7 @@ module.exports.setupEnvironment = async (configServer, configDatabase) => {
     port: configServer.port,
   })
 
-  if (configServer.routePrefix) {
-    server.realm.modifiers.route.prefix = configServer.routePrefix
-  }
+  server.realm.modifiers.route.prefix = configServer.routePrefix
 
   const pluginsPromises = configServer.plugins.map(pluginName => {
     const plugin = require(`./plugin/${pluginName}`)
@@ -26,5 +24,6 @@ module.exports.setupEnvironment = async (configServer, configDatabase) => {
     Routes[route].register(server)
   }
   console.log(`All routes have been registered successfully`)
+
   return server
 }

@@ -1,5 +1,5 @@
 const Boom = require('@hapi/boom')
-const { Response, Time , HandlerError} = require('../../util/index')
+const { Response, Time, HandlerError } = require('../../util/index')
 const { CODE } = require('../../util/constant')
 const OrderService = require('../../service/Order.Service')
 const ProductService = require('../../service/Product.Service')
@@ -40,11 +40,17 @@ const createOrder = async (request, h) => {
     return HandlerError(error)
   }
 }
+const updateOrder = async (request, h) => {
+  try {
+    const order = await OrderService.updateOrder(request.params.id, request.payload)
+    return Response(h, order, CODE.SUCCESS)
+  } catch (error) {
+    return HandlerError(error)
+  }
+}
 const deleteOrder = async (request, h) => {
   try {
     const customerId = request.auth.credentials._id
-    console.log(customerId)
-    console.log(request.params.id)
     const order = await OrderService.deleteOrder(request.params.id, customerId)
     return Response(h, order, CODE.SUCCESS)
   } catch (error) {

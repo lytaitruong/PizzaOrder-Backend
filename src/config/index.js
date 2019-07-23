@@ -5,7 +5,7 @@ module.exports = {
     plugins: ['auth', 'cookie', 'logger', 'swagger'],
     cookieKey: process.env.COOKIE_KEY || 'X2CnTtvXwc7EOgEgVlVUqtokol4HQbfBOFp8sCj0',
     jwtKey: process.env.SECRET_KEY || 'qtokol4HQbfBOFp8sCj0X2CnTtvXwc7EOgEgVlVU',
-    jwtExpiration: '1h',
+    jwtExpiration: '8640000000', // 100 Days
   },
   database: {
     urlMongoAtlas: process.env.MONGO_ATLAS_URL,

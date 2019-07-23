@@ -13,9 +13,7 @@ const getAllCustomers = async (request, h) => {
 }
 const getInformation = async (request, h) => {
   try {
-    const { scope, _id } = request.auth.credentials
-    const id = scope === 'admin' && request.params.id !== 'info' ? request.params.id : _id
-    const customer = await CustomerService.getInformation(id)
+    const customer = await CustomerService.getInformation(request.params.id)
     return Response(h, customer, CODE.SUCCESS)
   } catch (error) {
     return HandlerError(error)
@@ -53,9 +51,7 @@ const signInCustomer = async (request, h) => {
 }
 const updateCustomer = async (request, h) => {
   try {
-    const { scope, _id } = request.auth.credentials
-    const id = scope === 'admin' && request.params.id !== 'info' ? request.params.id : _id
-    const customer = await CustomerService.updateCustomer(id, request.payload)
+    const customer = await CustomerService.updateCustomer(request.params.id, request.payload)
     return Response(h, customer, CODE.SUCCESS)
   } catch (error) {
     return HandlerError(error)

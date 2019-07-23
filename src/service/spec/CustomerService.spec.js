@@ -69,7 +69,7 @@ describe('Test #changePassword', () => {
 
   it('Should throw Boom.badRequest with invalid id or wrong password', async () => {
     CustomerModel.findById = jest.fn().mockResolvedValue(null)
-    const customer = await CustomerService.changePassword('0','1111',"2222","3333")
+    const customer = await CustomerService.changePassword('0', '1111', '2222', '3333')
     expect(customer).toBeNull()
   })
 })

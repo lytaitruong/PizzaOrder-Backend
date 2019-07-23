@@ -31,6 +31,6 @@ module.exports = {
     params: Joi.object().keys({
       id: joiObjectId,
     }),
-    headers: jwtValidator
+    headers: jwtValidator,
   },
 }

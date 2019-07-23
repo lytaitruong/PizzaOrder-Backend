@@ -1,52 +1,64 @@
 const Joi = require('@hapi/joi')
 module.exports = {
-  200: {
-    description: 'OK',
-    schema: Joi.object({
-      statusCode: 200,
-      message: Joi.string(),
-      data: Joi.string(),
-    }),
+  200: data => {
+    return {
+      description: 'OK',
+      schema: Joi.object({
+        statusCode: 200,
+        message: `OK`,
+        data: data,
+      }),
+    }
   },
-  201: {
-    description: 'Create Success',
-    schema: Joi.object({
-      statusCode: 201,
-      message: Joi.string(),
-      data: Joi.string(),
-    }),
+  201: data => {
+    return {
+      description: 'Create Success',
+      schema: Joi.object({
+        statusCode: 201,
+        message: 'Create Success',
+        data,
+      }),
+    }
   },
-  400: {
-    description: 'Bad Request',
-    schema: Joi.object({
-      statusCode: 400,
-      message: Joi.string(),
-      data: Joi.string(),
-    }),
+  400: error => {
+    return {
+      description: 'Bad Request',
+      schema: Joi.object({
+        statusCode: 400,
+        message: `Bad Request`
+        error: error,
+      }),
+    }
   },
-  404: {
-    description: 'Not Found',
-    schema: Joi.object({
-      statusCode: 404,
-      message: Joi.string(),
-      error: Joi.string(),
-    }),
+  404: error => {
+    return {
+      description: 'Not Found',
+      schema: Joi.object({
+        statusCode: 404,
+        message: `Not Found`,
+        error: error,
+      }),
+    }
   },
-  409: {
-    description: 'This data is unique! Duplicate',
-    schema: Joi.object({
-      statusCode: 409,
-      message: Joi.string(),
-      error: Joi.string(),
-    }),
+  409: error =>  {
+    return {
+      description: 'This data is unique! Duplicate',
+      schema: Joi.object({
+        statusCode: 409,
+        message: `Conflict data`,
+        error: error,
+      }),
+    }
   },
-  500: {
-    description: 'Internal Server Error',
-    schema: Joi.object({
-      statusCode: 500,
-      message: Joi.string(),
-      error: Joi.string(),
-    }),
+  500: error => {
+    return {
+      description: 'Internal Server Error',
+      schema: Joi.object({
+        statusCode: 500,
+        message: `Internal Server Error`,
+        error: error,
+      }),
+    }
   },
 }
 module.exports.CODE = {
@@ -56,5 +68,5 @@ module.exports.CODE = {
 
 module.exports.PRODUCT = {
   ID: '_id',
-  QUANTITY: 'quantity'
+  QUANTITY: 'quantity',
 }

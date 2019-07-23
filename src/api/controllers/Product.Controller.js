@@ -3,7 +3,7 @@ const ProductService = require('../../service/Product.Service')
 const BestSellerService = require('../../service/BestSeller.Service')
 const CategoriesService = require('../../service/Categories.Service')
 const { Time, Response, HandlerError } = require('../../util')
-const { CODE, PRODUCT} = require('../../util/constant')
+const { CODE, PRODUCT } = require('../../util/constant')
 const getBestSeller = async (request, h) => {
   const { from, to } = request.query
   try {
