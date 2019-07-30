@@ -1,8 +1,7 @@
 const CustomerController = require('../controllers/Customer.Controller')
 const CustomerValidation = require('../validations/Customer.Validation')
-const SwaggerDescription = require('../../util/constant')
-module.exports.register = async server => {
-  server.bind(CustomerController)
+const SwaggerResponse = require('../schema')
+module.exports.register = server =>
   server.route([
     {
       method: 'GET',
@@ -15,6 +14,14 @@ module.exports.register = async server => {
         description: 'Get all customers',
         handler: CustomerController.getAllCustomers,
         validate: CustomerValidation.getAllCustomers,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -25,6 +32,15 @@ module.exports.register = async server => {
         description: 'Get customer info by id.',
         handler: CustomerController.getInformation,
         validate: CustomerValidation.getInformation,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              404: SwaggerResponse[404],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -36,6 +52,15 @@ module.exports.register = async server => {
         description: 'Create a new customer.',
         handler: CustomerController.signUpCustomer,
         validate: CustomerValidation.signUpCustomer,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              201: SwaggerResponse[201],
+              409: SwaggerResponse[409],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -46,6 +71,15 @@ module.exports.register = async server => {
         description: 'Update customer by id.',
         handler: CustomerController.updateCustomer,
         validate: CustomerValidation.updateCustomer,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              404: SwaggerResponse[404],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -59,6 +93,15 @@ module.exports.register = async server => {
         description: 'Delete Customer by id.',
         handler: CustomerController.deleteCustomer,
         validate: CustomerValidation.deleteCustomer,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              404: SwaggerResponse[404],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -86,6 +129,15 @@ module.exports.register = async server => {
         description: 'Sign In',
         handler: CustomerController.signInCustomer,
         validate: CustomerValidation.signInCustomer,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              409: SwaggerResponse[409],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -96,7 +148,15 @@ module.exports.register = async server => {
         description: 'Change password of Customer',
         handler: CustomerController.changePassword,
         validate: CustomerValidation.changePassword,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              400: SwaggerResponse[400],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
   ])
-}

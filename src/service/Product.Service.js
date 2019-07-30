@@ -1,39 +1,12 @@
 const ProductModel = require('../models/Product.Model')
 
-const findListProduct = async (listId, select, typePopulate = '', populate) => {
-  return await ProductModel.find({ _id: { $in: listId } })
-    .select(select)
-    .populate(typePopulate, populate)
-}
-
-const getAllProducts = async ({ categoryId, limit, page }) => {
-  const id = !categoryId ? {} : { categoryId: categoryId }
-  const listProduct = await ProductModel.find(id)
-    .sort({ productName: 1 })
-    .limit(limit)
-    .skip(limit * (page - 1))
-  return listProduct
-}
-
-const getProduct = async id => {
-  const product = await ProductModel.findById(id)
-  return product
-}
-
-const createProduct = async data => {
-  const product = await ProductModel.create(data)
-  return product
-}
-
-const updateProduct = async (id, data) => {
-  const product = await ProductModel.findByIdAndUpdate(id, data)
-  return product
-}
-
-const deleteProduct = async id => {
-  const product = await ProductModel.findByIdAndDelete(id)
-  return product
-}
+const findListProduct = (listId, select, typePopulate = '', populate) =>
+  ProductModel.findListProduct(listId, select, typePopulate, populate).populate()
+const getAllProducts = ({ categoryId = {}, limit, page }) => ProductModel.getAllProducts(categoryId, limit, page)
+const getProduct = id => ProductModel.getProduct(id)
+const createProduct = data => ProductModel.createProduct(data)
+const updateProduct = (id, data) => ProductModel.updateProduct(id, data)
+const deleteProduct = id => ProductModel.deleteProduct(id)
 
 module.exports = {
   findListProduct,

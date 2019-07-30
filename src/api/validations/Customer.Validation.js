@@ -16,7 +16,7 @@ module.exports = {
   },
   getInformation: {
     params: Joi.object().keys({
-      id: Joi.string().required(),
+      id: joiObjectId,
     }),
     headers: jwtValidator,
   },
@@ -39,7 +39,7 @@ module.exports = {
   },
   updateCustomer: {
     params: Joi.object().keys({
-      id: Joi.string().required(),
+      id: joiObjectId,
     }),
     payload: Joi.object().keys({
       name: Joi.string().regex(/^[a-zA-Z0-9 ]{8,30}$/),
@@ -50,7 +50,7 @@ module.exports = {
   },
   deleteCustomer: {
     params: Joi.object().keys({
-      id: Joi.string().required(),
+      id: joiObjectId,
     }),
     headers: jwtValidator,
   },

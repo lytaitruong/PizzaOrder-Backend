@@ -1,0 +1,51 @@
+{
+    "root": true,
+    "extends": [
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:jest/recommended",
+      "airbnb-base"
+    ],
+    "plugins": [
+      "jest"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true,
+      "jquery": true,
+      "jest/globals": true
+    },
+    "rules": {
+      "quotes": ["warn", "single"],
+      "no-console": "warn",
+      "no-debugger": "warn",
+      "no-var": "error",
+      "comma-dangle": ["warn", "never"],
+      "semi": ["error", "always"],
+      "no-trailing-spaces": ["error", {
+        "skipBlankLines": true
+      }],
+      "arrow-parens": ["error", "as-needed"],
+      "eol-last": "off",
+      "no-underscore-dangle": "off",
+      "no-alert": "error",
+      "no-lone-blocks": "off",
+      "space-in-parens": ["error", "never"],
+      "object-curly-spacing": ["error", "always"],
+      "space-before-function-paren": ["warn", {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }],
+      "keyword-spacing": "warn"
+    },
+    "globals": {
+    }
+  }
+  

@@ -46,7 +46,6 @@ module.exports = {
           .integer()
           .required(),
       }),
-      price: Joi.number().integer(),
       sale: Joi.number()
         .min(0)
         .max(100)
@@ -85,7 +84,6 @@ module.exports = {
           .integer()
           .required(),
       }),
-      price: Joi.number().integer(),
       sale: Joi.number()
         .min(0)
         .max(100)

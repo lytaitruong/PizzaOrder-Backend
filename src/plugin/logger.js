@@ -1,7 +1,7 @@
 module.exports = {
   name: 'Good Logger',
   version: '1.0.0',
-  register: (server, options) => {
+  register: server => {
     try {
       server.register({
         plugin: require('@hapi/good'),

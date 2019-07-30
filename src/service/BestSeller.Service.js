@@ -1,12 +1,4 @@
-const ObjectToArray = (data, id, quantity) => {
-  return Object.keys(data)
-    .map(value => {
-      const JSON = {}
-      ;(JSON[id] = value), (JSON[quantity] = data[value])
-      return JSON
-    })
-    .sort((a, b) => b.quantity - a.quantity)
-}
+const ObjectToArray = data => Object.entries(data).sort((a, b) => b[1] - a[1])
 
 const countProductOrder = listOrder => {
   const listProduct = {}
@@ -21,23 +13,19 @@ const countProductOrder = listOrder => {
 }
 
 const classifyCategories = (listBestSeller, listProduct, listCategories) => {
-  const classifyCategories = module.exports.classify(listCategories)
-  const list = listBestSeller.map(value => listProduct.filter(product => product._id == value._id)[0])
-  list.forEach(bestSeller => {
-    classifyCategories[bestSeller.categoryId].push(bestSeller)
+  const classifyCategories = listCategories.reduce(
+    (categories, category) => ((categories[category._id] = []), categories),
+    {}
+  )
+  listBestSeller.forEach(bestSeller => {
+    const product = listProduct.filter(pro => pro._id == bestSeller[0])[0]
+    classifyCategories[product.categoryId].push(product)
   })
   return classifyCategories
-}
-
-const classify = listCategories => {
-  const list = {}
-  listCategories.forEach(category => (list[category._id] = []))
-  return list
 }
 
 module.exports = {
   ObjectToArray,
   countProductOrder,
   classifyCategories,
-  classify,
 }

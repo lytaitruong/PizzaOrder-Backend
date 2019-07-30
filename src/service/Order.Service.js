@@ -1,35 +1,18 @@
 const OrderModel = require('../models/Order.Model')
 
-const getAllOrders = async (from, to) => {
-  const listOrder = await OrderModel.find({
-    dateOrder: { $gte: from, $lte: to + 86400000 },
-  }).sort({ dateOrder: 1 })
-  return listOrder
-}
+const getAllOrders = (from, to) => OrderModel.getAllOrders(from, to)
 
-const getOrder = async id => {
-  const order = await OrderModel.findById(id)
-  return order
-}
+const getOrder = id => OrderModel.getOrder(id)
 
-const createOrder = async (customerId, listProduct, { address, phoneNumber, listOrderDetails, typePayment }) => {
-  const amount = module.exports.calculateAmount(listProduct, listOrderDetails)
-  const order = OrderModel.create({
-    customerId,
-    phoneNumber,
+const createOrder = (customerId, listProduct, { address, phoneNumber, listOrderDetails, typePayment }) =>
+  OrderModel.createOrder(customerId, listProduct, calculateAmount(listProduct, listOrderDetails), {
     address,
-    amount,
-    dateOrder: new Date().getTime(),
-    typePayment,
+    phoneNumber,
     listOrderDetails,
+    typePayment,
   })
-  return order
-}
 
-const deleteOrder = async (_id, customerId) => {
-  const order = await OrderModel.findOneAndDelete({ _id, customerId })
-  return order
-}
+const deleteOrder = (_id, customerId) => OrderModel.deleteOrder({ _id, customerId })
 
 const calculateTopping = (productTopping, orderDetailTopping) => {
   return orderDetailTopping.reduce((total, detailTopping) => {
@@ -42,11 +25,9 @@ const calculateAmount = (listProduct, listOrderDetails) => {
   return listOrderDetails.reduce((total, orderDetail) => {
     const product = listProduct.find(pro => pro._id == orderDetail._id)
     const value =
-      product.type === 'PIZZA'
-        ? product.size[orderDetail.size] +
-          product.crust[orderDetail.crust] +
-          module.exports.calculateTopping(product.topping, orderDetail.topping)
-        : product.price
+      product.size[orderDetail.size] +
+      product.crust[orderDetail.crust] +
+      calculateTopping(product.topping, orderDetail.topping)
     return total + value * orderDetail.quantity
   }, 0)
 }

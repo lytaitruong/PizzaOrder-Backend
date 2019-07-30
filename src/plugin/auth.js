@@ -1,4 +1,4 @@
-const CustomerModel = require('../../models/Customer.Model')
+const CustomerModel = require('../models/Customer.Model')
 module.exports = {
   name: 'JWT Authdentication',
   version: '1.0.0',
@@ -18,6 +18,6 @@ module.exports = {
   },
 }
 const validate = async (decoded, request, h) => {
-  const user = await CustomerModel.findById(decoded.id)
+  const user = await CustomerModel.findById(decoded.id).lean(true)
   return !user ? { isValid: false, credentials: null } : { isValid: true, credentials: user }
 }

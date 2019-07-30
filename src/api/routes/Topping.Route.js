@@ -1,8 +1,7 @@
 const ToppingController = require('../controllers/Topping.Controller')
 const ToppingValidation = require('../validations/Topping.Validation')
-const SwaggerDescription = require('../../util/constant')
-module.exports.register = async server => {
-  server.bind(ToppingController)
+const SwaggerResponse = require('../schema')
+module.exports.register = server =>
   server.route([
     {
       method: 'GET',
@@ -12,6 +11,14 @@ module.exports.register = async server => {
         tags: ['api', 'toppings'],
         description: 'Get all topping',
         handler: ToppingController.getAllToppings,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -23,6 +30,15 @@ module.exports.register = async server => {
         description: 'Get topping by id',
         handler: ToppingController.getTopping,
         validate: ToppingValidation.getTopping,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              400: SwaggerResponse[400],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -36,6 +52,15 @@ module.exports.register = async server => {
         description: 'Create a new topping',
         handler: ToppingController.createTopping,
         validate: ToppingValidation.createTopping,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              400: SwaggerResponse[400],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -49,6 +74,15 @@ module.exports.register = async server => {
         description: 'Update topping by id',
         handler: ToppingController.updateTopping,
         validate: ToppingValidation.updateTopping,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              404: SwaggerResponse[404],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -62,7 +96,15 @@ module.exports.register = async server => {
         description: 'Delete Topping by id',
         handler: ToppingController.deleteTopping,
         validate: ToppingValidation.deleteTopping,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              404: SwaggerResponse[404],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
   ])
-}

@@ -4,6 +4,32 @@ const ToppingSchema = new Mongoose.Schema({
   imageUri: { type: String, required: true },
   unitPrice: { type: Number, required: true },
 })
+const model = Mongoose.model('toppings', ToppingSchema)
 
-const ToppingModel = Mongoose.model('toppings', ToppingSchema)
-module.exports = ToppingModel
+const getAllToppings = () => model.find().sort({ toppingName: 1 })
+
+const getTopping = id => model.findById(id)
+
+const createTopping = ({ toppingName, imageUri, unitPrice }) =>
+  model.create({
+    toppingName,
+    imageUri,
+    unitPrice,
+  })
+
+const updateTopping = (id, { toppingName, imageUri, unitPrice }) =>
+  model.findByIdAndUpdate(id, {
+    toppingName,
+    imageUri,
+    unitPrice,
+  })
+
+const deleteTopping = id => model.findByIdAndDelete(id)
+
+module.exports = {
+  getAllToppings,
+  getTopping,
+  createTopping,
+  updateTopping,
+  deleteTopping,
+}

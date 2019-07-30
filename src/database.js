@@ -1,14 +1,17 @@
 const Mongoose = require('mongoose')
 module.exports.connect = async config => {
-  const database = await Mongoose.connect(config.urlMongo, {
+  const database = await Mongoose.connect(config.urlMongoAtlas, {
     useCreateIndex: true,
     useNewUrlParser: true,
     useFindAndModify: false,
   })
-
   database.connection.on('error', () => {
     console.log(`Connect to: ${configData.urlMongoAtlas} Failed`)
   })
-
-  return database
+  database.connection.on('connected', () => {
+    console.log(`Connect to: ${configData.urlMongoAtlas} Successfully`)
+  })
+}
+module.exports.disconnect = done => {
+  Mongoose.disconnect(done)
 }

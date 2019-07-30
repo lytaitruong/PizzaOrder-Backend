@@ -2,7 +2,7 @@
   "name": "pizzaorder-backend",
   "version": "1.0.0",
   "description": "Use Hapi & Mongodb to building a Pizza Order System",
-  "main": "index.js",
+  "main": "src/index.js",
   "dependencies": {
     "@hapi/boom": "^7.4.2",
     "@hapi/cookie": "^10.1.0",
@@ -15,45 +15,39 @@
     "@hapi/vision": "^5.5.2",
     "bcrypt": "^3.0.6",
     "dotenv": "^8.0.0",
+    "glob": "^7.1.4",
     "hapi-auth-jwt2": "^8.6.1",
     "hapi-swagger": "^10.0.2",
     "joi-objectid": "^2.0.0",
     "jsonwebtoken": "^8.5.1",
-    "lout": "^11.2.3",
     "mongoose": "^5.6.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
-    "@types/jest": "^24.0.15",
-    "babel-jest": "^24.8.0",
     "eslint": "^6.0.1",
-    "glob": "^7.1.4",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-jest": "^22.13.6",
+    "eslint-plugin-node": "^9.1.0",
     "jest": "^24.8.0",
-    "node-gyp": "^5.0.2",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2"
   },
   "scripts": {
-    "build": "babel src -d dist",
-    "running": "nodemon src/index.js",
+    "dev": "nodemon src/index.js",
     "start": "node src/index.js",
+    "build": "babel src -d dist",
     "test": "jest",
     "test:watch": "jest --watch --config ./jest.config.js",
     "test:coverage": "jest --coverage",
     "lint": "eslint src/**/*.js",
-    "prettier": "prettier --write src/**/*.js",
-    "prettier-check": "prettier --check src/**/*.js"
+    "prettier": "prettier --write src/**/*.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lytaitruong/PizzaOrder-Backend.git"
   },
   "keywords": [
-    "Nodejs",
-    "Hapijs",
-    "Mongodb"
+    "node",
+    "npm"
   ],
   "author": "Ly Tai Truong",
   "license": "ISC",
@@ -63,5 +57,8 @@
   "homepage": "https://github.com/lytaitruong/PizzaOrder-Backend#readme",
   "engines": {
     "node": "8"
-  }
+  },
+  "files": [
+    "src/"
+  ]
 }

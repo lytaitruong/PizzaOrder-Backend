@@ -59,7 +59,8 @@ describe('Test #deleteCustomer', () => {
 
 describe('Test #changePassword', () => {
   it('Should update Password of customer by id', async () => {
-    CustomerModel.findById = jest.fn().mockResolvedValue(resultCustomer[0])
+    CustomerModel.findById = jest.fn().mockResolvedValue()
+    const customer = resultCustomer()
     const customer = await CustomerModel.findById('1')
     customer.validatePassword = jest.fn().mockResolvedValue(true)
     customer.update = jest.fn().mockResolvedValue(true)
@@ -69,8 +70,8 @@ describe('Test #changePassword', () => {
 
   it('Should throw Boom.badRequest with invalid id or wrong password', async () => {
     CustomerModel.findById = jest.fn().mockResolvedValue(null)
-    const customer = await CustomerService.changePassword('0', '1111', '2222', '3333')
-    expect(customer).toBeNull()
+    const customer = await CustomerModel.findById('0')
+    expect(customer).toThrow(Boom.badRequest(`password is not match`))
   })
 })
 

@@ -1,28 +1,12 @@
 const CategoriesModel = require('../models/Categories.Model')
 
-const getCategories = async () => {
-  const listCategories = await CategoriesModel.find()
-  return listCategories
-}
-const getCategory = async id => {
-  const category = await CategoriesModel.findById(id)
-  return category
-}
-const createCategory = async ({ categoryName, imageUri }) => {
-  const category = await CategoriesModel.create({ categoryName, imageUri })
-  return category
-}
-const updateCategory = async (id, { categoryName, imageUri }) => {
-  const category = await CategoriesModel.findByIdAndUpdate(id, {
-    categoryName,
-    imageUri,
-  })
-  return category
-}
-const deleteCategory = async id => {
-  const category = await CategoriesModel.findByIdAndDelete(id)
-  return category
-}
+const getCategories = () => CategoriesModel.getCategories()
+const getCategory = id => CategoriesModel.getCategory(id)
+const createCategory = ({ categoryName, imageUri }) => CategoriesModel.createCategory({ categoryName, imageUri })
+const updateCategory = (id, { categoryName, imageUri }) =>
+  CategoriesModel.updateCategory(id, { categoryName, imageUri })
+const deleteCategory = id => CategoriesModel.deleteCategory(id)
+
 module.exports = {
   getCategories,
   getCategory,

@@ -22,4 +22,27 @@ const ProductSchema = new Mongoose.Schema({
   rating: { type: Number, min: 0, max: 5, required: true },
   topping: [{ type: Mongoose.Schema.Types.ObjectId, ref: 'toppings' }],
 })
-module.exports = Mongoose.model('products', ProductSchema)
+const model = Mongoose.model('products', ProductSchema)
+const getAllProducts = ({ id, limit, page }) =>
+  model
+    .find(id)
+    .sort({ productName: 1 })
+    .limit(limit)
+    .skip(limit * (page - 1))
+const getProduct = id => model.findById(id)
+const createProduct = data => model.create(data)
+const updateProduct = (id, data) => model.findByIdAndUpdate(id, data)
+const deleteProduct = id => model.findByIdAndDelete(id)
+const findListProduct = (listId, select, typePopulate = '', populate) =>
+  model
+    .find({ _id: { $in: listId } })
+    .select(select)
+    .populate(typePopulate, populate)
+module.exports = {
+  findListProduct,
+  getAllProducts,
+  getProduct,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+}

@@ -1,8 +1,7 @@
 const ProductController = require('../controllers/Product.Controller')
 const ProductValidation = require('../validations/Product.Validation')
-const SwaggerDescription = require('../../util/constant')
-module.exports.register = async server => {
-  server.bind(ProductController)
+const SwaggerResponse = require('../schema')
+module.exports.register = server =>
   server.route([
     {
       method: 'GET',
@@ -13,6 +12,14 @@ module.exports.register = async server => {
         description: 'Get bestSeller for each categories',
         handler: ProductController.getBestSeller,
         validate: ProductValidation.getBestSeller,
+        plugins: {
+          'hapi-swagger': {
+            response: {
+              200: SwaggerResponse[200],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -24,6 +31,14 @@ module.exports.register = async server => {
         description: 'Get all products of all categories',
         handler: ProductController.getAllProducts,
         validate: ProductValidation.getAllProducts,
+        plugins: {
+          'hapi-swagger': {
+            responses: {
+              200: SwaggerResponse[200],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -35,6 +50,15 @@ module.exports.register = async server => {
         description: 'Get product by Id',
         handler: ProductController.getProduct,
         validate: ProductValidation.getProduct,
+        plugins: {
+          'hapi-swagger': {
+            responses: {
+              200: SwaggerResponse[200],
+              404: SwaggerResponse[404],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -48,6 +72,15 @@ module.exports.register = async server => {
         description: 'Create a new product',
         handler: ProductController.createProduct,
         validate: ProductValidation.createProduct,
+        plugins: {
+          'hapi-swagger': {
+            responses: {
+              200: SwaggerResponse[200],
+              400: SwaggerResponse[400],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -61,6 +94,15 @@ module.exports.register = async server => {
         description: 'Update product by id',
         handler: ProductController.updateProduct,
         validate: ProductValidation.updateProduct,
+        plugins: {
+          'hapi-swagger': {
+            responses: {
+              200: SwaggerResponse[200],
+              404: SwaggerResponse[404],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
     {
@@ -74,7 +116,15 @@ module.exports.register = async server => {
         description: 'Delete product by id',
         handler: ProductController.deleteProduct,
         validate: ProductValidation.deleteProduct,
+        plugins: {
+          'hapi-swagger': {
+            responses: {
+              200: SwaggerResponse[200],
+              404: SwaggerResponse[404],
+              500: SwaggerResponse[500],
+            },
+          },
+        },
       },
     },
   ])
-}
